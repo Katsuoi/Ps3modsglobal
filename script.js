@@ -38,3 +38,15 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 });
+// Pesquisa simples
+const searchInput = document.querySelector('.search input');
+if (searchInput) {
+    searchInput.addEventListener('input', function() {
+        const termo = this.value.toLowerCase();
+        const cards = document.querySelectorAll('.card-mod, .card-home');
+        cards.forEach(card => {
+            const texto = card.textContent.toLowerCase();
+            card.style.display = texto.includes(termo) ? '' : 'none';
+        });
+    });
+}
