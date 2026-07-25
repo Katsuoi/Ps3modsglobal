@@ -1652,3 +1652,51 @@ grid-template-columns:repeat(5,1fr);
 }
 
 }
+/* ============================================
+   CORREÇÃO DE CONFLITOS E OVERLAY
+   ============================================ */
+
+/* Remove qualquer overlay que esteja sobrando */
+.overlay {
+    pointer-events: none !important;
+}
+
+/* Só deixa o overlay no hero */
+.hero .overlay {
+    display: block !important;
+    pointer-events: none !important;
+}
+
+/* Garante que os cards fiquem por cima e clicáveis */
+.card-mod,
+.card-home,
+.lista-mods,
+.cards-home,
+#lista-mods,
+#todos-mods {
+    position: relative !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+}
+
+.card-mod a,
+.card-home a,
+.download {
+    position: relative;
+    z-index: 20 !important;
+    pointer-events: auto !important;
+}
+
+/* Remove fundos pretos extras que estão tampando */
+.banner-pequeno .overlay,
+section .overlay:not(.hero .overlay) {
+    display: none !important;
+}
+
+/* Força o grid a aparecer */
+.lista-mods,
+.cards-home {
+    display: grid !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
