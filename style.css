@@ -1700,3 +1700,71 @@ section .overlay:not(.hero .overlay) {
     opacity: 1 !important;
     visibility: visible !important;
 }
+/* ===== MELHORIAS VISUAIS ===== */
+
+.card-mod {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.card-mod:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(79,183,255,0.15);
+}
+
+.card-mod .categoria {
+    display: inline-block;
+    font-size: 12px;
+    color: #4fb7ff;
+    margin: 12px 15px 0;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-mod h3 {
+    padding-top: 6px !important;
+}
+
+.card-mod .download {
+    margin: 15px;
+    text-align: center;
+}
+
+.topo {
+    transition: box-shadow 0.3s ease;
+}
+
+/* Botão voltar na página do mod */
+.btn-voltar {
+    display: inline-block;
+    margin-bottom: 25px;
+    color: #4fb7ff;
+    font-weight: 600;
+}
+
+.btn-voltar:hover {
+    text-decoration: underline;
+}
+
+/* Galeria com hover */
+.galeria img {
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    border-radius: 10px;
+}
+
+.galeria img:hover {
+    transform: scale(1.03);
+    opacity: 0.9;
+}
+
+/* Ajuste mobile */
+@media (max-width: 600px) {
+    .card-mod {
+        margin-bottom: 10px;
+    }
+    
+    .info-mod {
+        padding: 20px 15px !important;
+    }
+}
