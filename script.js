@@ -51,28 +51,37 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('descricao').textContent = mod.descricao;
             document.getElementById('categoria-mod').textContent = mod.categoria;
 
+            // Capa
             const capa = document.getElementById('capa');
-            if (capa) capa.src = mod.imagem;
+            if (capa) {
+                capa.src = mod.imagem;
+                capa.alt = mod.nome;
+            }
 
+            // Download
             const download = document.getElementById('download');
             if (download) download.href = mod.download;
 
+            // Galeria
             const galeria = document.getElementById('galeria');
             if (galeria && mod.galeria) {
-                galeria.innerHTML = mod.galeria.map(src => 
-                    `<img src="\( {src}" alt=" \){mod.nome}">`
-                ).join('');
+                galeria.innerHTML = '';
+                mod.galeria.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = mod.nome;
+                    galeria.appendChild(img);
+                });
             }
         }
     }
 
-    // Pesquisa funcional
+    // Pesquisa
     const searchInput = document.querySelector('.search input, #pesquisa');
     if (searchInput) {
         searchInput.addEventListener('input', function() {
             const termo = this.value.toLowerCase().trim();
             const cards = document.querySelectorAll('.card-mod, .card-home');
-            
             cards.forEach(card => {
                 const texto = card.textContent.toLowerCase();
                 card.style.display = (termo === '' || texto.includes(termo)) ? '' : 'none';
