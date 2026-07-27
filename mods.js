@@ -104,11 +104,13 @@ const mods = [
     ]
 }
 
-];
+,
 
 {
     id: 4,
-
+    ...
+}
+];
     nome: "Overknee Rebecca Follower",
 
     categoria: "Companions",
@@ -131,5 +133,5 @@ const mods = [
         "../imagens/Overknee-Rebecca-Follower/foto1.jpg",
         "../imagens/Overknee-Rebecca-Follower/foto2.jpg"
         "../imagens/Overknee-Rebecca-Follower/foto3.jpg"
-    ]
+  ]
 },
