@@ -1,6 +1,5 @@
 const mods = [
 
-
 {
     id: 1,
 
@@ -8,13 +7,21 @@ const mods = [
 
     categoria: "Companions",
 
-    autor: "Craftias(convertdo por: n/a",
+    autor: "Craftias (convertido por: N/A)",
 
-    versao: "n/a",
+    versao: "N/A",
 
     compatibilidade: "Skyrim Legendary Edition (PS3)",
 
-    data: "27/7/26",
+    data: "27/07/2026",
+
+    casamento: "Sim",
+
+    localizacao: "Bannered Mare - Whiterun",
+
+    classe: "Guerreira",
+
+    voz: "Feminina",
 
     imagem: "../imagens/mod1.jpg",
 
@@ -29,11 +36,10 @@ const mods = [
     ]
 },
 
-
 {
     id: 2,
 
-    nome: "YuiH Standalone Follower",
+    nome: "YuiH Standalone Follower - Sha",
 
     categoria: "Companions",
 
@@ -43,11 +49,19 @@ const mods = [
 
     compatibilidade: "Skyrim Legendary Edition (PS3)",
 
-    data: "27/7/26",
+    data: "27/07/2026",
+
+    casamento: "Não",
+
+    localizacao: "Sleeping Giant Inn - Riverwood",
+
+    classe: "Guerreira",
+
+    voz: "Feminina",
 
     imagem: "../imagens/mod2.jpg",
 
-    descricao: "Adiciona Sha, uma seguidora personalizada. Localização: Riverwood, Sleeping Giant Inn.",
+    descricao: "Adiciona Sha, uma seguidora personalizada localizada na Sleeping Giant Inn em Riverwood.",
 
     download: "https://www.mediafire.com/file/010wvpidoqpkm59/YuiH_StandAlone_Follower_-_Sha_v1_1_%2528Renewal%2529_UNP.zip/file",
 
@@ -55,25 +69,28 @@ const mods = [
         "../imagens/YuiH-Standalone-Follower/foto1.jpg",
         "../imagens/YuiH-Standalone-Follower/foto2.jpg"
     ]
-}
-
-
-];
+},
 
 {
     id: 3,
 
-    nome: "Teyla-Nord-Half-Elf",
+    nome: "Teyla - Nord Half-Elf",
 
     categoria: "Companions",
 
-    autor: "vsmods97(convertido por:n/a)",
+    autor: "vsmods97 (convertido por: N/A)",
 
-    versao: "n/a",
+    versao: "N/A",
 
     compatibilidade: "Skyrim Legendary Edition (PS3)",
 
-    data: "27/7/26",
+    data: "27/07/2026",
+
+    casamento: "sim",
+
+    localizacao: "College of Winterhold",
+
+    classe: "Maga",
 
     imagem: "../imagens/mod3.jpg",
 
@@ -83,10 +100,9 @@ const mods = [
 
     galeria: [
         "../imagens/Teyla-Nord-Half-Elf/foto1.jpg",
-        "../imagens/Teyla-Nord-Half-Elf/foto2.jpg"
+        "../imagens/Teyla-Nord-Half-Elf/foto2.jpg",
         "../imagens/Teyla-Nord-Half-Elf/foto3.jpg"
     ]
 }
-
 
 ];
