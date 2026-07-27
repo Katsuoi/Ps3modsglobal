@@ -128,7 +128,7 @@ const mods = [
     download: "https://www.mediafire.com/file/3dy8ix0wv7n6akk/Rebeca.7z/file",
 
     galeria: [
-        "../Overknee-Rebecca-Follower/foto1.jpg",
+        "../imagens/Overknee-Rebecca-Follower/foto1.jpg",
         "../imagens/Overknee-Rebecca-Follower/foto2.jpg"
         "../imagens/Overknee-Rebecca-Follower/foto3.jpg"
     ]
