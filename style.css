@@ -533,3 +533,117 @@ footer{
     .capa-mod{ width: 100%; height: auto; }
     .info-mod{ padding: 20px; }
 }
+/* ========== EFEITOS MÁGICOS EXTRAS ========== */
+
+/* Partículas sutis no fundo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(1.5px 1.5px at 20% 30%, rgba(150, 220, 255, 0.4), transparent),
+        radial-gradient(1.5px 1.5px at 40% 70%, rgba(180, 120, 255, 0.35), transparent),
+        radial-gradient(1px 1px at 50% 50%, rgba(100, 200, 255, 0.3), transparent),
+        radial-gradient(1.5px 1.5px at 80% 10%, rgba(120, 180, 255, 0.4), transparent),
+        radial-gradient(1px 1px at 90% 60%, rgba(200, 150, 255, 0.3), transparent);
+    background-size: 200% 200%;
+    pointer-events: none;
+    z-index: 0;
+    animation: stars 120s linear infinite;
+}
+
+@keyframes stars {
+    from { background-position: 0 0; }
+    to { background-position: -200% 100%; }
+}
+
+/* Brilho mágico nos cards */
+.card-mod::after,
+.card-home::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(100, 200, 255, 0.05), transparent 60%);
+    pointer-events: none;
+    border-radius: 14px;
+}
+
+.card-mod,
+.card-home {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Título com brilho */
+.titulo h2 {
+    text-shadow: 0 0 20px rgba(100, 200, 255, 0.25);
+}
+
+/* Hero mais mágico */
+.hero-content h2 {
+    background: linear-gradient(90deg, #ffffff, #a0e0ff, #d0b0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Botão do hero com pulso suave */
+.hero-content button {
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 25px rgba(80, 150, 255, 0.4); }
+    50% { box-shadow: 0 0 40px rgba(120, 180, 255, 0.7); }
+}
+
+/* Categorias com brilho interno */
+.categorias-grid a {
+    position: relative;
+    overflow: hidden;
+}
+
+.categorias-grid a::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(100, 200, 255, 0.15) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.categorias-grid a:hover::before {
+    opacity: 1;
+}
+
+/* Melhor espaçamento mobile */
+@media (max-width: 600px) {
+    section {
+        padding: 45px 0;
+    }
+    
+    .hero {
+        height: 380px;
+    }
+    
+    .hero-content h2 {
+        font-size: 28px;
+    }
+    
+    .card-mod, .card-home {
+        margin-bottom: 8px;
+    }
+    
+    .titulo h2 {
+        font-size: 26px;
+    }
+}
