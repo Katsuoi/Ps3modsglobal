@@ -8,7 +8,7 @@ const mods = [
 
     categoria: "Companions",
 
-    autor: "Convertido por PS3ModsGlobal",
+    autor: "Craftias(convertdo por: n/a",
 
     versao: "n/a",
 
