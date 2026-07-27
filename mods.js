@@ -59,3 +59,34 @@ const mods = [
 
 
 ];
+
+{
+    id: 3,
+
+    nome: "Teyla-Nord-Half-Elf",
+
+    categoria: "Companions",
+
+    autor: "vsmods97(convertido por:n/a)",
+
+    versao: "n/a",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/7/26",
+
+    imagem: "../imagens/mod3.jpg",
+
+    descricao: "Conheça Misty, uma linda meio-elfa Nord e maga estudiosa do Colégio de Winterhold.",
+
+    download: "https://www.mediafire.com/file/jpz1ed368o7qlq8/Teyla+Elf.zip/file",
+
+    galeria: [
+        "../imagens/Teyla-Nord-Half-Elf/foto1.jpg",
+        "../imagens/Teyla-Nord-Half-Elf/foto2.jpg"
+        "../imagens/Teyla-Nord-Half-Elf/foto3.jpg"
+    ]
+}
+
+
+];
