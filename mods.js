@@ -57,8 +57,6 @@ const mods = [
 
     classe: "Guerreira",
 
-    voz: "Feminina",
-
     imagem: "../imagens/mod2.jpg",
 
     descricao: "Adiciona Sha, uma seguidora personalizada localizada na Sleeping Giant Inn em Riverwood.",
@@ -88,7 +86,7 @@ const mods = [
 
     casamento: "sim",
 
-    localizacao: "College of Winterhold",
+    localizacao: "The Arcanaeum Winterhold College",
 
     classe: "Maga",
 
