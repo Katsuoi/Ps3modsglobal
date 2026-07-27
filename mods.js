@@ -105,3 +105,34 @@ const mods = [
 }
 
 ];
+
+{
+    id: 4,
+
+    nome: "Overknee Rebecca Follower",
+
+    categoria: "Companions",
+
+    autor: "Overknee(convertido por:n/a)",
+
+    versao: "0.9",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/7/26",
+
+    imagem: "../imagens/mod4.jpg",
+
+    descricao: "Apresentamos Rebecca, uma seguidora elegante e letal, com um visual marcante. Perfeita para quem quer estilo e poder ao lado durante as aventuras em Skyrim.",
+
+    download: "https://www.mediafire.com/file/3dy8ix0wv7n6akk/Rebeca.7z/file",
+
+    galeria: [
+        "../Overknee-Rebecca-Follower/foto1.jpg",
+        "../imagens/Overknee-Rebecca-Follower/foto2.jpg"
+        "../imagens/Overknee-Rebecca-Follower/foto3.jpg"
+    ]
+}
+
+
+];
