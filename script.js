@@ -1,47 +1,86 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+    // ===== FAVORITOS =====
+    function getFavoritos() {
+        try {
+            return JSON.parse(localStorage.getItem("ps3mods_favoritos") || "[]");
+        } catch(e) {
+            return [];
+        }
+    }
+
+    function salvarFavoritos(lista) {
+        localStorage.setItem("ps3mods_favoritos", JSON.stringify(lista));
+    }
+
+    window.toggleFavorito = function(id) {
+        var favs = getFavoritos();
+        id = parseInt(id);
+        var index = favs.indexOf(id);
+
+        if (index === -1) {
+            favs.push(id);
+        } else {
+            favs.splice(index, 1);
+        }
+
+        salvarFavoritos(favs);
+        atualizarBotoesFavorito();
+    };
+
+    function atualizarBotoesFavorito() {
+        var favs = getFavoritos();
+        document.querySelectorAll("[data-fav]").forEach(function(btn) {
+            var id = parseInt(btn.getAttribute("data-fav"));
+            if (favs.indexOf(id) !== -1) {
+                btn.textContent = "★ Favorito";
+                btn.classList.add("favoritado");
+            } else {
+                btn.textContent = "☆ Favoritar";
+                btn.classList.remove("favoritado");
+            }
+        });
+    }
+
+    // ===== RENDER MODS =====
     function renderMods(listaMods, container) {
         if (!container) return;
         container.innerHTML = "";
 
         if (listaMods.length === 0) {
-            container.innerHTML = `
-                <div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#aaa;">
-                    <h3 style="color:#4fb7ff;margin-bottom:10px;">Nenhum mod encontrado</h3>
-                    <p>Tente outra categoria ou limpe a pesquisa.</p>
-                </div>
-            `;
+            container.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#8b95a5;padding:40px;">Nenhum mod encontrado.</p>';
             return;
         }
 
         listaMods.forEach(function(mod) {
             var card = document.createElement("div");
             card.className = "card-mod";
-            card.innerHTML = 
+            card.innerHTML =
                 '<img src="' + mod.imagem + '" alt="' + mod.nome + '">' +
-                '<div class="card-body">' +
-                    '<span class="categoria">' + mod.categoria + '</span>' +
-                    '<h3>' + mod.nome + '</h3>' +
-                    '<p>' + mod.descricao + '</p>' +
-                    '<a class="download" href="mod.html?id=' + mod.id + '">Ver Mod</a>' +
-                '</div>';
+                '<span class="categoria">' + mod.categoria + '</span>' +
+                '<h3>' + mod.nome + '</h3>' +
+                '<p>' + mod.descricao + '</p>' +
+                '<a class="download" href="mod.html?id=' + mod.id + '">Ver Mod</a>' +
+                '<button class="btn-fav" data-fav="' + mod.id + '" onclick="toggleFavorito(' + mod.id + ')">☆ Favoritar</button>';
             container.appendChild(card);
         });
+
+        atualizarBotoesFavorito();
     }
 
-    // Lista de mods
+    // ===== LISTA DE MODS =====
     var lista = document.getElementById("todos-mods") || document.getElementById("lista-mods");
-    if (lista) {
+    if (lista && typeof mods !== "undefined") {
         var params = new URLSearchParams(window.location.search);
         var categoria = params.get("categoria");
-        
+
         if (categoria) {
             var filtrados = mods.filter(function(m) {
                 return m.categoria.toLowerCase().includes(categoria.toLowerCase()) ||
                        (categoria.toLowerCase() === "followers" && m.categoria.toLowerCase().includes("companion"));
             });
             renderMods(filtrados, lista);
-            
+
             var titulo = document.querySelector(".hero-content h2, .banner-pequeno h2");
             if (titulo) titulo.textContent = categoria;
         } else {
@@ -49,37 +88,37 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Página do mod
+    // ===== PÁGINA DO MOD =====
     var params2 = new URLSearchParams(window.location.search);
     var id = parseInt(params2.get("id"));
-    if (id && document.getElementById("titulo-mod")) {
+    if (id && document.getElementById("titulo-mod") && typeof mods !== "undefined") {
         var mod = mods.find(function(m) { return m.id === id; });
         if (mod) {
-            document.getElementById("nome").textContent = mod.nome;
-            document.getElementById("titulo-mod").textContent = mod.nome;
-            document.getElementById("descricao").textContent = mod.descricao;
-            document.getElementById("categoria-mod").textContent = mod.categoria;
+            var elNome = document.getElementById("nome");
+            var elTitulo = document.getElementById("titulo-mod");
+            var elDesc = document.getElementById("descricao");
+            var elCat = document.getElementById("categoria-mod");
+            var elAutor = document.getElementById("autor-mod");
+            var elVersao = document.getElementById("versao-mod");
+            var elCompat = document.getElementById("compatibilidade-mod");
 
-            // Novos campos
-            var autor = document.getElementById("autor-mod");
-            var versao = document.getElementById("versao-mod");
-            var compat = document.getElementById("compatibilidade-mod");
-            if (autor) autor.textContent = mod.autor || "Desconhecido";
-            if (versao) versao.textContent = mod.versao || "-";
-            if (compat) compat.textContent = mod.compatibilidade || "Skyrim LE PS3";
+            if (elNome) elNome.textContent = mod.nome;
+            if (elTitulo) elTitulo.textContent = mod.nome;
+            if (elDesc) elDesc.textContent = mod.descricao;
+            if (elCat) elCat.textContent = mod.categoria;
+            if (elAutor) elAutor.textContent = mod.autor || "Desconhecido";
+            if (elVersao) elVersao.textContent = mod.versao || "-";
+            if (elCompat) elCompat.textContent = mod.compatibilidade || "Skyrim LE PS3";
 
-            // Capa
             var capa = document.getElementById("capa");
             if (capa) {
                 capa.src = mod.imagem;
                 capa.alt = mod.nome;
             }
 
-            // Download
             var download = document.getElementById("download");
             if (download) download.href = mod.download;
 
-            // Galeria
             var galeria = document.getElementById("galeria");
             if (galeria && mod.galeria) {
                 galeria.innerHTML = "";
@@ -88,69 +127,45 @@ document.addEventListener("DOMContentLoaded", function() {
                     img.src = src;
                     img.alt = mod.nome;
                     img.style.cursor = "pointer";
-                    img.onclick = function() {
-                        window.open(src, "_blank");
-                    };
+                    img.onclick = function() { window.open(src, "_blank"); };
                     galeria.appendChild(img);
                 });
             }
-        }
-    }
 
-    // Pesquisa
-    var searchInput = document.querySelector(".search input, #pesquisa");
-    if (searchInput) {
-        searchInput.addEventListener("input", function() {
-            var termo = this.value.toLowerCase().trim();
-            var cards = document.querySelectorAll(".card-mod, .card-home");
-            cards.forEach(function(card) {
-                var texto = card.textContent.toLowerCase();
-                card.style.display = (termo === "" || texto.includes(termo)) ? "" : "none";
-            });
-        });
-    }
-
-    // Sombra no header ao rolar
-    window.addEventListener("scroll", function() {
-        var topo = document.querySelector(".topo");
-        if (topo) {
-            if (window.scrollY > 20) {
-                topo.style.boxShadow = "0 4px 20px rgba(0,0,0,0.4)";
-            } else {
-                topo.style.boxShadow = "none";
+            // Botão favorito na página do mod
+            var favBtn = document.getElementById("btn-favorito");
+            if (favBtn) {
+                favBtn.setAttribute("data-fav", mod.id);
+                favBtn.onclick = function() { toggleFavorito(mod.id); };
             }
         }
-    });
-});
+        atualizarBotoesFavorito();
+    }
 
-// ===== HOME DINÂMICA =====
-(function() {
-    // Contador de mods
+    // ===== HOME DINÂMICA =====
     var statMods = document.getElementById("stat-mods");
     if (statMods && typeof mods !== "undefined") {
         statMods.textContent = mods.length;
     }
 
-    // Destaques (mostra até 4)
     var destaques = document.getElementById("destaques");
     if (destaques && typeof mods !== "undefined") {
         destaques.innerHTML = "";
         mods.slice(0, 4).forEach(function(mod) {
             var img = mod.imagem.replace("../", "");
-            destaques.innerHTML += 
+            destaques.innerHTML +=
                 '<div class="card-home">' +
                     '<img src="' + img + '" alt="' + mod.nome + '">' +
-                    '<div class="texto">' +
-                        '<span class="categoria">' + mod.categoria + '</span>' +
-                        '<h3>' + mod.nome + '</h3>' +
-                        '<p>' + mod.descricao.substring(0, 60) + '...</p>' +
-                        '<a class="download" href="mods/mod.html?id=' + mod.id + '">VER MOD</a>' +
-                    '</div>' +
+                    '<span class="categoria">' + mod.categoria + '</span>' +
+                    '<h3>' + mod.nome + '</h3>' +
+                    '<p>' + mod.descricao.substring(0, 70) + '...</p>' +
+                    '<a class="download" href="mods/mod.html?id=' + mod.id + '">VER MOD</a>' +
+                    '<button class="btn-fav" data-fav="' + mod.id + '" onclick="toggleFavorito(' + mod.id + ')">☆ Favoritar</button>' +
                 '</div>';
         });
+        atualizarBotoesFavorito();
     }
 
-    // Últimos mods (mostra os 3 mais recentes)
     var ultimos = document.getElementById("ultimos");
     if (ultimos && typeof mods !== "undefined") {
         ultimos.innerHTML = "";
@@ -168,51 +183,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 '</div>';
         });
     }
-})();
 
-// ===== FAVORITOS (sem conta) =====
-function getFavoritos() {
-    try {
-        return JSON.parse(localStorage.getItem("ps3mods_favoritos") || "[]");
-    } catch(e) {
-        return [];
-    }
-}
-
-function salvarFavoritos(lista) {
-    localStorage.setItem("ps3mods_favoritos", JSON.stringify(lista));
-}
-
-function toggleFavorito(id) {
-    var favs = getFavoritos();
-    id = parseInt(id);
-    var index = favs.indexOf(id);
-
-    if (index === -1) {
-        favs.push(id);
-    } else {
-        favs.splice(index, 1);
+    // ===== PESQUISA =====
+    var searchInput = document.querySelector(".search input, #pesquisa");
+    if (searchInput) {
+        searchInput.addEventListener("input", function() {
+            var termo = this.value.toLowerCase().trim();
+            document.querySelectorAll(".card-mod, .card-home").forEach(function(card) {
+                var texto = card.textContent.toLowerCase();
+                card.style.display = (termo === "" || texto.includes(termo)) ? "" : "none";
+            });
+        });
     }
 
-    salvarFavoritos(favs);
-    atualizarBotoesFavorito();
-}
-
-function atualizarBotoesFavorito() {
-    var favs = getFavoritos();
-    document.querySelectorAll("[data-fav]").forEach(function(btn) {
-        var id = parseInt(btn.getAttribute("data-fav"));
-        if (favs.indexOf(id) !== -1) {
-            btn.textContent = "★ Favorito";
-            btn.classList.add("favoritado");
-        } else {
-            btn.textContent = "☆ Favoritar";
-            btn.classList.remove("favoritado");
-        }
-    });
-}
-
-// Atualiza os botões quando a página carrega
-document.addEventListener("DOMContentLoaded", function() {
-    atualizarBotoesFavorito();
 });
