@@ -168,6 +168,40 @@ const mods = [
         "../imagens/Myrcella-Standalone-Healer-Follower/foto2.jpg",
         "../imagens/Myrcella-Standalone-Healer-Follower/foto3.jpg"
     ]
+},
+
+{
+    id: 5,
+
+    nome: "Lili Follower",
+
+    categoria: "Companions",
+
+    autor: "overknee(convertido por: ps3modsglobal",
+
+    versao: "1.3",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/07/2026",
+
+    casamento: "não",
+
+    localizacao: "Quicksilver mine ou Windpeak inn",
+
+    classe: "Maga de destruição",
+
+    imagem: "../imagens/mod6.jpg",
+
+    descricao: "Conheça Lili, uma seguidora fofa e leal, pronta para acompanhar você em qualquer jornada por Skyrim.",
+
+    download: "https://www.mediafire.com/file/5k8k9qyh7sw0fgf/LiliFollowerVer(YoungEager).zip/file",
+
+    galeria: [
+        "../imagens/Lili-Follower/foto1.jpg",
+        "../imagens/Lili-Follower/foto2.jpg",
+        "../imagens/Lili-Follower/foto3.jpg"
+    ]
 }
 
 ];
