@@ -65,9 +65,9 @@ const mods = [
 
     galeria: [
         "../imagens/YuiH-Standalone-Follower/foto1.jpg",
-        "../imagens/YuiH-Standalone-Follower/foto2.jpg"
+        "../imagens/YuiH-Standalone-Follower/foto2.jpg",
         "../imagens/YuiH-Standalone-Follower/foto3.jpg"
-    ].         
+    ]
 },
 
 {
@@ -85,9 +85,9 @@ const mods = [
 
     data: "27/07/2026",
 
-    casamento: "sim",
+    casamento: "Sim",
 
-    localizacao: "The Arcanaeum Winterhold College",
+    localizacao: "The Arcanaeum - College of Winterhold",
 
     classe: "Maga",
 
@@ -105,4 +105,3 @@ const mods = [
 }
 
 ];
-
