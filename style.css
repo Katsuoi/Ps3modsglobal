@@ -115,3 +115,85 @@ nav{flex-wrap:wrap;justify-content:center}
 .hero-content h2{font-size:26px}
 .capa-mod{width:100%;height:auto}
 }
+/* ===== FUNDO ESTILO SKYRIM + ESPAÇAMENTO ===== */
+
+body {
+  background: #0a0c12;
+  background-image: 
+    radial-gradient(ellipse at 30% 20%, rgba(40, 60, 90, 0.25) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(30, 40, 70, 0.2) 0%, transparent 50%),
+    linear-gradient(180deg, #0a0c12 0%, #0d1118 50%, #0a0c12 100%);
+  background-attachment: fixed;
+}
+
+/* Mais espaço na área destacada */
+.home-grid {
+  gap: 40px !important;
+  margin-bottom: 70px !important;
+}
+
+.main-content .titulo {
+  margin-top: 10px !important;
+  margin-bottom: 22px !important;
+}
+
+.cards-home {
+  margin-bottom: 50px !important;
+}
+
+.lista-ultimos {
+  margin-top: 8px !important;
+}
+
+.ultimo-card {
+  padding: 20px !important;
+  gap: 20px !important;
+  margin-bottom: 10px;
+}
+
+.side-cats {
+  padding: 24px 20px !important;
+}
+
+.side-cats a {
+  padding: 11px 12px !important;
+  margin-bottom: 5px !important;
+}
+
+.stats-bar {
+  margin: 45px 0 55px !important;
+  gap: 16px !important;
+}
+
+.stat-item {
+  padding: 22px 14px !important;
+  background: rgba(21, 26, 36, 0.85) !important;
+}
+
+.card-home,
+.card-mod,
+.ultimo-card,
+.side-cats {
+  background: rgba(21, 26, 36, 0.9) !important;
+  border: 1px solid rgba(50, 70, 100, 0.4) !important;
+}
+
+.card-home:hover,
+.card-mod:hover {
+  border-color: rgba(94, 200, 255, 0.45) !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Hero um pouco mais atmosférico */
+.hero {
+  height: 540px !important;
+}
+
+.hero-content h2 {
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+}
+
+footer {
+  margin-top: 80px !important;
+  background: rgba(10, 12, 18, 0.95) !important;
+}
