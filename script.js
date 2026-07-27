@@ -169,3 +169,50 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 })();
+
+// ===== FAVORITOS (sem conta) =====
+function getFavoritos() {
+    try {
+        return JSON.parse(localStorage.getItem("ps3mods_favoritos") || "[]");
+    } catch(e) {
+        return [];
+    }
+}
+
+function salvarFavoritos(lista) {
+    localStorage.setItem("ps3mods_favoritos", JSON.stringify(lista));
+}
+
+function toggleFavorito(id) {
+    var favs = getFavoritos();
+    id = parseInt(id);
+    var index = favs.indexOf(id);
+
+    if (index === -1) {
+        favs.push(id);
+    } else {
+        favs.splice(index, 1);
+    }
+
+    salvarFavoritos(favs);
+    atualizarBotoesFavorito();
+}
+
+function atualizarBotoesFavorito() {
+    var favs = getFavoritos();
+    document.querySelectorAll("[data-fav]").forEach(function(btn) {
+        var id = parseInt(btn.getAttribute("data-fav"));
+        if (favs.indexOf(id) !== -1) {
+            btn.textContent = "★ Favorito";
+            btn.classList.add("favoritado");
+        } else {
+            btn.textContent = "☆ Favoritar";
+            btn.classList.remove("favoritado");
+        }
+    });
+}
+
+// Atualiza os botões quando a página carrega
+document.addEventListener("DOMContentLoaded", function() {
+    atualizarBotoesFavorito();
+});
