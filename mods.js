@@ -102,9 +102,7 @@ const mods = [
         "../imagens/Teyla-Nord-Half-Elf/foto2.jpg",
         "../imagens/Teyla-Nord-Half-Elf/foto3.jpg"
     ]
-}
-
-,
+},
 
 {
     id: 4,
@@ -130,6 +128,6 @@ const mods = [
     galeria: [
         "../imagens/Overknee-Rebecca-Follower/foto1.jpg",
         "../imagens/Overknee-Rebecca-Follower/foto2.jpg",
-        "../imagens/Overknee-Rebecca-Follower/foto3.jpg"
+       "../imagens/Overknee-Rebecca-Follower/foto3.jpg"
   ]
 },
