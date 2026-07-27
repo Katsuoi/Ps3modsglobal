@@ -1,5 +1,5 @@
 /* ============================================
-   PS3ModsGlobal - Visual Limpo e Elegante
+   PS3ModsGlobal - Visual Limpo + Ciano
    ============================================ */
 
 *{
@@ -51,7 +51,7 @@ img{
 
 .logo h1{
     font-size: 22px;
-    color: #f0c14b;
+    color: #5ec8ff;
     font-weight: 700;
 }
 
@@ -75,7 +75,7 @@ nav a{
 
 nav a:hover{
     background: #1a2030;
-    color: #f0c14b;
+    color: #5ec8ff;
 }
 
 .search input{
@@ -92,7 +92,7 @@ nav a:hover{
 /* HERO */
 .hero{
     margin-top: 70px;
-    height: 480px;
+    height: 540px;
     background: linear-gradient(90deg, rgba(11,14,20,0.92) 0%, rgba(11,14,20,0.5) 50%, rgba(11,14,20,0.75) 100%), url("imagens/banner.jpg");
     background-size: cover;
     background-position: center;
@@ -113,15 +113,15 @@ nav a:hover{
 }
 
 .hero-content span{
-    color: #f0c14b;
+    color: #5ec8ff;
     font-size: 13px;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
 
 .hero-content h2{
-    font-size: 48px;
-    margin: 14px 0;
+    font-size: 52px;
+    margin: 16px 0;
     line-height: 1.15;
     color: #fff;
 }
@@ -129,7 +129,8 @@ nav a:hover{
 .hero-content p{
     font-size: 17px;
     color: #b0b8c5;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    max-width: 460px;
 }
 
 .hero-content button,
@@ -138,8 +139,8 @@ nav a:hover{
     padding: 13px 32px;
     border: none;
     border-radius: 6px;
-    background: #f0c14b;
-    color: #111;
+    background: #5ec8ff;
+    color: #0b0e14;
     font-weight: 700;
     font-size: 15px;
     cursor: pointer;
@@ -147,29 +148,29 @@ nav a:hover{
 }
 
 .hero-content button:hover{
-    background: #ffd cons0;
+    background: #8adbff;
     transform: translateY(-2px);
 }
 
 /* SEÇÕES */
 section{
-    padding: 55px 0;
+    padding: 30px 0;
 }
 
 .titulo{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
 }
 
 .titulo h2{
-    font-size: 26px;
+    font-size: 24px;
     color: #fff;
 }
 
 .titulo a{
-    color: #f0c14b;
+    color: #5ec8ff;
     font-size: 14px;
     font-weight: 600;
 }
@@ -179,13 +180,13 @@ section{
 .cards-home{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 22px;
 }
 
 .card-mod,
 .card-home{
     background: #151a24;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
     border: 1px solid #1e2530;
     transition: 0.25s;
@@ -193,9 +194,9 @@ section{
 
 .card-mod:hover,
 .card-home:hover{
-    border-color: #f0c14b55;
+    border-color: rgba(94, 200, 255, 0.4);
     transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
 }
 
 .card-mod img,
@@ -219,10 +220,11 @@ section{
     color: #8b95a5;
 }
 
-.card-mod .categoria{
+.card-mod .categoria,
+.card-home .categoria{
     display: inline-block;
     font-size: 11px;
-    color: #f0c14b;
+    color: #5ec8ff;
     margin: 10px 14px 0;
     font-weight: 600;
     text-transform: uppercase;
@@ -233,8 +235,8 @@ section{
     display: inline-block;
     margin: 8px 14px 16px;
     padding: 10px 20px;
-    background: #f0c14b;
-    color: #111;
+    background: #5ec8ff;
+    color: #0b0e14;
     border-radius: 6px;
     font-weight: 700;
     font-size: 13px;
@@ -243,7 +245,7 @@ section{
 }
 
 .download:hover{
-    background: #ffd060;
+    background: #8adbff;
 }
 
 /* CATEGORIAS */
@@ -271,8 +273,8 @@ section{
 }
 
 .categorias-grid a:hover{
-    border-color: #f0c14b;
-    color: #f0c14b;
+    border-color: #5ec8ff;
+    color: #5ec8ff;
     background: #1a2030;
 }
 
@@ -306,7 +308,7 @@ section{
 
 .info-mod h1{
     font-size: 28px;
-    color: #f0c14b;
+    color: #5ec8ff;
     margin-bottom: 14px;
 }
 
@@ -327,7 +329,7 @@ section{
 }
 
 .tabela-mod td:first-child{
-    color: #f0c14b;
+    color: #5ec8ff;
     font-weight: 600;
     width: 160px;
 }
@@ -352,14 +354,14 @@ section{
 }
 
 .galeria img:hover{
-    border-color: #f0c14b;
+    border-color: #5ec8ff;
 }
 
 /* FOOTER */
 footer{
     background: #0f131a;
     border-top: 1px solid #1e2530;
-    margin-top: 60px;
+    margin-top: 80px;
 }
 
 .footer{
@@ -371,7 +373,7 @@ footer{
 
 .footer h3{
     font-size: 20px;
-    color: #f0c14b;
+    color: #5ec8ff;
     margin-bottom: 12px;
 }
 
@@ -391,7 +393,7 @@ footer{
 }
 
 .footer a:hover{
-    color: #f0c14b;
+    color: #5ec8ff;
 }
 
 .copyright{
@@ -430,10 +432,10 @@ footer{
 
 .ultimo-card{
     display: flex;
-    gap: 18px;
+    gap: 22px;
     background: #151a24;
-    padding: 16px;
-    border-radius: 10px;
+    padding: 22px;
+    border-radius: 12px;
     border: 1px solid #1e2530;
 }
 
@@ -452,8 +454,73 @@ footer{
 .btn-voltar{
     display: inline-block;
     margin-bottom: 20px;
-    color: #f0c14b;
+    color: #5ec8ff;
     font-weight: 600;
+}
+
+/* HOME NOVA - STATS E SIDEBAR */
+.stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin: 45px 0 55px;
+}
+
+.stat-item {
+    background: #151a24;
+    border: 1px solid #1e2530;
+    border-radius: 12px;
+    padding: 24px 16px;
+    text-align: center;
+}
+
+.stat-item strong {
+    display: block;
+    font-size: 22px;
+    color: #5ec8ff;
+    margin-bottom: 4px;
+}
+
+.stat-item span {
+    font-size: 12px;
+    color: #8b95a5;
+}
+
+.home-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.side-cats {
+    background: #151a24;
+    border: 1px solid #1e2530;
+    border-radius: 12px;
+    padding: 24px;
+    height: fit-content;
+}
+
+.side-cats h3 {
+    font-size: 14px;
+    color: #5ec8ff;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.side-cats a {
+    display: block;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #c5cdd8;
+    margin-bottom: 5px;
+}
+
+.side-cats a:hover {
+    background: #1a2030;
+    color: #5ec8ff;
 }
 
 /* RESPONSIVO */
@@ -462,19 +529,21 @@ footer{
     .categorias-grid{ grid-template-columns: repeat(3, 1fr); }
 }
 
-@media(max-width: 800px){
+@media(max-width: 900px){
     .topo{ position: relative; height: auto; }
     .topo .container{ flex-direction: column; padding: 14px 0; gap: 12px; }
     nav{ flex-wrap: wrap; justify-content: center; }
     .search input{ width: 100%; }
-    .hero{ margin-top: 0; height: 380px; }
+    .hero{ margin-top: 0; height: 420px; }
     .hero-content{ width: 90%; margin: auto; text-align: center; }
-    .hero-content h2{ font-size: 32px; }
+    .hero-content h2{ font-size: 34px; }
     .lista-mods, .cards-home, .categorias-grid{ grid-template-columns: repeat(2, 1fr); }
     .ultimo-card{ flex-direction: column; }
     .ultimo-card img{ width: 100%; height: 180px; }
     .footer{ grid-template-columns: 1fr; }
     .galeria{ grid-template-columns: 1fr; }
+    .home-grid{ grid-template-columns: 1fr; }
+    .stats-bar{ grid-template-columns: repeat(2, 1fr); margin: 30px 0 40px; }
 }
 
 @media(max-width: 550px){
@@ -482,76 +551,3 @@ footer{
     .hero-content h2{ font-size: 26px; }
     .capa-mod{ width: 100%; height: auto; }
 }
-
-/* ===== AJUSTES DE ESPAÇAMENTO E POLIMENTO ===== */
-
-.stats-bar {
-  margin: 40px 0 50px !important;
-  gap: 16px !important;
-}
-
-.stat-item {
-  padding: 22px 14px !important;
-}
-
-.home-grid {
-  gap: 35px !important;
-  margin-bottom: 50px;
-}
-
-.side-cats {
-  padding: 22px !important;
-}
-
-.side-cats a {
-  padding: 11px 12px !important;
-  margin-bottom: 6px !important;
-}
-
-.main-content .titulo {
-  margin-bottom: 22px !important;
-}
-
-.cards-home {
-  gap: 22px !important;
-}
-
-.card-home {
-  padding-bottom: 6px;
-}
-
-.lista-ultimos {
-  margin-top: 10px;
-}
-
-.ultimo-card {
-  padding: 20px !important;
-  gap: 20px !important;
-}
-
-section {
-  padding: 30px 0 !important;
-}
-
-.hero {
-  height: 520px !important;
-}
-
-.hero-content h2 {
-  margin: 18px 0 14px !important;
-}
-
-.hero-content p {
-  margin-bottom: 10px !important;
-  max-width: 480px;
-}
-
-.titulo {
-  margin-bottom: 24px !important;
-}
-
-footer {
-  margin-top: 70px !important;
-}
-
-/*
