@@ -132,7 +132,4 @@ const mods = [
         "../imagens/Overknee-Rebecca-Follower/foto2.jpg"
         "../imagens/Overknee-Rebecca-Follower/foto3.jpg"
     ]
-}
-
-
-];
+},
