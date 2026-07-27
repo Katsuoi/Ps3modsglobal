@@ -482,3 +482,76 @@ footer{
     .hero-content h2{ font-size: 26px; }
     .capa-mod{ width: 100%; height: auto; }
 }
+
+/* ===== AJUSTES DE ESPAÇAMENTO E POLIMENTO ===== */
+
+.stats-bar {
+  margin: 40px 0 50px !important;
+  gap: 16px !important;
+}
+
+.stat-item {
+  padding: 22px 14px !important;
+}
+
+.home-grid {
+  gap: 35px !important;
+  margin-bottom: 50px;
+}
+
+.side-cats {
+  padding: 22px !important;
+}
+
+.side-cats a {
+  padding: 11px 12px !important;
+  margin-bottom: 6px !important;
+}
+
+.main-content .titulo {
+  margin-bottom: 22px !important;
+}
+
+.cards-home {
+  gap: 22px !important;
+}
+
+.card-home {
+  padding-bottom: 6px;
+}
+
+.lista-ultimos {
+  margin-top: 10px;
+}
+
+.ultimo-card {
+  padding: 20px !important;
+  gap: 20px !important;
+}
+
+section {
+  padding: 30px 0 !important;
+}
+
+.hero {
+  height: 520px !important;
+}
+
+.hero-content h2 {
+  margin: 18px 0 14px !important;
+}
+
+.hero-content p {
+  margin-bottom: 10px !important;
+  max-width: 480px;
+}
+
+.titulo {
+  margin-bottom: 24px !important;
+}
+
+footer {
+  margin-top: 70px !important;
+}
+
+/*
