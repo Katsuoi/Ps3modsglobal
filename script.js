@@ -122,3 +122,50 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+// ===== HOME DINÂMICA =====
+(function() {
+    // Contador de mods
+    var statMods = document.getElementById("stat-mods");
+    if (statMods && typeof mods !== "undefined") {
+        statMods.textContent = mods.length;
+    }
+
+    // Destaques (mostra até 4)
+    var destaques = document.getElementById("destaques");
+    if (destaques && typeof mods !== "undefined") {
+        destaques.innerHTML = "";
+        mods.slice(0, 4).forEach(function(mod) {
+            var img = mod.imagem.replace("../", "");
+            destaques.innerHTML += 
+                '<div class="card-home">' +
+                    '<img src="' + img + '" alt="' + mod.nome + '">' +
+                    '<div class="texto">' +
+                        '<span class="categoria">' + mod.categoria + '</span>' +
+                        '<h3>' + mod.nome + '</h3>' +
+                        '<p>' + mod.descricao.substring(0, 60) + '...</p>' +
+                        '<a class="download" href="mods/mod.html?id=' + mod.id + '">VER MOD</a>' +
+                    '</div>' +
+                '</div>';
+        });
+    }
+
+    // Últimos mods (mostra os 3 mais recentes)
+    var ultimos = document.getElementById("ultimos");
+    if (ultimos && typeof mods !== "undefined") {
+        ultimos.innerHTML = "";
+        mods.slice().reverse().slice(0, 3).forEach(function(mod) {
+            var img = mod.imagem.replace("../", "");
+            ultimos.innerHTML +=
+                '<div class="ultimo-card">' +
+                    '<img src="' + img + '" alt="' + mod.nome + '">' +
+                    '<div class="ultimo-info">' +
+                        '<span class="categoria">' + mod.categoria + '</span>' +
+                        '<h3>' + mod.nome + '</h3>' +
+                        '<p>' + mod.descricao.substring(0, 90) + '...</p>' +
+                        '<a href="mods/mod.html?id=' + mod.id + '">Ler mais →</a>' +
+                    '</div>' +
+                '</div>';
+        });
+    }
+})();
