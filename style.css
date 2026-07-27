@@ -197,3 +197,99 @@ footer {
   margin-top: 80px !important;
   background: rgba(10, 12, 18, 0.95) !important;
 }
+/* ===== MELHORIAS VISUAIS LEVES ===== */
+
+body {
+    background: #0b0e14;
+}
+
+.topo {
+    background: #0f131a;
+    border-bottom: 1px solid #1c2330;
+}
+
+.logo h1 {
+    color: #5ec8ff;
+}
+
+nav a:hover {
+    color: #5ec8ff;
+    background: #1a2230;
+}
+
+.card-mod,
+.card-home,
+.ultimo-card,
+.side-cats,
+.stat-item,
+.info-mod {
+    background: #141a24;
+    border: 1px solid #1c2330;
+    border-radius: 10px;
+}
+
+.card-mod:hover,
+.card-home:hover {
+    border-color: #2a3a50;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.download {
+    background: #5ec8ff;
+    color: #0b0e14;
+    border-radius: 6px;
+}
+
+.download:hover {
+    background: #7ad4ff;
+}
+
+.categoria {
+    color: #5ec8ff;
+}
+
+/* Botão de favorito */
+.btn-fav {
+    display: inline-block;
+    margin: 0 12px 14px;
+    padding: 8px 14px;
+    background: transparent;
+    border: 1px solid #2a3a50;
+    color: #8b95a5;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-fav:hover {
+    border-color: #5ec8ff;
+    color: #5ec8ff;
+}
+
+.btn-fav.favoritado {
+    border-color: #f0c14b;
+    color: #f0c14b;
+    background: rgba(240, 193, 75, 0.08);
+}
+
+/* Espaçamento melhor */
+.home-grid {
+    gap: 32px;
+    margin-bottom: 50px;
+}
+
+.stats-bar {
+    margin: 40px 0 45px;
+    gap: 14px;
+}
+
+.titulo {
+    margin-bottom: 18px;
+}
+
+footer {
+    margin-top: 60px;
+    background: #0f131a;
+}
