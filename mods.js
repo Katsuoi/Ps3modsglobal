@@ -21,8 +21,6 @@ const mods = [
 
     classe: "Guerreira",
 
-    voz: "Feminina",
-
     imagem: "../imagens/mod1.jpg",
 
     descricao: "Adicione uma nova seguidora no Bannered Mare em Whiterun chamada Eris (Light Shade).",
@@ -106,18 +104,24 @@ const mods = [
 
 {
     id: 4,
-    
+
     nome: "Overknee Rebecca Follower",
 
     categoria: "Companions",
 
-    autor: "Overknee(convertido por:n/a)",
+    autor: "Overknee (convertido por: N/A)",
 
     versao: "0.9",
 
     compatibilidade: "Skyrim Legendary Edition (PS3)",
 
-    data: "27/7/26",
+    data: "27/07/2026",
+
+    casamento: "",
+
+    localizacao: "",
+
+    classe: "",
 
     imagem: "../imagens/mod4.jpg",
 
@@ -128,6 +132,8 @@ const mods = [
     galeria: [
         "../imagens/Overknee-Rebecca-Follower/foto1.jpg",
         "../imagens/Overknee-Rebecca-Follower/foto2.jpg",
-       "../imagens/Overknee-Rebecca-Follower/foto3.jpg"
-  ]
-},
+        "../imagens/Overknee-Rebecca-Follower/foto3.jpg"
+    ]
+}
+
+];
