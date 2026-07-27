@@ -5,71 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PS3ModsGlobal</title>
 <link rel="stylesheet" href="style.css">
-<style>
-/* Estilos extras só pra home nova */
-.stats-bar {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin: 30px 0 40px;
-}
-.stat-item {
-  background: #151a24;
-  border: 1px solid #1e2530;
-  border-radius: 10px;
-  padding: 18px 12px;
-  text-align: center;
-}
-.stat-item strong {
-  display: block;
-  font-size: 22px;
-  color: #f0c14b;
-  margin-bottom: 4px;
-}
-.stat-item span {
-  font-size: 12px;
-  color: #8b95a5;
-}
-.home-grid {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 25px;
-  margin-top: 10px;
-}
-.side-cats {
-  background: #151a24;
-  border: 1px solid #1e2530;
-  border-radius: 10px;
-  padding: 18px;
-  height: fit-content;
-}
-.side-cats h3 {
-  font-size: 14px;
-  color: #f0c14b;
-  margin-bottom: 14px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.side-cats a {
-  display: block;
-  padding: 9px 10px;
-  border-radius: 6px;
-  font-size: 14px;
-  color: #c5cdd8;
-  margin-bottom: 4px;
-}
-.side-cats a:hover {
-  background: #1a2030;
-  color: #f0c14b;
-}
-.main-content .titulo {
-  margin-bottom: 18px;
-}
-@media (max-width: 900px) {
-  .home-grid { grid-template-columns: 1fr; }
-  .stats-bar { grid-template-columns: repeat(2, 1fr); }
-}
-</style>
 </head>
 <body>
 
@@ -92,43 +27,27 @@
 </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
-<div class="overlay"></div>
 <div class="hero-content">
-<span>O MAIOR ACERVO DE MODS</span>
-<h2>Skyrim Legendary<br>Edition para PS3</h2>
-<p>Mods convertidos, otimizados e testados para a melhor experiência possível no seu PS3.</p>
+<span>SKYRIM LEGENDARY EDITION</span>
+<h2>Mods para<br>PlayStation 3</h2>
+<p>Mods convertidos, otimizados e testados para a melhor experiência no PS3.</p>
 <a href="mods/index.html"><button>EXPLORAR MODS</button></a>
 </div>
 </section>
 
 <div class="container">
 
-<!-- STATS -->
-<div class="stats-bar">
-<div class="stat-item">
-<strong>1+</strong>
-<span>Mods Disponíveis</span>
-</div>
-<div class="stat-item">
-<strong>8</strong>
-<span>Categorias</span>
-</div>
-<div class="stat-item">
-<strong>100%</strong>
-<span>Focado em PS3</span>
-</div>
-<div class="stat-item">
-<strong>2026</strong>
-<span>Atualizado</span>
-</div>
+<!-- STATS (preenchido pelo JS) -->
+<div class="stats-bar" id="stats-bar">
+<div class="stat-item"><strong id="stat-mods">0</strong><span>Mods Disponíveis</span></div>
+<div class="stat-item"><strong>8</strong><span>Categorias</span></div>
+<div class="stat-item"><strong>100%</strong><span>Focado em PS3</span></div>
+<div class="stat-item"><strong>2026</strong><span>Atualizado</span></div>
 </div>
 
-<!-- GRID PRINCIPAL -->
 <div class="home-grid">
 
-<!-- SIDEBAR CATEGORIAS -->
 <aside class="side-cats">
 <h3>Categorias</h3>
 <a href="mods/index.html?categoria=Followers">Followers</a>
@@ -139,46 +58,22 @@
 <a href="mods/index.html?categoria=Armas">Armas</a>
 <a href="mods/index.html?categoria=Interface">Interface</a>
 <a href="mods/index.html?categoria=Otimização">Otimização</a>
-<a href="mods/categorias.html" style="margin-top:12px;color:#f0c14b;">Ver todas →</a>
+<a href="mods/categorias.html">Ver todas →</a>
 </aside>
 
-<!-- CONTEÚDO PRINCIPAL -->
 <div class="main-content">
 
 <div class="titulo">
 <h2>Mods em Destaque</h2>
 <a href="mods/index.html">Ver todos</a>
 </div>
+<div class="cards-home" id="destaques"></div>
 
-<div class="cards-home" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
-<div class="card-home">
-<img src="imagens/mod1.jpg" alt="Follower Light And Shade">
-<div class="texto">
-<span class="categoria">Companions</span>
-<h3>Follower Light And Shade</h3>
-<p>Nova seguidora para suas aventuras em Skyrim.</p>
-<a href="mods/mod.html?id=1" class="download">VER MOD</a>
-</div>
-</div>
-</div>
-
-<!-- ÚLTIMOS MODS -->
-<div class="titulo" style="margin-top: 45px;">
+<div class="titulo" style="margin-top:40px">
 <h2>Últimos Mods</h2>
 <a href="mods/index.html">Ver todos</a>
 </div>
-
-<div class="lista-ultimos">
-<div class="ultimo-card">
-<img src="imagens/mod1.jpg" alt="Follower Light And Shade">
-<div class="ultimo-info">
-<span class="categoria">Followers</span>
-<h3>Follower Light And Shade</h3>
-<p>Adiciona uma nova seguidora totalmente compatível com Skyrim Legendary Edition para PlayStation 3.</p>
-<a href="mods/mod.html?id=1">Ler mais →</a>
-</div>
-</div>
-</div>
+<div class="lista-ultimos" id="ultimos"></div>
 
 </div>
 </div>
@@ -205,5 +100,7 @@
 <div class="copyright">© 2026 PS3ModsGlobal</div>
 </footer>
 
+<script src="mods.js"></script>
+<script src="script.js"></script>
 </body>
-  </html>
+</html>
