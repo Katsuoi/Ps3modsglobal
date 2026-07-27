@@ -55,6 +55,7 @@ const mods = [
         "../imagens/YuiH-Standalone-Follower/foto1.jpg",
         "../imagens/YuiH-Standalone-Follower/foto2.jpg"
     ]
-},
+}
 
-    
+
+];
