@@ -134,6 +134,41 @@ const mods = [
         "../imagens/Overknee-Rebecca-Follower/foto2.jpg",
         "../imagens/Overknee-Rebecca-Follower/foto3.jpg"
     ]
+},
+
+{
+    id: 4,
+
+    nome: "Myrcella Standalone Healer Follower",
+
+    categoria: "Companions",
+
+    autor: "Dovahkiinathay (convertido por: ps3modsglobal",
+
+    versao: "2.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/07/2026",
+
+    casamento: "não",
+
+    localizacao: "Templo de Kynareth, em Whiterun.",
+
+    classe: "Maga de Restauração",
+
+    imagem: "../imagens/mod5.jpg",
+
+    descricao: "Uma curandeira experiente e companheira leal, dedicada a proteger seus aliados com poderosas magias de Restauração.",
+
+    download: "https://www.mediafire.com/file/ztr7im4bkmbng65/Myrcella+Follower+-+CBBE++(1).zip/file",
+
+    galeria: [
+        "../imagens/Myrcella-Standalone-Healer-Follower/foto1.jpg",
+        "../imagens/Myrcella-Standalone-Healer-Follower/foto2.jpg",
+        "../imagens/Myrcella-Standalone-Healer-Follower/foto3.jpg"
+    ]
 }
 
 ];
+
