@@ -129,6 +129,14 @@ document.addEventListener("DOMContentLoaded", function() {
                     img.style.cursor = "pointer";
                     img.onclick = function() { window.open(src, "_blank"); };
                     galeria.appendChild(img);
+                  
+                    var elCasamento = document.getElementById("casamento-mod");
+var elLocalizacao = document.getElementById("localizacao-mod");
+var elClasse = document.getElementById("classe-mod");
+
+if (elCasamento) elCasamento.textContent = mod.casamento || "N/A";
+if (elLocalizacao) elLocalizacao.textContent = mod.localizacao || "N/A";
+if (elClasse) elClasse.textContent = mod.classe || "N/A";
                 });
             }
 
