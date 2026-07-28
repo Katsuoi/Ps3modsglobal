@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerador de Mods - PS3ModsGlobal</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Segoe UI,Arial,sans-serif;background:#0b0e14;color:#e8eaed;padding:30px 16px;line-height:1.5}
+.container{max-width:720px;margin:0 auto}
+h1{color:#5ec8ff;font-size:24px;margin-bottom:6px}
+.sub{color:#8b95a5;font-size:14px;margin-bottom:28px}
+label{display:block;font-size:13px;color:#8b95a5;margin-bottom:6px;margin-top:14px}
+input,select,textarea{width:100%;padding:12px 14px;background:#141a24;border:1px solid #1c2330;border-radius:8px;color:#e8eaed;font-size:14px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:#5ec8ff}
+input.erro,select.erro,textarea.erro{border-color:#ff6b6b}
+textarea{min-height:90px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+button{margin-top:22px;width:100%;padding:14px;border:none;border-radius:8px;background:#5ec8ff;color:#0b0e14;font-weight:700;font-size:15px;cursor:pointer}
+button:hover{background:#7ad4ff}
+.resultado{margin-top:28px;display:none}
+.resultado h2{font-size:16px;color:#5ec8ff;margin-bottom:10px}
+pre{background:#141a24;border:1px solid #1c2330;border-radius:8px;padding:16px;font-size:12px;overflow-x:auto;white-space:pre-wrap;color:#c5cdd8}
+.copiar{margin-top:12px;background:#1a2230;color:#5ec8ff;border:1px solid #2a3a50}
+.copiar:hover{background:#243040}
+.ok{color:#7dcea0;font-size:13px;margin-top:8px;display:none}
+.erros{background:#2a1515;border:1px solid #ff6b6b;color:#ffb4b4;padding:12px 14px;border-radius:8px;margin-top:16px;display:none;font-size:13px}
+.erros li{margin-left:18px;margin-top:4px}
+.extras{display:none;margin-top:8px;padding:14px;background:#10151e;border:1px solid #1c2330;border-radius:8px}
+.extras h3{font-size:13px;color:#5ec8ff;margin-bottom:4px}
+@media(max-width:600px){.row,.row3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Gerador de Mods</h1>
+  <p class="sub">Preencha os campos. O código só é gerado se estiver tudo certo.</p>
+
+  <div class="erros" id="erros"></div>
+
+  <label>Nome do mod *</label>
+  <input type="text" id="nome" placeholder="Ex: YuiH Standalone Follower">
+
+  <label>Categoria *</label>
+  <select id="categoria">
+    <option value="">Selecione...</option>
+    <option>Companions</option>
+    <option>Armaduras Masculinas</option>
+    <option>Armaduras Femininas</option>
+    <option>Armas</option>
+    <option>Magias</option>
+    <option>Construções e Casas</option>
+    <option>Missões e Aventuras</option>
+    <option>Gráficos</option>
+    <option>Interface/Menu</option>
+    <option>Otimização</option>
+    <option>Criaturas</option>
+    <option>Vampiros</option>
+    <option>Lobisomem</option>
+    <option>Sons</option>
+    <option>Animações</option>
+    <option>Arqueiria</option>
+    <option>Montarias</option>
+    <option>Utilidades</option>
+    <option>Raças e Habilidades</option>
+    <option>Combate e Dificuldade</option>
+    <option>Efeitos Visuais</option>
+    <option>Imersão</option>
+    <option>Mods Engraçados</option>
+  </select>
+
+  <div class="row">
+    <div>
+      <label>ID do mod *</label>
+      <input type="number" id="id" placeholder="Ex: 7" min="1">
+    </div>
+    <div>
+      <label>Versão</label>
+      <input type="text" id="versao" placeholder="1.0" value="1.0">
+    </div>
+  </div>
+
+  <label>Autor</label>
+  <input type="text" id="autor" placeholder="Nome do autor (convertido por PS3ModsGlobal)">
+
+  <label>Data</label>
+  <input type="text" id="data" placeholder="DD/MM/AAAA">
+
+  <label>Nome do arquivo da capa</label>
+  <input type="text" id="capa" placeholder="mod7.jpg">
+
+  <label>Nome da pasta da galeria</label>
+  <input type="text" id="pasta" placeholder="nome-do-mod">
+
+  <label>Link de download *</label>
+  <input type="text" id="download" placeholder="https://www.mediafire.com/...">
+
+  <label>Descrição *</label>
+  <textarea id="descricao" placeholder="Descrição curta do mod (mínimo 15 caracteres)"></textarea>
+
+  <!-- EXTRAS POR CATEGORIA -->
+  <div class="extras" id="ex-Companions">
+    <h3>Campos de Companions</h3>
+    <div class="row">
+      <div><label>Casamento</label><input id="casamento" placeholder="Sim / Não / N/A"></div>
+      <div><label>Classe</label><input id="classe" placeholder="Guerreira / Mago / etc"></div>
+    </div>
+    <label>Localização</label><input id="localizacao" placeholder="Onde encontra o seguidor">
+  </div>
+
+  <div class="extras" id="ex-Armaduras Masculinas">
+    <h3>Campos de Armadura</h3>
+    <div class="row">
+      <div><label>Tipo</label><input id="arm_tipo" placeholder="Leve / Pesada / Roupa"></div>
+      <div><label>Forjável</label><input id="arm_forjavel" placeholder="Sim / Não"></div>
+    </div>
+    <label>Corpo</label><input id="arm_corpo" placeholder="Vanilla / UNP / CBBE">
+  </div>
+
+  <div class="extras" id="ex-Armaduras Femininas">
+    <h3>Campos de Armadura</h3>
+    <div class="row">
+      <div><label>Tipo</label><input id="armf_tipo" placeholder="Leve / Pesada / Roupa"></div>
+      <div><label>Forjável</label><input id="armf_forjavel" placeholder="Sim / Não"></div>
+    </div>
+    <label>Corpo</label><input id="armf_corpo" placeholder="Vanilla / UNP / CBBE">
+  </div>
+
+  <div class="extras" id="ex-Armas">
+    <h3>Campos de Armas</h3>
+    <div class="row">
+      <div><label>Tipo</label><input id="arma_tipo" placeholder="Espada / Machado / Arco"></div>
+      <div><label>Forjável</label><input id="arma_forjavel" placeholder="Sim / Não"></div>
+    </div>
+    <div class="row">
+      <div><label>Dano</label><input id="arma_dano" placeholder="N/A"></div>
+      <div><label>Velocidade</label><input id="arma_vel" placeholder="N/A"></div>
+    </div>
+  </div>
+
+  <div class="extras" id="ex-Magias">
+    <h3>Campos de Magias</h3>
+    <div class="row">
+      <div><label>Escola</label><input id="mag_escola" placeholder="Destruição / Restauração / etc"></div>
+      <div><label>Custo</label><input id="mag_custo" placeholder="N/A"></div>
+    </div>
+    <label>Vendedor</label><input id="mag_vendedor" placeholder="Onde aprender / comprar">
+  </div>
+
+  <div class="extras" id="ex-Construções e Casas">
+    <h3>Campos de Casas</h3>
+    <label>Localização</label><input id="casa_loc" placeholder="Onde fica">
+    <div class="row3">
+      <div><label>Armazenamento</label><input id="casa_arm" placeholder="Sim / Não"></div>
+      <div><label>Manequins</label><input id="casa_man" placeholder="Sim / Não"></div>
+      <div><label>Seguidores</label><input id="casa_seg" placeholder="Quantos"></div>
+    </div>
+    <div class="row3">
+      <div><label>Forja</label><input id="casa_forja" placeholder="Sim / Não"></div>
+      <div><label>Alquimia</label><input id="casa_alq" placeholder="Sim / Não"></div>
+      <div><label>Encantamento</label><input id="casa_enc" placeholder="Sim / Não"></div>
+    </div>
+  </div>
+
+  <div class="extras" id="ex-Missões e Aventuras">
+    <h3>Campos de Missões</h3>
+    <label>Início</label><input id="miss_inicio" placeholder="Onde começa">
+    <div class="row">
+      <div><label>NPC</label><input id="miss_npc" placeholder="NPC principal"></div>
+      <div><label>Duração</label><input id="miss_dur" placeholder="Curta / Média / Longa"></div>
+    </div>
+  </div>
+
+  <div class="extras" id="ex-Otimização">
+    <h3>Campos de Otimização</h3>
+    <div class="row3">
+      <div><label>Ganho de FPS</label><input id="ot_fps" placeholder="Baixo / Médio / Alto"></div>
+      <div><label>Perda visual</label><input id="ot_perda" placeholder="Nenhuma / Leve"></div>
+      <div><label>Recomendado</label><input id="ot_rec" placeholder="Sim / Não"></div>
+    </div>
+  </div>
+
+  <div class="extras" id="ex-Criaturas">
+    <h3>Campos de Criaturas</h3>
+    <label>Localização</label><input id="cri_loc" placeholder="Onde aparece">
+    <div class="row">
+      <div><label>Hostil</label><input id="cri_hostil" placeholder="Sim / Não"></div>
+      <div><label>Domesticável</label><input id="cri_dom" placeholder="Sim / Não"></div>
+    </div>
+  </div>
+
+  <div class="extras" id="ex-Vampiros">
+    <h3>Campos de Vampiros</h3>
+    <label>Tipo</label><input id="vamp_tipo" placeholder="Gameplay / Visual / Habilidades">
+  </div>
+
+  <div class="extras" id="ex-Lobisomem">
+    <h3>Campos de Lobisomem</h3>
+    <label>Tipo</label><input id="lobi_tipo" placeholder="Gameplay / Visual / Habilidades">
+  </div>
+
+  <div class="extras" id="ex-Sons">
+    <h3>Campos de Sons</h3>
+    <div class="row3">
+      <div><label>Ambiente</label><input id="som_amb" placeholder="Sim / Não"></div>
+      <div><label>Combate</label><input id="som_comb" placeholder="Sim / Não"></div>
+      <div><label>Música</label><input id="som_mus" placeholder="Sim / Não"></div>
+    </div>
+  </div>
+
+  <div class="extras" id="ex-Animações">
+    <h3>Campos de Animações</h3>
+    <div class="row3">
+      <div><label>Personagem</label><input id="ani_pers" placeholder="Sim / Não"></div>
+      <div><label>NPC</label><input id="ani_npc" placeholder="Sim / Não"></div>
+      <div><label>Combate</label><input id="ani_comb" placeholder="Sim / Não"></div>
+    </div>
+  </div>
+
+  <div class="extras" id="ex-Arqueiria">
+    <h3>Campos de Arqueiria</h3>
+    <div class="row3">
+      <div><label>Flechas</label><input id="arq_flechas" placeholder="Sim / Não"></div>
+      <div><label>Arcos</label><input id="arq_arcos" placeholder="Sim / Não"></div>
+      <div><label>Mira</label><input id="arq_mira" placeholder="Vanilla / Melhorada"></div>
+    </div>
+  </div>
+
+  <div class="extras" id="ex-Montarias">
+    <h3>Campos de Montarias</h3>
+    <div class="row3">
+      <div><label>Criatura</label><input id="mon_cri" placeholder="Cavalo / Dragão"></div>
+      <div><label>Velocidade</label><input id="mon_vel" placeholder="Normal / Rápida"></div>
+      <div><label>Invocável</label><input id="mon_inv" placeholder="Sim / Não"></div>
+    </div>
+  </div>
+
+  <div class="extras" id="ex-Utilidades">
+    <h3>Campos de Utilidades</h3>
+    <label>Função</label><input id="uti_func" placeholder="O que o mod faz">
+  </div>
+
+  <div class="extras" id="ex-Raças e Habilidades">
+    <h3>Campos de Raças</h3>
+    <label>Tipo</label><input id="raca_tipo" placeholder="Nova raça / Habilidade / Perks">
+  </div>
+
+  <div class="extras" id="ex-Combate e Dificuldade">
+    <h3>Campos de Combate</h3>
+    <label>Tipo</label><input id="comb_tipo" placeholder="Dificuldade / Combate / IA">
+  </div>
+
+  <div class="extras" id="ex-Efeitos Visuais">
+    <h3>Campos de Efeitos Visuais</h3>
+    <div class="row3">
+      <div><label>Clima</label><input id="ef_clima" placeholder="Sim / Não"></div>
+      <div><label>Partículas</label><input id="ef_part" placeholder="Sim / Não"></div>
+      <div><label>Iluminação</label><input id="ef_ilu" placeholder="Sim / Não"></div>
+    </div>
+  </div>
+
+  <div class="extras" id="ex-Imersão">
+    <h3>Campos de Imersão</h3>
+    <div class="row">
+      <div><label>Tipo</label><input id="im_tipo" placeholder="Necessidades / Realismo"></div>
+      <div><label>Scripts</label><input id="im_scripts" placeholder="Leve / Médio / Pesado"></div>
+    </div>
+  </div>
+
+  <div class="extras" id="ex-Mods Engraçados">
+    <h3>Campos de Mods Engraçados</h3>
+    <label>Tipo</label><input id="eng_tipo" placeholder="Piada / Meme / Engraçado">
+  </div>
+
+  <div class="extras" id="ex-Gráficos">
+    <h3>Campos de Gráficos</h3>
+    <div class="row">
+      <div><label>Tipo</label><input id="graf_tipo" placeholder="Texturas / Paisagem / etc"></div>
+      <div><label>Impacto FPS</label><input id="graf_fps" placeholder="Baixo / Médio / Alto"></div>
+    </div>
+  </div>
+
+  <div class="extras" id="ex-Interface/Menu">
+    <h3>Campos de Interface</h3>
+    <div class="row">
+      <div><label>HUD</label><input id="ui_hud" placeholder="Sim / Não / Modificado"></div>
+      <div><label>Menus</label><input id="ui_menus" placeholder="Inventário / Magias / etc"></div>
+    </div>
+  </div>
+
+  <button onclick="gerar()">Gerar código</button>
+
+  <div class="resultado" id="resultado">
+    <h2>Código gerado</h2>
+    <pre id="codigo"></pre>
+    <button class="copiar" onclick="copiar()">Copiar código</button>
+    <p class="ok" id="ok">Copiado!</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var d = new Date();
+  document.getElementById('data').value =
+    String(d.getDate()).padStart(2,'0') + '/' +
+    String(d.getMonth()+1).padStart(2,'0') + '/' +
+    d.getFullYear();
+})();
+
+document.getElementById('categoria').addEventListener('change', function(){
+  document.querySelectorAll('.extras').forEach(function(el){ el.style.display = 'none'; });
+  var box = document.getElementById('ex-' + this.value);
+  if(box) box.style.display = 'block';
+});
+
+function slug(t){
+  return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+}
+function v(id){ return (document.getElementById(id) && document.getElementById(id).value.trim()) || 'N/A'; }
+function esc(s){ return String(s).replace(/"/g,'\\"'); }
+
+function limparErros(){
+  document.querySelectorAll('.erro').forEach(function(el){ el.classList.remove('erro'); });
+  document.getElementById('erros').style.display = 'none';
+  document.getElementById('erros').innerHTML = '';
+}
+
+function validar(){
+  limparErros();
+  var erros = [];
+  var nome = document.getElementById('nome');
+  var categoria = document.getElementById('categoria');
+  var id = document.getElementById('id');
+  var download = document.getElementById('download');
+  var descricao = document.getElementById('descricao');
+
+  if(!nome.value.trim()){ erros.push('Nome do mod é obrigatório'); nome.classList.add('erro'); }
+  if(!categoria.value){ erros.push('Selecione uma categoria'); categoria.classList.add('erro'); }
+  if(!id.value.trim() || isNaN(id.value) || Number(id.value) < 1){
+    erros.push('ID deve ser um número maior que 0'); id.classList.add('erro');
+  }
+  if(!download.value.trim()){
+    erros.push('Link de download é obrigatório'); download.classList.add('erro');
+  } else if(!/^https?:\/\//i.test(download.value.trim())){
+    erros.push('Link deve começar com http:// ou https://'); download.classList.add('erro');
+  }
+  if(!descricao.value.trim()){
+    erros.push('Descrição é obrigatória'); descricao.classList.add('erro');
+  } else if(descricao.value.trim().length < 15){
+    erros.push('Descrição muito curta (mínimo 15 caracteres)'); descricao.classList.add('erro');
+  }
+
+  if(erros.length){
+    var box = document.getElementById('erros');
+    box.style.display = 'block';
+    box.innerHTML = '<strong>Corrija os erros:</strong><ul>' +
+      erros.map(function(e){ return '<li>'+e+'</li>'; }).join('') + '</ul>';
+    return false;
+  }
+  return true;
+}
+
+function camposExtras(cat){
+  var c = '';
+  if(cat === 'Companions'){
+    c += '    casamento: "' + esc(v('casamento')) + '",\n\n';
+    c += '    localizacao: "' + esc(v('localizacao')) + '",\n\n';
+    c += '    classe: "' + esc(v('classe')) + '",\n\n';
+  }
+  if(cat === 'Armaduras Masculinas'){
+    c += '    genero: "Masculino",\n\n';
+    c += '    tipo: "' + esc(v('arm_tipo')) + '",\n\n';
+    c += '    forjavel: "' + esc(v('arm_forjavel')) + '",\n\n';
+    c += '    corpo: "' + esc(v('arm_corpo')) + '",\n\n';
+  }
+  if(cat === 'Armaduras Femininas'){
+    c += '    genero: "Feminino",\n\n';
+    c += '    tipo: "' + esc(v('armf_tipo')) + '",\n\n';
+    c += '    forjavel: "' + esc(v('armf_forjavel')) + '",\n\n';
+    c += '    corpo: "' + esc(v('armf_corpo')) + '",\n\n';
+  }
+  if(cat === 'Armas'){
+    c += '    tipo: "' + esc(v('arma_tipo')) + '",\n\n';
+    c += '    dano: "' + esc(v('arma_dano')) + '",\n\n';
+    c += '    velocidade: "' + esc(v('arma_vel')) + '",\n\n';
+    c += '    forjavel: "' + esc(v('arma_forjavel')) + '",\n\n';
+  }
+  if(cat === 'Magias'){
+    c += '    escola: "' + esc(v('mag_escola')) + '",\n\n';
+    c += '    custo: "' + esc(v('mag_custo')) + '",\n\n';
+    c += '    vendedor: "' + esc(v('mag_vendedor')) + '",\n\n';
+  }
+  if(cat === 'Construções e Casas'){
+    c += '    localizacao: "' + esc(v('casa_loc')) + '",\n\n';
+    c += '    armazenamento: "' + esc(v('casa_arm')) + '",\n\n';
+    c += '    manequins: "' + esc(v('casa_man')) + '",\n\n';
+    c += '    seguidores: "' + esc(v('casa_seg')) + '",\n\n';
+    c += '    forja: "' + esc(v('casa_forja')) + '",\n\n';
+    c += '    alquimia: "' + esc(v('casa_alq')) + '",\n\n';
+    c += '    encantamento: "' + esc(v('casa_enc')) + '",\n\n';
+  }
+  if(cat === 'Missões e Aventuras'){
+    c += '    inicio: "' + esc(v('miss_inicio')) + '",\n\n';
+    c += '    npc: "' + esc(v('miss_npc')) + '",\n\n';
+    c += '    duracao: "' + esc(v('miss_dur')) + '",\n\n';
+  }
+  if(cat === 'Otimização'){
+    c += '    ganhoFPS: "' + esc(v('ot_fps')) + '",\n\n';
+    c += '    perdaVisual: "' + esc(v('ot_perda')) + '",\n\n';
+    c += '    recomendado: "' + esc(v('ot_rec')) + '",\n\n';
+  }
+  if(cat === 'Criaturas'){
+    c += '    localizacao: "' + esc(v('cri_loc')) + '",\n\n';
+    c += '    hostil: "' + esc(v('cri_hostil')) + '",\n\n';
+    c += '    domesticavel: "' + esc(v('cri_dom')) + '",\n\n';
+  }
+  if(cat === 'Vampiros'){ c += '    tipo: "' + esc(v('vamp_tipo')) + '",\n\n'; }
+  if(cat === 'Lobisomem'){ c += '    tipo: "' + esc(v('lobi_tipo')) + '",\n\n'; }
+  if(cat === 'Sons'){
+    c += '    ambiente: "' + esc(v('som_amb')) + '",\n\n';
+    c += '    combate: "' + esc(v('som_comb')) + '",\n\n';
+    c += '    musica: "' + esc(v('som_mus')) + '",\n\n';
+  }
+  if(cat === 'Animações'){
+    c += '    personagem: "' + esc(v('ani_pers')) + '",\n\n';
+    c += '    npc: "' + esc(v('ani_npc')) + '",\n\n';
+    c += '    combate: "' + esc(v('ani_comb')) + '",\n\n';
+  }
+  if(cat === 'Arqueiria'){
+    c += '    flechas: "' + esc(v('arq_flechas')) + '",\n\n';
+    c += '    arcos: "' + esc(v('arq_arcos')) + '",\n\n';
+    c += '    mira: "' + esc(v('arq_mira')) + '",\n\n';
+  }
+  if(cat === 'Montarias'){
+    c += '    criatura: "' + esc(v('mon_cri')) + '",\n\n';
+    c += '    velocidade: "' + esc(v('mon_vel')) + '",\n\n';
+    c += '    invocavel: "' + esc(v('mon_inv')) + '",\n\n';
+  }
+  if(cat === 'Utilidades'){ c += '    funcao: "' + esc(v('uti_func')) + '",\n\n'; }
+  if(cat === 'Raças e Habilidades'){ c += '    tipo: "' + esc(v('raca_tipo')) + '",\n\n'; }
+  if(cat === 'Combate e Dificuldade'){ c += '    tipo: "' + esc(v('comb_tipo')) + '",\n\n'; }
+  if(cat === 'Efeitos Visuais'){
+    c += '    clima: "' + esc(v('ef_clima')) + '",\n\n';
+    c += '    particulas: "' + esc(v('ef_part')) + '",\n\n';
+    c += '    iluminacao: "' + esc(v('ef_ilu')) + '",\n\n';
+  }
+  if(cat === 'Imersão'){
+    c += '    tipo: "' + esc(v('im_tipo')) + '",\n\n';
+    c += '    scripts: "' + esc(v('im_scripts')) + '",\n\n';
+  }
+  if(cat === 'Mods Engraçados'){ c += '    tipo: "' + esc(v('eng_tipo')) + '",\n\n'; }
+  if(cat === 'Gráficos'){
+    c += '    tipo: "' + esc(v('graf_tipo')) + '",\n\n';
+    c += '    impactoFPS: "' + esc(v('graf_fps')) + '",\n\n';
+  }
+  if(cat === 'Interface/Menu'){
+    c += '    hud: "' + esc(v('ui_hud')) + '",\n\n';
+    c += '    menus: "' + esc(v('ui_menus')) + '",\n\n';
+  }
+  return c;
+}
+
+function gerar(){
+  if(!validar()) return;
+
+  var nome = document.getElementById('nome').value.trim();
+  var categoria = document.getElementById('categoria').value;
+  var id = document.getElementById('id').value.trim();
+  var versao = document.getElementById('versao').value.trim() || '1.0';
+  var autor = document.getElementById('autor').value.trim() || 'Convertido por PS3ModsGlobal';
+  var data = document.getElementById('data').value.trim();
+  var capa = document.getElementById('capa').value.trim() || ('mod' + id + '.jpg');
+  var pasta = document.getElementById('pasta').value.trim() || slug(nome);
+  var download = document.getElementById('download').value.trim();
+  var descricao = document.getElementById('descricao').value.trim();
+
+  var codigo = '{\n';
+  codigo += '    id: ' + id +
