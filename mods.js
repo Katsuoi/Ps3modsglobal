@@ -160,4 +160,38 @@ const mods = [
     ]
 },
 
-    ]:
+{
+    id: 8,
+
+    nome: "Frederica the Dragonslayer",
+
+    categoria: "Companions",
+
+    autor: "SILICONOID( convertido por ps3modsglobal)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "28/07/2026",
+
+    casamento: "Não",
+
+    localizacao: "Dragonsreach",
+
+    classe: "Guerreira Nórdica",
+
+    imagem: "../imagens/mod8.jpg",
+
+    descricao: "Frederica é uma descendente de lendários caçadores de dragões, empunhando uma espada de duas mãos e treinada para derrotar as criaturas mais poderosas de Skyrim.",
+
+    download: "https://www.mediafire.com/file/pmlq1g41ug4x85g/fredrica+the+Dragon+Slayer+(1).7z/file",
+
+    galeria: [
+        "../imagens/frederica-the-dragonslayer/foto1.jpg",
+        "../imagens/frederica-the-dragonslayer/foto2.jpg",
+        "../imagens/frederica-the-dragonslayer/foto3.jpg"
+    ]
+},
+
+  ]:
