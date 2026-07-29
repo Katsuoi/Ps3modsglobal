@@ -147,7 +147,7 @@ const mods = [
 
     classe: "Paladina, Maga, Ladina,Arqueira,Guerreira",
 
-    imagem: "../imagens/mod7",
+    imagem: "../imagens/mod7.jpg",
 
     descricao: "Cinco seguidoras independentes com visual UNPB, cada uma localizada em uma cidade diferente de Skyrim e prontas para acompanhar o Dovahkiin em suas aventuras",
 
@@ -193,4 +193,4 @@ const mods = [
         "../imagens/frederica-the-dragonslayer/foto3.jpg"
     ]
 },
-
+ ];
