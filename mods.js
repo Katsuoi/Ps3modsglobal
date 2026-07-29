@@ -193,4 +193,37 @@ const mods = [
         "../imagens/frederica-the-dragonslayer/foto3.jpg"
     ]
 },
- ];
+ 
+{
+    id: 9,
+
+    nome: "Kaitlyn Follower",
+
+    categoria: "Companions",
+
+    autor: "overknee ( convertido por: ps3modsglobal)",
+
+    versao: "1.1",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "29/07/2026",
+
+    casamento: "Sim",
+
+    localizacao: "Frostfruit Inn (Rorikstead)",
+
+    classe: "Guerreira",
+
+    imagem: "../imagens/mod9.jpg",
+
+    descricao: "Kaitlyn é uma guerreira confiante e habilidosa, pronta para acompanhar o Dovahkiin em qualquer jornada. Sua aparência elegante contrasta com seu eficiente estilo de combate",
+
+    download: "https://www.mediafire.com/file/j4fw7rzvpkrzbz2/Overknee_Kaitlyn+(1).zip/file",
+
+    galeria: [
+        "../imagens/kaitlyn-follower/foto1.jpg",
+        "../imagens/kaitlyn-follower/foto2.jpg",
+        "../imagens/kaitlyn-follower/foto3.jpg"
+    ]
+},
