@@ -124,6 +124,40 @@ const mods = [
         "../imagens/Lili-Follower/foto2.jpg",
         "../imagens/Lili-Follower/foto3.jpg"
     ]
-}
+},
 
-];
+{
+    id: 7,
+
+    nome: "box66followersLE",
+
+    categoria: "Companions",
+
+    autor: "execom (convertido por ps3modsglobal)",
+
+    versao: "1.01",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "28/07/2026",
+
+    casamento: "Sim",
+
+    localizacao: "Irena — Riverwood  Luna — Ivarstead  Erina — Rorikstead Erica — Kynesgrove  Marysol — Dragon Bridge",
+
+    classe: "Paladina, Maga, Ladina,Arqueira,Guerreira",
+
+    imagem: "../imagens/mod7",
+
+    descricao: "Cinco seguidoras independentes com visual UNPB, cada uma localizada em uma cidade diferente de Skyrim e prontas para acompanhar o Dovahkiin em suas aventuras",
+
+    download: "https://www.mediafire.com/file/010wvpidoqpkm59/YuiH_StandAlone_Follower_-_Sha_v1_1_%2528Renewal%2529_UNP.zip/file",
+
+    galeria: [
+        "../imagens/box66followersle/foto1.jpg",
+        "../imagens/box66followersle/foto2.jpg",
+        "../imagens/box66followersle/foto3.jpg"
+    ]
+},
+
+    ]:
