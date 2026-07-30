@@ -261,3 +261,39 @@ const mods = [
         "../imagens/ariel-mermaid/foto3.jpg"
     ]
 },
+
+    {
+    id: 11,
+
+    nome: "Youko Follower",
+
+    categoria: "Companions",
+
+    autor: "takanashikuro(convertido por: ps3modsglobal)",
+
+    versao: "3.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "30/07/2026",
+
+    casamento: "Sim",
+
+    localizacao: "Sleeping Giant Inn(Riverwood)",
+
+    classe: "Guerreira",
+
+    imagem: "../imagens/mod11.jpg",
+
+    descricao: "Uma seguidora Nord independente com visual inspirado em anime, criada para jogadores que procuram uma companheira forte e de aparência personalizada, sem adicionar missões ou histórias complexas",
+
+    download: "https://www.mediafire.com/file/25fkvfx08l1a7fz/Youko.zip/file",
+
+    galeria: [
+        "../imagens/youko-follower/foto1.jpg",
+        "../imagens/youko-follower/foto2.jpg",
+        "../imagens/youko-follower/foto3.jpg"
+    ]
+},
+
+    ];
