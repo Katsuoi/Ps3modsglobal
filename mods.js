@@ -320,7 +320,7 @@ const mods = [
 
     classe: "Companheiro utilitário (não focado em combate)",
 
-    imagem: "../imagens/mod12",
+    imagem: "../imagens/mod12.jpg",
 
     descricao: "Um pequeno droide Dwemer inspirado no BB-8 de Star Wars que acompanha o jogador oferecendo diversas ferramentas úteis em vez de lutar.",
 
