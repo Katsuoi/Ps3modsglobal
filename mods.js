@@ -227,3 +227,37 @@ const mods = [
         "../imagens/kaitlyn-follower/foto3.jpg"
     ]
 },
+
+    {
+    id: 10,
+
+    nome: "Ariel Mermaid",
+
+    categoria: "Companions",
+
+    autor: "Raxys (convertido por: ps3modsglobal)",
+
+    versao: "0.5",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "29/07/2026",
+
+    casamento: "Não",
+
+    localizacao: "Sleeping Giant Inn( Riverwood)",
+
+    classe: "Conjuradora e Healer",
+
+    imagem: "../imagens/mod10.jpg",
+
+    descricao: "Ariel é uma jovem sereia determinada que deixou Atlântica em busca de aventuras e do seu verdadeiro amor. Especialista em Conjuração, é uma companheira mágica e leal",
+
+    download: "https://www.mediafire.com/file/ct29d7nr0kvn2z2/MOD+Ariel+Mermaid.zip/file",
+
+    galeria: [
+        "../imagens/ariel-mermaid/foto1.jpg",
+        "../imagens/ariel-mermaid/foto2.jpg",
+        "../imagens/ariel-mermaid/foto3.jpg"
+    ]
+},
