@@ -296,4 +296,44 @@ const mods = [
     ]
 },
 
-    ];
+ 
+
+
+{
+    id: 12,
+
+    nome: "Snippy – Droid Follower",
+
+    categoria: "Companions",
+
+    autor: "Dimonoider & gkalian(convertido por ps3modsglobal)",
+
+    versao: "1.1",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "30/07/2026",
+
+    casamento: "Não",
+
+    localizacao: "(Snippy Controller) é adicionado automaticamente ao seu inventário ao carregar um save com o mod instalado. Use-o para invocar e controlar o Snippy",
+
+    classe: "Companheiro utilitário (não focado em combate)",
+
+    imagem: "../imagens/mod12",
+
+    descricao: "Um pequeno droide Dwemer inspirado no BB-8 de Star Wars que acompanha o jogador oferecendo diversas ferramentas úteis em vez de lutar.",
+
+    download: "https://www.mediafire.com/file/faj1z0ggh02klge/Droid+Seguidor+-+Star+Wars.zip/file",
+
+    galeria: [
+        "../imagens/snippy-droid-follower/foto1.jpg",
+        "../imagens/snippy-droid-follower/foto2.jpg",
+        "../imagens/snippy-droid-follower/foto3.jpg"
+    ]
+},
+
+
+
+
+];
