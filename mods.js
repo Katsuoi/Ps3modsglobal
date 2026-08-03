@@ -356,7 +356,7 @@ const mods = [
 
     classe: "Guerreira",
 
-    imagem: "../imagens/mod13",
+    imagem: "../imagens/mod13.jpg",
 
     descricao: "Adiciona Ahsoka Tano, de Star Wars: The Clone Wars, como uma seguidora personalizada",
 
