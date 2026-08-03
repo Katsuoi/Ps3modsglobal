@@ -335,5 +335,39 @@ const mods = [
 
 
 
+{
+    id: 13,
 
+    nome: "Ahsoka Tano Follower Star Wars",
+
+    categoria: "Companions",
+
+    autor: "Zotic (convertido por: ps3modsglobal)",
+
+    versao: "3.2",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "02/08/2026",
+
+    casamento: "Sim",
+
+    localizacao: "Whiterun, Arcadia's Cauldron",
+
+    classe: "Guerreira",
+
+    imagem: "../imagens/mod13",
+
+    descricao: "Adiciona Ahsoka Tano, de Star Wars: The Clone Wars, como uma seguidora personalizada",
+
+    download: "https://www.mediafire.com/file/8p6y5baobsfxvpf/SEGUIDORA+AHSOKA+(REINA+ROJA).zip/file",
+
+    galeria: [
+        "../imagens/ahsoka-tano-follower-star-wars/foto1.jpg",
+        "../imagens/ahsoka-tano-follower-star-wars/foto2.jpg",
+        "../imagens/ahsoka-tano-follower-star-wars/foto3.jpg"
+    ]
+},
+
+  
 ];
