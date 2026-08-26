@@ -190,8 +190,16 @@ if (elClasse) elClasse.textContent = mod.classe || "N/A";
                     '</div>' +
                 '</div>';
         });
-    }
 
+     // Data do último mod adicionado
+var elUpdate = document.getElementById("stat-update");
+if (elUpdate && typeof mods !== "undefined" && mods.length) {
+  var ultimo = mods.slice().sort(function(a, b) {
+    return b.id - a.id;
+  })[0];
+  elUpdate.textContent = ultimo.data || "--";
+}
+    
     // ===== PESQUISA =====
     var searchInput = document.querySelector(".search input, #pesquisa");
     if (searchInput) {
