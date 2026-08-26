@@ -101,6 +101,9 @@ document.addEventListener("DOMContentLoaded", function() {
             var elAutor = document.getElementById("autor-mod");
             var elVersao = document.getElementById("versao-mod");
             var elCompat = document.getElementById("compatibilidade-mod");
+            var elCasamento = document.getElementById("casamento-mod");
+            var elLocalizacao = document.getElementById("localizacao-mod");
+            var elClasse = document.getElementById("classe-mod");
 
             if (elNome) elNome.textContent = mod.nome;
             if (elTitulo) elTitulo.textContent = mod.nome;
@@ -109,6 +112,9 @@ document.addEventListener("DOMContentLoaded", function() {
             if (elAutor) elAutor.textContent = mod.autor || "Desconhecido";
             if (elVersao) elVersao.textContent = mod.versao || "-";
             if (elCompat) elCompat.textContent = mod.compatibilidade || "Skyrim LE PS3";
+            if (elCasamento) elCasamento.textContent = mod.casamento || "N/A";
+            if (elLocalizacao) elLocalizacao.textContent = mod.localizacao || "N/A";
+            if (elClasse) elClasse.textContent = mod.classe || "N/A";
 
             var capa = document.getElementById("capa");
             if (capa) {
@@ -129,18 +135,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     img.style.cursor = "pointer";
                     img.onclick = function() { window.open(src, "_blank"); };
                     galeria.appendChild(img);
-                  
-                    var elCasamento = document.getElementById("casamento-mod");
-var elLocalizacao = document.getElementById("localizacao-mod");
-var elClasse = document.getElementById("classe-mod");
-
-if (elCasamento) elCasamento.textContent = mod.casamento || "N/A";
-if (elLocalizacao) elLocalizacao.textContent = mod.localizacao || "N/A";
-if (elClasse) elClasse.textContent = mod.classe || "N/A";
                 });
             }
 
-            // Botão favorito na página do mod
             var favBtn = document.getElementById("btn-favorito");
             if (favBtn) {
                 favBtn.setAttribute("data-fav", mod.id);
@@ -190,16 +187,17 @@ if (elClasse) elClasse.textContent = mod.classe || "N/A";
                     '</div>' +
                 '</div>';
         });
+    }
 
-     // Data do último mod adicionado
-var elUpdate = document.getElementById("stat-update");
-if (elUpdate && typeof mods !== "undefined" && mods.length) {
-  var ultimo = mods.slice().sort(function(a, b) {
-    return b.id - a.id;
-  })[0];
-  elUpdate.textContent = ultimo.data || "--";
-}
-    
+    // Data do último mod adicionado
+    var elUpdate = document.getElementById("stat-update");
+    if (elUpdate && typeof mods !== "undefined" && mods.length) {
+        var ultimo = mods.slice().sort(function(a, b) {
+            return b.id - a.id;
+        })[0];
+        elUpdate.textContent = ultimo.data || "--";
+    }
+
     // ===== PESQUISA =====
     var searchInput = document.querySelector(".search input, #pesquisa");
     if (searchInput) {
