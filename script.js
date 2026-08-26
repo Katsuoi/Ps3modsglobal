@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var card = document.createElement("div");
             card.className = "card-mod";
             card.innerHTML =
-                '<img src="' + mod.imagem + '" alt="' + mod.nome + '">' +
+                '<img src="' + mod.imagem + '" alt="' + mod.nome + '" loading="lazy">' +
                 '<span class="categoria">' + mod.categoria + '</span>' +
                 '<h3>' + mod.nome + '</h3>' +
                 '<p>' + mod.descricao + '</p>' +
@@ -120,6 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (capa) {
                 capa.src = mod.imagem;
                 capa.alt = mod.nome;
+                capa.loading = "lazy";
             }
 
             var download = document.getElementById("download");
@@ -132,6 +133,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     var img = document.createElement("img");
                     img.src = src;
                     img.alt = mod.nome;
+                    img.loading = "lazy";
                     img.style.cursor = "pointer";
                     img.onclick = function() { window.open(src, "_blank"); };
                     galeria.appendChild(img);
@@ -160,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var img = mod.imagem.replace("../", "");
             destaques.innerHTML +=
                 '<div class="card-home">' +
-                    '<img src="' + img + '" alt="' + mod.nome + '">' +
+                    '<img src="' + img + '" alt="' + mod.nome + '" loading="lazy">' +
                     '<span class="categoria">' + mod.categoria + '</span>' +
                     '<h3>' + mod.nome + '</h3>' +
                     '<p>' + mod.descricao.substring(0, 70) + '...</p>' +
@@ -178,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function() {
             var img = mod.imagem.replace("../", "");
             ultimos.innerHTML +=
                 '<div class="ultimo-card">' +
-                    '<img src="' + img + '" alt="' + mod.nome + '">' +
+                    '<img src="' + img + '" alt="' + mod.nome + '" loading="lazy">' +
                     '<div class="ultimo-info">' +
                         '<span class="categoria">' + mod.categoria + '</span>' +
                         '<h3>' + mod.nome + '</h3>' +
@@ -207,6 +209,22 @@ document.addEventListener("DOMContentLoaded", function() {
                 var texto = card.textContent.toLowerCase();
                 card.style.display = (termo === "" || texto.includes(termo)) ? "" : "none";
             });
+        });
+    }
+
+    // ===== AVISO MOBILE =====
+    var aviso = document.getElementById("aviso-mobile");
+    var fechar = document.getElementById("fechar-aviso");
+    var isMobile = window.innerWidth <= 900 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (aviso && isMobile && !sessionStorage.getItem("avisoMobileOk")) {
+        aviso.style.display = "flex";
+    }
+
+    if (fechar) {
+        fechar.addEventListener("click", function() {
+            if (aviso) aviso.style.display = "none";
+            sessionStorage.setItem("avisoMobileOk", "1");
         });
     }
 
