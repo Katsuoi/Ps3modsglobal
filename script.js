@@ -159,7 +159,7 @@ if (elClasse) elClasse.textContent = mod.classe || "N/A";
     var destaques = document.getElementById("destaques");
     if (destaques && typeof mods !== "undefined") {
         destaques.innerHTML = "";
-        mods.slice(0, 4).forEach(function(mod) {
+        mods.slice(0, 6).forEach(function(mod) {
             var img = mod.imagem.replace("../", "");
             destaques.innerHTML +=
                 '<div class="card-home">' +
