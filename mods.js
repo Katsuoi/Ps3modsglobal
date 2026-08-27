@@ -538,5 +538,51 @@ const mods = [
         "../imagens/serena-dialogue-add-on/foto2.jpg",
         "../imagens/serena-dialogue-add-on/foto3.jpg"
     ]
-},   
+}, 
+
+
+{
+    id: 19,
+
+    nome: "Sofia - The Funny Fully Voiced Follower",
+
+    categoria: "Companions",
+
+    autor: "John Jarvis( convertido por : ps3modsglobal)",
+
+    versao: "2.51",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    casamento: "Sim",
+
+    localizacao: "Estábulos de Whiterun",
+
+    classe: "Guerreira",
+
+    imagem: "../imagens/mod19.jpg",
+
+    descricao: "Sofia é uma seguidora totalmente dublada, com personalidade própria, sistema de diálogo avançado e muitos comentários sobre o jogador, quests e ambientes. Ela também possui sistemas próprios de relacionamento, bebida, canto, cavalo e armazenamento.",
+
+    downloads: [
+        {
+            nome: "Download (Com dublagem )",
+            link: "https://www.mediafire.com/file/09djbgaetg7omrm/Sofia+follower+dublagem+ptbr.zip/file"
+        },
+        {
+            nome: "Download (sem dublagem en)",
+            link: "https://www.mediafire.com/file/svrssdof4wvjmh8/Sofia+follower+sem+dublagem.zip/file"
+        }
+    ],
+
+    galeria: [
+        "../imagens/sofia-the-funny-fully-voiced-follower/foto1.jpg",
+        "../imagens/sofia-the-funny-fully-voiced-follower/foto2.jpg",
+        "../imagens/sofia-the-funny-fully-voiced-follower/foto3.jpg"
+    ]
+},
+
+    
 ];
