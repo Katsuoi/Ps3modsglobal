@@ -687,6 +687,40 @@ const mods = [
     ]
 },
 
+{
+    id: 23,
 
+    nome: "Demon Hunter armor v2",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "jmenaru( convertido por: ps3modsglobal)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Armadura/roupa",
+
+    forjavel: "Sim (categoria aço)",
+
+    corpo: "Cbbe/unp",
+
+    imagem: "../imagens/mod23.jpg",
+
+    descricao: "Adiciona a segunda versão da armadura de Demon Hunter inspirada na arte conceitual da Demon Hunter feminina de Diablo III. A armadura é feminina, pode ser fabricada, aprimorada e encantada.",
+
+    download: "https://www.mediafire.com/file/troa99xdgjxo6ki/Demon+Hunter+v2+-+(CBBEv3).zip/file",
+
+    galeria: [
+        "../imagens/demon-hunter-armor-v2/foto1.jpg",
+        "../imagens/demon-hunter-armor-v2/foto2.jpg",
+        "../imagens/demon-hunter-armor-v2/foto3.jpg"
+    ]
+},
     
 ];
