@@ -123,8 +123,33 @@ document.addEventListener("DOMContentLoaded", function() {
                 capa.loading = "lazy";
             }
 
-            var download = document.getElementById("download");
-            if (download) download.href = mod.download;
+            // Downloads (1 ou vários)
+            var downloadBox = document.getElementById("download-box");
+            if (downloadBox) {
+                downloadBox.innerHTML = "";
+
+                if (mod.downloads && mod.downloads.length) {
+                    mod.downloads.forEach(function(item) {
+                        var a = document.createElement("a");
+                        a.className = "download";
+                        a.href = item.link;
+                        a.target = "_blank";
+                        a.rel = "noopener noreferrer";
+                        a.textContent = item.nome || "Download";
+                        a.style.display = "inline-block";
+                        a.style.margin = "6px 8px 6px 0";
+                        downloadBox.appendChild(a);
+                    });
+                } else if (mod.download) {
+                    var a = document.createElement("a");
+                    a.className = "download";
+                    a.href = mod.download;
+                    a.target = "_blank";
+                    a.rel = "noopener noreferrer";
+                    a.textContent = "DOWNLOAD";
+                    downloadBox.appendChild(a);
+                }
+            }
 
             var galeria = document.getElementById("galeria");
             if (galeria && mod.galeria) {
