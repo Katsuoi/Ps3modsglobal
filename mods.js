@@ -617,5 +617,38 @@ const mods = [
         "../imagens/verity-follower-cbbe/foto3.jpg"
     ]
 },
+{
+    id: 21,
+
+    nome: "Mango Follower",
+
+    categoria: "Companions",
+
+    autor: "Alpha-Mango ( convertido por: ps3modsglobal)",
+
+    versao: "1.31",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    casamento: "N/n",
+
+    localizacao: "Embershard Mine, onde Mango está presa em uma cela.",
+
+    classe: "N/A",
+
+    imagem: "../imagens/mod21.jpg",
+
+    descricao: "Adiciona Mango, uma seguidora feminina independente, que foi capturada por bandidos e está presa em Embershard Mine",
+
+    download: "https://www.mediafire.com/file/qqi14k8qun9lh5c/Mango.zip/file",
+
+    galeria: [
+        "../imagens/mango-follower/foto1.jpg",
+        "../imagens/mango-follower/foto2.jpg",
+        "../imagens/mango-follower/foto3.jpg"
+    ]
+},
     
 ];
