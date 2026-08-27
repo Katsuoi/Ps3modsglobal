@@ -404,5 +404,39 @@ const mods = [
     ]
 },
 
+{
+    id: 15,
+
+    nome: "Dinok Dragon Priest Follower",
+
+    categoria: "Companions",
+
+    autor: "AedanStarfang( convertido por: n/a)",
+
+    versao: "1.1",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    casamento: "Sim",
+
+    localizacao: "Palace of Kings, Windhelm",
+
+    classe: "Nórdico",
+
+    imagem: "../imagens/mod15.jpg",
+
+    descricao: "Adiciona Dinok, um Sacerdote Dragão nórdico, como seguidor recrutável em Windhelm. Ele possui equipamentos, máscara, magias e gritos próprios, além de ser essencial e casável",
+
+    download: "https://www.mediafire.com/file/r5x02roru6ex2ft/Dinok+Follower+1.1.zip/file",
+
+    galeria: [
+        "../imagens/dinok-dragon-priest-follower/foto1.jpg",
+        "../imagens/dinok-dragon-priest-follower/foto2.jpg",
+        "../imagens/dinok-dragon-priest-follower/foto3.jpg"
+    ]
+},
+
     
 ];
