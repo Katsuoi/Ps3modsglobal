@@ -471,5 +471,39 @@ const mods = [
         "../imagens/leticia-follower/foto3.jpg"
     ]
 },
+
+{
+    id: 17,
+
+    nome: "follower Hanako and Nanako",
+
+    categoria: "Companions",
+
+    autor: "box66( convertido por ps3modsglobal)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    casamento: "Sim",
+
+    localizacao: "Dragon Bridge",
+
+    classe: "Maga, ranger",
+
+    imagem: "../imagens/mod17.jpg",
+
+    descricao: "Adiciona duas seguidoras independentes, Hanako e Nanako, com estética japonesa/anime. Ambas são essenciais, podem ser recrutadas em Dragon Bridge e podem se casar com o jogador",
+
+    download: "https://www.mediafire.com/file/rddzga2vbjmsbxx/Follower+-+Hanako+and+Nanako+(1).zip/file",
+
+    galeria: [
+        "../imagens/follower-hanako-and-nanako/foto1.jpg",
+        "../imagens/follower-hanako-and-nanako/foto2.jpg",
+        "../imagens/follower-hanako-and-nanako/foto3.jpg"
+    ]
+},
     
 ];
