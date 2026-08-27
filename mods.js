@@ -438,5 +438,38 @@ const mods = [
     ]
 },
 
+{
+    id: 16,
+
+    nome: "Leticia follower",
+
+    categoria: "Companions",
+
+    autor: "C14I12V0Y4I1C3 (convertido por: ps3modsglobal)",
+
+    versao: "1.1",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    casamento: "Sim",
+
+    localizacao: "Bannered Mare, em Whiterun.",
+
+    classe: "Nórdica",
+
+    imagem: "../imagens/mod16.jpg",
+
+    descricao: "Adiciona a seguidora feminina Leticia, criada com High Poly Head, ao Skyrim. Ela pode ser encontrada na hospedaria Bannered Mare, em Whiterun",
+
+    download: "https://www.mediafire.com/file/m7rlglxhebrhtd4/Letícia+(1).zip/file",
+
+    galeria: [
+        "../imagens/leticia-follower/foto1.jpg",
+        "../imagens/leticia-follower/foto2.jpg",
+        "../imagens/leticia-follower/foto3.jpg"
+    ]
+},
     
 ];
