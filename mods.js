@@ -369,5 +369,40 @@ const mods = [
     ]
 },
 
-  
+
+{
+    id: 14,
+
+    nome: "Vilja in Skyrim",
+
+    categoria: "Companions",
+
+    autor: "Emma Amgepo Lycanthrops ( convertido por: n/a)",
+
+    versao: "4.2",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    casamento: "Sim",
+
+    localizacao: "Bannered Mare, Whiterun",
+
+    classe: "Guerreira",
+
+    imagem: "../imagens/mod14.png",
+
+    descricao: "Vilja é uma jovem barda totalmente dublada que pode acompanhar o jogador em Skyrim. O mod vai muito além de adicionar uma seguidora comum, oferecendo uma longa linha de quests, diálogos, interações, romance opcional, cavalo próprio e diversos sistemas de comportamento",
+
+    download: "https://www.mediafire.com/file/657g7wi39oxgx2x/Vilja_ptbr.zip/file",
+
+    galeria: [
+        "../imagens/vilja-in-skyrim/foto1.jpg",
+        "../imagens/vilja-in-skyrim/foto2.jpg",
+        "../imagens/vilja-in-skyrim/foto3.jpg"
+    ]
+},
+
+    
 ];
