@@ -505,5 +505,38 @@ const mods = [
         "../imagens/follower-hanako-and-nanako/foto3.jpg"
     ]
 },
-    
+
+ {
+    id: 18,
+
+    nome: "Serena dialogue add-on",
+
+    categoria: "Companions",
+
+    autor: "Martimius( convertido por: ootori shokikan)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    casamento: "Sim, através do sistema de romance do próprio SDA",
+
+    localizacao: "Serana continua sendo encontrada durante a quest Dawnguard, portanto o mod utiliza a Serana original do jogo",
+
+    classe: "Nórdica",
+
+    imagem: "../imagens/mod18.jpg",
+
+    descricao: "Expande drasticamente a personagem Serana, adicionando milhares de novas falas totalmente dubladas, novos diálogos durante quests, comentários sobre locais, romance, interações com outros NPCs e diversas novas funcionalidades de seguidora",
+
+    download: "https://www.mediafire.com/file/jy2u0jlsrxfl4hl/Serana+novos+dialogos.zip/file",
+
+    galeria: [
+        "../imagens/serena-dialogue-add-on/foto1.jpg",
+        "../imagens/serena-dialogue-add-on/foto2.jpg",
+        "../imagens/serena-dialogue-add-on/foto3.jpg"
+    ]
+},   
 ];
