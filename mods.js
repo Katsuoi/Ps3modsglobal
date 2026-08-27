@@ -584,5 +584,38 @@ const mods = [
     ]
 },
 
+    {
+    id: 20,
+
+    nome: "Verity Follower CBBE",
+
+    categoria: "Companions",
+
+    autor: "rhonjhonson( convertido por: ps3modsglobal)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    casamento: "N/a",
+
+    localizacao: "Crepúsculo Sepulcro. A oeste de Falkreath, ao sul de Knifepoint Ridge.",
+
+    classe: "N/a",
+
+    imagem: "../imagens/mod20.jpg",
+
+    descricao: "Adiciona a seguidora Verity ao Skyrim, com versões para diferentes corpos e suporte a High Poly Head/RaceMenu. O mod também inclui um preset de RaceMenu da personagem.",
+
+    download: "https://www.mediafire.com/file/ed34ogm9ow2ajta/Verity+Follower+CBBE+LE.zip/file",
+
+    galeria: [
+        "../imagens/verity-follower-cbbe/foto1.jpg",
+        "../imagens/verity-follower-cbbe/foto2.jpg",
+        "../imagens/verity-follower-cbbe/foto3.jpg"
+    ]
+},
     
 ];
