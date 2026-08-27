@@ -650,5 +650,43 @@ const mods = [
         "../imagens/mango-follower/foto3.jpg"
     ]
 },
+
+  {
+    id: 22,
+
+    nome: "Seraphine armor",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "jmenaru( convertido por ps3modsglobal)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Roupa/ armadura",
+
+    forjavel: "Sim - (categoria couro)",
+
+    corpo: "Cbbe/unp",
+
+    imagem: "../imagens/mod22.jpg",
+
+    descricao: "Adiciona ao Skyrim a armadura Seraphine, baseada na armadura do jogo Hunted: The Demon's Forge. É uma armadura leve para personagens femininas, com versões para CBBE e UNP.",
+
+    download: "https://www.mediafire.com/file/myfme96jpdyryg3/SeraphineArmor.zip/file",
+
+    galeria: [
+        "../imagens/seraphine-armor/foto1.jpg",
+        "../imagens/seraphine-armor/foto2.jpg",
+        "../imagens/seraphine-armor/foto3.jpg"
+    ]
+},
+
+
     
 ];
