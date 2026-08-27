@@ -722,5 +722,40 @@ const mods = [
         "../imagens/demon-hunter-armor-v2/foto3.jpg"
     ]
 },
-    
+
+    {
+    id: 24,
+
+    nome: "Dark Lilith Sexy Armor for CBBE",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "Nikitaa (convertido por: ps3modsglobal)",
+
+    versao: "N/a",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Armadura/roupa",
+
+    forjavel: "N/a ---A armadura está localizada em um baú na entrada de Solitude ao lado da loja de roupas",
+
+    corpo: "Corpo cbbe",
+
+    imagem: "../imagens/mod24.jpg",
+
+    descricao: "Adiciona um conjunto de armadura feminina inspirado em uma temática de súcubo/Lilith, com visual bastante sensual e elementos como chifres, asas e salto alto. O conjunto foi criado para CBBE e é uma armadura leve.",
+
+    download: "https://www.mediafire.com/file/fthpilzwvlwdg0k/Dark+Lilith+Armor.zip/file",
+
+    galeria: [
+        "../imagens/dark-lilith-sexy-armor-for-cbbe/foto1.jpg",
+        "../imagens/dark-lilith-sexy-armor-for-cbbe/foto2.jpg",
+        "../imagens/dark-lilith-sexy-armor-for-cbbe/foto3.jpg"
+    ]
+},
 ];
