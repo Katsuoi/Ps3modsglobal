@@ -391,7 +391,7 @@ const mods = [
 
     classe: "Guerreira",
 
-    imagem: "../imagens/mod14.png",
+    imagem: "../imagens/mod14.jpg",
 
     descricao: "Vilja é uma jovem barda totalmente dublada que pode acompanhar o jogador em Skyrim. O mod vai muito além de adicionar uma seguidora comum, oferecendo uma longa linha de quests, diálogos, interações, romance opcional, cavalo próprio e diversos sistemas de comportamento",
 
