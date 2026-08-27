@@ -5,93 +5,79 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gerador de Mods - PS3ModsGlobal</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Segoe UI,Arial,sans-serif;background:#0b0e14;color:#e8eaed;padding:18px 14px 120px;line-height:1.45}
-.container{max-width:740px;margin:0 auto}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Segoe UI,Arial,sans-serif;background:#0b0e14;color:#e8eaed;padding:16px 12px 100px}
+.wrap{max-width:720px;margin:0 auto}
 h1{color:#5ec8ff;font-size:22px;margin-bottom:4px}
-.sub{color:#8b95a5;font-size:13px;margin-bottom:16px}
-.passo{display:flex;align-items:center;gap:10px;margin:22px 0 10px}
-.passo .num{width:26px;height:26px;border-radius:50%;background:#5ec8ff;color:#0b0e14;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.passo h2{font-size:15px;color:#fff}
-label{display:block;font-size:12px;color:#8b95a5;margin:11px 0 5px}
-input,select,textarea{width:100%;padding:11px 12px;background:#141a24;border:1px solid #1c2330;border-radius:8px;color:#e8eaed;font-size:14px;outline:none}
-input:focus,select:focus,textarea:focus{border-color:#5ec8ff}
-.erro{border-color:#ff6b6b !important}
-textarea{min-height:78px;resize:vertical}
+.sub{color:#8b95a5;font-size:13px;margin-bottom:14px}
+.card{background:#121821;border:1px solid #1c2330;border-radius:12px;padding:14px;margin-bottom:12px}
+.card h2{font-size:14px;color:#5ec8ff;margin-bottom:10px}
+label{display:block;font-size:12px;color:#8b95a5;margin:10px 0 4px}
+input,select,textarea{width:100%;padding:11px;border-radius:8px;border:1px solid #2a3344;background:#0e131b;color:#e8eaed;font-size:14px}
+textarea{min-height:70px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.box{background:#10151e;border:1px solid #1c2330;border-radius:12px;padding:14px}
-.hint{font-size:11px;color:#6b7585;margin-top:4px}
-.auto{color:#7dcea0;font-size:11px;margin-top:4px}
-.extra{display:none;margin-top:12px;background:#0d1219;border:1px solid #5ec8ff44;border-radius:10px;padding:12px}
-.extra h3{color:#5ec8ff;font-size:13px;margin-bottom:6px}
-.erros{background:#2a1515;border:1px solid #ff6b6b;color:#ffb4b4;padding:12px;border-radius:8px;margin-bottom:12px;display:none;font-size:13px}
-.erros li{margin-left:16px;margin-top:3px}
-.dl-item{background:#0b0e14;border:1px solid #1c2330;border-radius:8px;padding:12px;margin-top:10px;position:relative}
-.dl-item .tag{font-size:11px;color:#5ec8ff;margin-bottom:6px;font-weight:700}
-.btns-dl{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-.btns-dl button,.chip{padding:9px 12px;border-radius:8px;font-weight:600;font-size:12px;cursor:pointer;border:1px solid #2a3a50;background:#1a2230;color:#5ec8ff}
-.chip{display:inline-block;margin:4px 4px 0 0}
-.btn-rem{background:#2a1515 !important;color:#ffb4b4 !important;border-color:#5a2a2a !important}
-.checklist{background:#0d1510;border:1px solid #2a4a35;border-radius:10px;padding:12px;margin-top:12px;display:none}
-.checklist h3{color:#7dcea0;font-size:13px;margin-bottom:8px}
-.checklist code{display:block;background:#0b0e14;padding:8px 10px;border-radius:6px;margin:6px 0;font-size:12px;color:#c5cdd8;word-break:break-all}
-.barra{position:fixed;bottom:0;left:0;right:0;background:#0f131a;border-top:1px solid #1c2330;padding:12px 14px;z-index:99}
-.barra .inner{max-width:740px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.barra button{padding:13px;border:none;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer}
-.btn-gerar{background:#5ec8ff;color:#0b0e14}
-.btn-limpar{background:#1a2230;color:#8b95a5;border:1px solid #2a3a50 !important}
-.resultado{margin-top:16px;display:none}
-pre{background:#141a24;border:1px solid #1c2330;border-radius:8px;padding:12px;font-size:12px;white-space:pre-wrap;color:#c5cdd8;max-height:320px;overflow:auto}
-.copiar{margin-top:8px;width:100%;padding:12px;border-radius:8px;background:#1a2230;color:#5ec8ff;border:1px solid #2a3a50;font-weight:700;cursor:pointer}
-.ok{color:#7dcea0;font-size:13px;margin-top:8px;display:none}
-@media(max-width:600px){.row,.row3,.barra .inner{grid-template-columns:1fr}}
+.hint{font-size:11px;color:#6b7585;margin-top:3px}
+.okhint{font-size:11px;color:#7dcea0;margin-top:3px}
+.erro{border-color:#ff6b6b !important}
+.erros{display:none;background:#2a1515;border:1px solid #ff6b6b;color:#ffb4b4;padding:10px;border-radius:8px;margin-bottom:12px;font-size:13px}
+.dl{background:#0e131b;border:1px solid #2a3344;border-radius:8px;padding:10px;margin-top:8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chips button,.mini{padding:8px 10px;border-radius:8px;border:1px solid #2a3a50;background:#1a2230;color:#5ec8ff;font-size:12px;font-weight:600}
+.mini.danger{color:#ffb4b4;border-color:#5a2a2a;background:#2a1515}
+.extra{display:none;margin-top:8px;padding-top:8px;border-top:1px solid #1c2330}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#0f131a;border-top:1px solid #1c2330;padding:10px 12px}
+.bar button{width:100%;max-width:720px;margin:0 auto;display:block;padding:13px;border:0;border-radius:8px;background:#5ec8ff;color:#0b0e14;font-weight:800;font-size:15px}
+.out{display:none;margin-top:12px}
+pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;white-space:pre-wrap;font-size:12px;color:#c5cdd8}
+.copy{width:100%;margin-top:8px;padding:12px;border-radius:8px;border:1px solid #2a3a50;background:#1a2230;color:#5ec8ff;font-weight:700}
+.check{display:none;margin-top:10px;background:#0d1510;border:1px solid #2a4a35;border-radius:8px;padding:10px;font-size:13px}
+.check code{display:block;background:#0b0e14;padding:7px 8px;border-radius:6px;margin:4px 0;word-break:break-all}
+@media(max-width:600px){.row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="container">
+<div class="wrap">
   <h1>Gerador de Mods</h1>
-  <p class="sub">Preencha o básico. O resto o gerador completa sozinho.</p>
+  <p class="sub">Preencha e gere o codigo. Capa e pasta sao preenchidas sozinhas.</p>
   <div class="erros" id="erros"></div>
 
-  <div class="passo"><div class="num">1</div><h2>Informações do mod</h2></div>
-  <div class="box">
-    <label>Nome do mod *</label>
-    <input id="nome" placeholder="Ex: Sofia Follower" oninput="autoFill()">
+  <div class="card">
+    <h2>1. Dados do mod</h2>
+    <label>Nome *</label>
+    <input id="nome" placeholder="Sofia - The Funny Fully Voiced Follower">
 
     <label>Categoria *</label>
     <select id="categoria">
       <option value="">Selecione...</option>
-      <option value="1">Companions</option>
-      <option value="2">Armaduras Masculinas</option>
-      <option value="3">Armaduras Femininas</option>
-      <option value="4">Armas</option>
-      <option value="5">Magias</option>
-      <option value="6">Construcoes e Casas</option>
-      <option value="7">Missoes e Aventuras</option>
-      <option value="8">Graficos</option>
-      <option value="9">Interface/Menu</option>
-      <option value="10">Otimizacao</option>
-      <option value="11">Criaturas</option>
-      <option value="12">Vampiros</option>
-      <option value="13">Lobisomem</option>
-      <option value="14">Sons</option>
-      <option value="15">Animacoes</option>
-      <option value="16">Arqueiria</option>
-      <option value="17">Montarias</option>
-      <option value="18">Utilidades</option>
-      <option value="19">Racas e Habilidades</option>
-      <option value="20">Combate e Dificuldade</option>
-      <option value="21">Efeitos Visuais</option>
-      <option value="22">Imersao</option>
-      <option value="23">Mods Engracados</option>
+      <option value="Companions">Companions</option>
+      <option value="Armaduras Masculinas">Armaduras Masculinas</option>
+      <option value="Armaduras Femininas">Armaduras Femininas</option>
+      <option value="Armas">Armas</option>
+      <option value="Magias">Magias</option>
+      <option value="Construcoes e Casas">Construcoes e Casas</option>
+      <option value="Missoes e Aventuras">Missoes e Aventuras</option>
+      <option value="Graficos">Graficos</option>
+      <option value="Interface/Menu">Interface/Menu</option>
+      <option value="Otimizacao">Otimizacao</option>
+      <option value="Criaturas">Criaturas</option>
+      <option value="Vampiros">Vampiros</option>
+      <option value="Lobisomem">Lobisomem</option>
+      <option value="Sons">Sons</option>
+      <option value="Animacoes">Animacoes</option>
+      <option value="Arqueiria">Arqueiria</option>
+      <option value="Montarias">Montarias</option>
+      <option value="Utilidades">Utilidades</option>
+      <option value="Racas e Habilidades">Racas e Habilidades</option>
+      <option value="Combate e Dificuldade">Combate e Dificuldade</option>
+      <option value="Efeitos Visuais">Efeitos Visuais</option>
+      <option value="Imersao">Imersao</option>
+      <option value="Mods Engracados">Mods Engracados</option>
     </select>
 
     <div class="row">
       <div>
         <label>ID *</label>
-        <input type="number" id="id" min="1" placeholder="14" oninput="autoFill()">
-        <p class="hint">Proximo numero depois do ultimo mod</p>
+        <input id="id" type="number" min="1" placeholder="19">
       </div>
       <div>
         <label>Versao</label>
@@ -100,66 +86,50 @@ pre{background:#141a24;border:1px solid #1c2330;border-radius:8px;padding:12px;f
     </div>
 
     <label>Autor</label>
-    <input id="autor" placeholder="Nome do autor original">
-    <p class="hint">O gerador adiciona "(convertido por PS3ModsGlobal)" se nao tiver</p>
+    <input id="autor" placeholder="Autor original">
+    <p class="hint">Se deixar vazio: Convertido por PS3ModsGlobal</p>
 
     <label>Data</label>
     <input id="data">
 
     <label>Descricao *</label>
-    <textarea id="descricao" placeholder="O que o mod faz, em poucas linhas"></textarea>
+    <textarea id="descricao" placeholder="O que o mod faz..."></textarea>
   </div>
 
-  <div class="passo"><div class="num">2</div><h2>Imagens (automatico)</h2></div>
-  <div class="box">
-    <label>Arquivo da capa</label>
-    <input id="capa" placeholder="mod14.jpg">
-    <p class="auto" id="hint-capa">Preenchido automaticamente pelo ID</p>
-
+  <div class="card">
+    <h2>2. Imagens</h2>
+    <label>Capa</label>
+    <input id="capa" placeholder="mod19.jpg">
+    <p class="okhint" id="capah">Vira mod+ID.jpg sozinho</p>
     <label>Pasta da galeria</label>
     <input id="pasta" placeholder="sofia-follower">
-    <p class="auto" id="hint-pasta">Gerada pelo nome do mod</p>
+    <p class="okhint" id="pastah">Vira pelo nome do mod sozinho</p>
   </div>
 
-  <div class="passo"><div class="num">3</div><h2>Downloads</h2></div>
-  <div class="box">
-    <p class="hint">1 link = botao DOWNLOAD. 2+ links = varios botoes com nome.</p>
-    <div style="margin-top:8px">
-      <span class="chip" onclick="presetDl(['Download'])">1 link</span>
-      <span class="chip" onclick="presetDl(['Com dublagem PT-BR','Sem dublagem'])">Dublagem / Sem</span>
-      <span class="chip" onclick="presetDl(['Versao completa','Versao leve'])">Completa / Leve</span>
+  <div class="card">
+    <h2>3. Downloads</h2>
+    <div class="chips">
+      <button type="button" id="btn1">1 link</button>
+      <button type="button" id="btn2">Dublagem / Sem</button>
+      <button type="button" id="btn3">+ Link</button>
+      <button type="button" id="btn4" class="mini danger">- Link</button>
     </div>
-    <div id="lista-downloads"></div>
-    <div class="btns-dl">
-      <button type="button" onclick="addDownload()">+ Adicionar link</button>
-      <button type="button" class="btn-rem" onclick="remDownload()">- Remover</button>
-    </div>
+    <div id="dls"></div>
   </div>
 
-  <div class="passo"><div class="num">4</div><h2>Campos extras da categoria</h2></div>
-  <div class="box">
-    <p class="hint">Aparecem depois que voce escolhe a categoria.</p>
+  <div class="card">
+    <h2>4. Extras da categoria</h2>
+    <p class="hint" id="exhint">Escolha a categoria acima para ver os campos.</p>
 
-    <div class="extra" id="e1"><h3>Companions</h3>
-      <div class="row"><div><label>Casamento</label><input id="casamento" placeholder="Sim / Nao"></div>
-      <div><label>Classe</label><input id="classe" placeholder="Guerreira / Mago"></div></div>
-      <label>Localizacao</label><input id="localizacao" placeholder="Onde encontra">
-    </div>
-    <div class="extra" id="e2"><h3>Armaduras Masculinas</h3>
-      <div class="row3">
-        <div><label>Tipo</label><input id="arm_tipo"></div>
-        <div><label>Forjavel</label><input id="arm_forjavel"></div>
-        <div><label>Corpo</label><input id="arm_corpo"></div>
+    <div class="extra" id="ex-Companions">
+      <div class="row">
+        <div><label>Casamento</label><input id="casamento" placeholder="Sim / Nao"></div>
+        <div><label>Classe</label><input id="classe" placeholder="Guerreira"></div>
       </div>
+      <label>Localizacao</label><input id="localizacao" placeholder="Estabulo de Whiterun">
     </div>
-    <div class="extra" id="e3"><h3>Armaduras Femininas</h3>
-      <div class="row3">
-        <div><label>Tipo</label><input id="armf_tipo"></div>
-        <div><label>Forjavel</label><input id="armf_forjavel"></div>
-        <div><label>Corpo</label><input id="armf_corpo"></div>
-      </div>
-    </div>
-    <div class="extra" id="e4"><h3>Armas</h3>
+
+    <div class="extra" id="ex-Armas">
       <div class="row">
         <div><label>Tipo</label><input id="arma_tipo"></div>
         <div><label>Forjavel</label><input id="arma_forjavel"></div>
@@ -169,272 +139,278 @@ pre{background:#141a24;border:1px solid #1c2330;border-radius:8px;padding:12px;f
         <div><label>Quantidade</label><input id="arma_qtd"></div>
       </div>
     </div>
-    <div class="extra" id="e5"><h3>Magias</h3>
+
+    <div class="extra" id="ex-Armaduras Masculinas">
+      <div class="row">
+        <div><label>Tipo</label><input id="arm_tipo"></div>
+        <div><label>Forjavel</label><input id="arm_forjavel"></div>
+      </div>
+      <label>Corpo</label><input id="arm_corpo">
+    </div>
+
+    <div class="extra" id="ex-Armaduras Femininas">
+      <div class="row">
+        <div><label>Tipo</label><input id="armf_tipo"></div>
+        <div><label>Forjavel</label><input id="armf_forjavel"></div>
+      </div>
+      <label>Corpo</label><input id="armf_corpo">
+    </div>
+
+    <div class="extra" id="ex-Magias">
       <div class="row">
         <div><label>Escola</label><input id="mag_escola"></div>
         <div><label>Custo</label><input id="mag_custo"></div>
       </div>
       <label>Vendedor</label><input id="mag_vendedor">
     </div>
-    <div class="extra" id="e6"><h3>Casas</h3>
-      <label>Localizacao</label><input id="casa_loc">
-      <div class="row3">
-        <div><label>Armazenamento</label><input id="casa_arm"></div>
-        <div><label>Manequins</label><input id="casa_man"></div>
-        <div><label>Seguidores</label><input id="casa_seg"></div>
-      </div>
+
+    <div class="extra" id="ex-default">
+      <label>Tipo / detalhe extra (opcional)</label>
+      <input id="tipo_extra" placeholder="Opcional">
     </div>
-    <div class="extra" id="e7"><h3>Missoes</h3>
-      <label>Inicio</label><input id="miss_inicio">
-      <div class="row">
-        <div><label>NPC</label><input id="miss_npc"></div>
-        <div><label>Duracao</label><input id="miss_dur"></div>
-      </div>
-    </div>
-    <div class="extra" id="e8"><h3>Graficos</h3>
-      <div class="row">
-        <div><label>Tipo</label><input id="graf_tipo"></div>
-        <div><label>Impacto FPS</label><input id="graf_fps"></div>
-      </div>
-    </div>
-    <div class="extra" id="e9"><h3>Interface</h3>
-      <div class="row">
-        <div><label>HUD</label><input id="ui_hud"></div>
-        <div><label>Menus</label><input id="ui_menus"></div>
-      </div>
-    </div>
-    <div class="extra" id="e10"><h3>Otimizacao</h3>
-      <div class="row3">
-        <div><label>Ganho FPS</label><input id="ot_fps"></div>
-        <div><label>Perda visual</label><input id="ot_perda"></div>
-        <div><label>Recomendado</label><input id="ot_rec"></div>
-      </div>
-    </div>
-    <div class="extra" id="e11"><h3>Criaturas</h3>
-      <label>Localizacao</label><input id="cri_loc">
-      <div class="row">
-        <div><label>Hostil</label><input id="cri_hostil"></div>
-        <div><label>Domesticavel</label><input id="cri_dom"></div>
-      </div>
-    </div>
-    <div class="extra" id="e12"><h3>Vampiros</h3><label>Tipo</label><input id="vamp_tipo"></div>
-    <div class="extra" id="e13"><h3>Lobisomem</h3><label>Tipo</label><input id="lobi_tipo"></div>
-    <div class="extra" id="e14"><h3>Sons</h3>
-      <div class="row3">
-        <div><label>Ambiente</label><input id="som_amb"></div>
-        <div><label>Combate</label><input id="som_comb"></div>
-        <div><label>Musica</label><input id="som_mus"></div>
-      </div>
-    </div>
-    <div class="extra" id="e15"><h3>Animacoes</h3>
-      <div class="row3">
-        <div><label>Personagem</label><input id="ani_pers"></div>
-        <div><label>NPC</label><input id="ani_npc"></div>
-        <div><label>Combate</label><input id="ani_comb"></div>
-      </div>
-    </div>
-    <div class="extra" id="e16"><h3>Arqueiria</h3>
-      <div class="row3">
-        <div><label>Flechas</label><input id="arq_flechas"></div>
-        <div><label>Arcos</label><input id="arq_arcos"></div>
-        <div><label>Mira</label><input id="arq_mira"></div>
-      </div>
-    </div>
-    <div class="extra" id="e17"><h3>Montarias</h3>
-      <div class="row3">
-        <div><label>Criatura</label><input id="mon_cri"></div>
-        <div><label>Velocidade</label><input id="mon_vel"></div>
-        <div><label>Invocavel</label><input id="mon_inv"></div>
-      </div>
-    </div>
-    <div class="extra" id="e18"><h3>Utilidades</h3><label>Funcao</label><input id="uti_func"></div>
-    <div class="extra" id="e19"><h3>Racas</h3><label>Tipo</label><input id="raca_tipo"></div>
-    <div class="extra" id="e20"><h3>Combate</h3><label>Tipo</label><input id="comb_tipo"></div>
-    <div class="extra" id="e21"><h3>Efeitos Visuais</h3>
-      <div class="row3">
-        <div><label>Clima</label><input id="ef_clima"></div>
-        <div><label>Particulas</label><input id="ef_part"></div>
-        <div><label>Iluminacao</label><input id="ef_ilu"></div>
-      </div>
-    </div>
-    <div class="extra" id="e22"><h3>Imersao</h3>
-      <div class="row">
-        <div><label>Tipo</label><input id="im_tipo"></div>
-        <div><label>Scripts</label><input id="im_scripts"></div>
-      </div>
-    </div>
-    <div class="extra" id="e23"><h3>Mods Engracados</h3><label>Tipo</label><input id="eng_tipo"></div>
   </div>
 
-  <div class="checklist" id="checklist">
-    <h3>Checklist depois de gerar</h3>
-    <div id="check-conteudo"></div>
-  </div>
+  <div class="check" id="check"></div>
 
-  <div class="resultado" id="resultado">
-    <h3 style="color:#5ec8ff;margin-bottom:8px">Codigo gerado</h3>
-    <pre id="codigo"></pre>
-    <button class="copiar" type="button" onclick="copiar()">Copiar codigo</button>
-    <p class="ok" id="ok">Copiado! Agora cole no mods.js</p>
+  <div class="out" id="out">
+    <h2 style="color:#5ec8ff;font-size:14px;margin-bottom:8px">Codigo gerado</h2>
+    <pre id="code"></pre>
+    <button type="button" class="copy" id="btncopy">Copiar codigo</button>
+    <p class="okhint" id="copied" style="display:none">Copiado!</p>
   </div>
 </div>
 
-<div class="barra">
-  <div class="inner">
-    <button type="button" class="btn-limpar" onclick="limpar()">Limpar</button>
-    <button type="button" class="btn-gerar" onclick="gerar()">Gerar codigo</button>
-  </div>
+<div class="bar">
+  <button type="button" id="btngerar">Gerar codigo</button>
 </div>
 
 <script>
-var nomes={
-  "1":"Companions","2":"Armaduras Masculinas","3":"Armaduras Femininas","4":"Armas","5":"Magias",
-  "6":"Construcoes e Casas","7":"Missoes e Aventuras","8":"Graficos","9":"Interface/Menu","10":"Otimizacao",
-  "11":"Criaturas","12":"Vampiros","13":"Lobisomem","14":"Sons","15":"Animacoes","16":"Arqueiria",
-  "17":"Montarias","18":"Utilidades","19":"Racas e Habilidades","20":"Combate e Dificuldade",
-  "21":"Efeitos Visuais","22":"Imersao","23":"Mods Engracados"
-};
-var qtdDownloads=0;
-var capaManual=false, pastaManual=false;
-
 (function(){
-  var d=new Date();
-  document.getElementById('data').value=String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear();
-  addDownload('Download','');
-  // tenta sugerir proximo ID a partir do mods.js do site
+  function $(id){ return document.getElementById(id); }
+  function slug(t){
+    return String(t||'').toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  }
+  function esc(s){ return String(s).replace(/\\/g,'\\\\').replace(/"/g,'\\"'); }
+  function today(){
+    var d=new Date();
+    return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear();
+  }
+
+  $('data').value = today();
+
+  // downloads
+  var count = 0;
+  function addDl(nome, link){
+    count++;
+    var box = document.createElement('div');
+    box.className = 'dl';
+    box.innerHTML =
+      '<label>Nome do botao</label>' +
+      '<input class="n" value="'+(nome||('Download '+count))+'">' +
+      '<label>Link *</label>' +
+      '<input class="l" placeholder="https://..." value="'+(link||'')+'">';
+    $('dls').appendChild(box);
+  }
+  function clearDls(){ $('dls').innerHTML=''; count=0; }
+  function getDls(){
+    var arr=[];
+    var nodes=$('dls').querySelectorAll('.dl');
+    for(var i=0;i<nodes.length;i++){
+      var n=nodes[i].querySelector('.n').value.trim()||'Download';
+      var l=nodes[i].querySelector('.l').value.trim();
+      if(l) arr.push({nome:n,link:l});
+    }
+    return arr;
+  }
+
+  addDl('Download','');
+
+  $('btn1').onclick=function(){ clearDls(); addDl('Download',''); };
+  $('btn2').onclick=function(){ clearDls(); addDl('Com dublagem PT-BR',''); addDl('Sem dublagem',''); };
+  $('btn3').onclick=function(){ if(count<5) addDl('Download '+(count+1),''); };
+  $('btn4').onclick=function(){
+    var nodes=$('dls').querySelectorAll('.dl');
+    if(nodes.length>1){ nodes[nodes.length-1].remove(); count=Math.max(1,count-1); }
+  };
+
+  // auto capa/pasta
+  function auto(){
+    var id=$('id').value.trim();
+    var nome=$('nome').value.trim();
+    if(id){ $('capa').value='mod'+id+'.jpg'; $('capah').textContent='Automatico: mod'+id+'.jpg'; }
+    if(nome){ var p=slug(nome); $('pasta').value=p; $('pastah').textContent='Automatico: '+p; }
+  }
+  $('id').oninput=auto;
+  $('nome').oninput=auto;
+
+  // categoria extras
+  function showExtra(){
+    var cat=$('categoria').value;
+    var extras=document.querySelectorAll('.extra');
+    for(var i=0;i<extras.length;i++) extras[i].style.display='none';
+    if(!cat){ $('exhint').textContent='Escolha a categoria acima para ver os campos.'; return; }
+    var el=$('ex-'+cat);
+    if(el){
+      el.style.display='block';
+      $('exhint').textContent='Campos de '+cat;
+    } else {
+      $('ex-default').style.display='block';
+      $('exhint').textContent='Campo extra opcional para '+cat;
+    }
+  }
+  $('categoria').onchange=showExtra;
+
+  // tentar proximo id
   try{
     fetch('mods.js').then(function(r){return r.text()}).then(function(t){
-      var m=t.match(/id:\s*(\d+)/g);
-      if(m&&m.length){
-        var max=0;
-        m.forEach(function(x){var n=parseInt(x.replace(/\D/g,'')); if(n>max)max=n;});
-        var idEl=document.getElementById('id');
-        if(idEl && !idEl.value) idEl.value=max+1;
-        autoFill();
+      var m=t.match(/id:\s*(\d+)/g)||[];
+      var max=0;
+      for(var i=0;i<m.length;i++){
+        var n=parseInt(m[i].replace(/\D/g,''),10);
+        if(n>max) max=n;
       }
+      if(max>0 && !$('id').value){ $('id').value=String(max+1); auto(); }
     }).catch(function(){});
   }catch(e){}
+
+  function val(id){ return ($(id)&&$(id).value.trim()) || ''; }
+
+  function validar(){
+    var errs=[];
+    ['nome','categoria','id','descricao'].forEach(function(id){ $(id).classList.remove('erro'); });
+    if(!val('nome')){ errs.push('Nome obrigatorio'); $('nome').classList.add('erro'); }
+    if(!val('categoria')){ errs.push('Categoria obrigatoria'); $('categoria').classList.add('erro'); }
+    if(!val('id')||Number(val('id'))<1){ errs.push('ID invalido'); $('id').classList.add('erro'); }
+    if(val('descricao').length<15){ errs.push('Descricao muito curta'); $('descricao').classList.add('erro'); }
+    var dls=getDls();
+    if(!dls.length) errs.push('Coloque pelo menos 1 link http');
+    for(var i=0;i<dls.length;i++){
+      if(dls[i].link.indexOf('http')!==0) errs.push('Link '+(i+1)+' deve comecar com http');
+    }
+    if(errs.length){
+      $('erros').style.display='block';
+      $('erros').innerHTML='<b>Corrija:</b><br>'+errs.join('<br>');
+      $('erros').scrollIntoView({behavior:'smooth',block:'center'});
+      return false;
+    }
+    $('erros').style.display='none';
+    return true;
+  }
+
+  function gerar(){
+    if(!validar()) return;
+    auto();
+    var cat=val('categoria');
+    var id=val('id');
+    var nome=val('nome');
+    var versao=val('versao')||'1.0';
+    var autor=val('autor')||'Convertido por PS3ModsGlobal';
+    if(autor.toLowerCase().indexOf('convertido')===-1 && autor.toLowerCase().indexOf('ps3mods')===-1){
+      autor=autor+' (convertido por PS3ModsGlobal)';
+    }
+    var data=val('data')||today();
+    var capa=val('capa')||('mod'+id+'.jpg');
+    var pasta=val('pasta')||slug(nome);
+    var desc=val('descricao');
+    var dls=getDls();
+
+    var c='{\n';
+    c+='    id: '+id+',\n\n';
+    c+='    nome: "'+esc(nome)+'",\n\n';
+    c+='    categoria: "'+esc(cat)+'",\n\n';
+    c+='    autor: "'+esc(autor)+'",\n\n';
+    c+='    versao: "'+esc(versao)+'",\n\n';
+    c+='    compatibilidade: "Skyrim Legendary Edition (PS3)",\n\n';
+    c+='    data: "'+esc(data)+'",\n\n';
+
+    if(cat==='Companions'){
+      c+='    casamento: "'+esc(val('casamento')||'N/A')+'",\n\n';
+      c+='    localizacao: "'+esc(val('localizacao')||'N/A')+'",\n\n';
+      c+='    classe: "'+esc(val('classe')||'N/A')+'",\n\n';
+    }
+    if(cat==='Armas'){
+      c+='    tipo: "'+esc(val('arma_tipo')||'N/A')+'",\n\n';
+      c+='    localizacao: "'+esc(val('arma_loc')||'N/A')+'",\n\n';
+      c+='    quantidade: "'+esc(val('arma_qtd')||'N/A')+'",\n\n';
+      c+='    forjavel: "'+esc(val('arma_forjavel')||'N/A')+'",\n\n';
+    }
+    if(cat==='Armaduras Masculinas'){
+      c+='    genero: "Masculino",\n\n';
+      c+='    tipo: "'+esc(val('arm_tipo')||'N/A')+'",\n\n';
+      c+='    forjavel: "'+esc(val('arm_forjavel')||'N/A')+'",\n\n';
+      c+='    corpo: "'+esc(val('arm_corpo')||'N/A')+'",\n\n';
+    }
+    if(cat==='Armaduras Femininas'){
+      c+='    genero: "Feminino",\n\n';
+      c+='    tipo: "'+esc(val('armf_tipo')||'N/A')+'",\n\n';
+      c+='    forjavel: "'+esc(val('armf_forjavel')||'N/A')+'",\n\n';
+      c+='    corpo: "'+esc(val('armf_corpo')||'N/A')+'",\n\n';
+    }
+    if(cat==='Magias'){
+      c+='    escola: "'+esc(val('mag_escola')||'N/A')+'",\n\n';
+      c+='    custo: "'+esc(val('mag_custo')||'N/A')+'",\n\n';
+      c+='    vendedor: "'+esc(val('mag_vendedor')||'N/A')+'",\n\n';
+    }
+    if(val('tipo_extra')){
+      c+='    tipo: "'+esc(val('tipo_extra'))+'",\n\n';
+    }
+
+    c+='    imagem: "../imagens/'+esc(capa)+'",\n\n';
+    c+='    descricao: "'+esc(desc)+'",\n\n';
+
+    if(dls.length===1){
+      c+='    download: "'+esc(dls[0].link)+'",\n\n';
+    } else {
+      c+='    downloads: [\n';
+      for(var i=0;i<dls.length;i++){
+        c+='        {\n';
+        c+='            nome: "'+esc(dls[i].nome)+'",\n';
+        c+='            link: "'+esc(dls[i].link)+'"\n';
+        c+='        }'+(i<dls.length-1?',':'')+'\n';
+      }
+      c+='    ],\n\n';
+    }
+
+    c+='    galeria: [\n';
+    c+='        "../imagens/'+esc(pasta)+'/foto1.jpg",\n';
+    c+='        "../imagens/'+esc(pasta)+'/foto2.jpg",\n';
+    c+='        "../imagens/'+esc(pasta)+'/foto3.jpg"\n';
+    c+='    ]\n';
+    c+='},';
+
+    $('code').textContent=c;
+    $('out').style.display='block';
+    $('copied').style.display='none';
+    $('check').style.display='block';
+    $('check').innerHTML=
+      '<b style="color:#7dcea0">Checklist</b>'+
+      '<div>1. Capa:</div><code>imagens/'+capa+'</code>'+
+      '<div>2. Galeria:</div>'+
+      '<code>imagens/'+pasta+'/foto1.jpg</code>'+
+      '<code>imagens/'+pasta+'/foto2.jpg</code>'+
+      '<code>imagens/'+pasta+'/foto3.jpg</code>'+
+      '<div>3. Colar o codigo no mods.js</div>'+
+      '<div>4. Commit</div>';
+    $('out').scrollIntoView({behavior:'smooth'});
+  }
+
+  $('btngerar').onclick=gerar;
+  $('btncopy').onclick=function(){
+    var t=$('code').textContent;
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(t).then(function(){ $('copied').style.display='block'; });
+    } else {
+      var r=document.createRange();
+      r.selectNode($('code'));
+      getSelection().removeAllRanges();
+      getSelection().addRange(r);
+      document.execCommand('copy');
+      $('copied').style.display='block';
+    }
+  };
 })();
-
-document.getElementById('capa').addEventListener('input', function(){ capaManual=true; });
-document.getElementById('pasta').addEventListener('input', function(){ pastaManual=true; });
-
-document.getElementById('categoria').addEventListener('change', function(){
-  for(var i=1;i<=23;i++){ var el=document.getElementById('e'+i); if(el) el.style.display='none'; }
-  var v=this.value;
-  if(v){ var el=document.getElementById('e'+v); if(el){ el.style.display='block'; el.scrollIntoView({behavior:'smooth',block:'nearest'}); }}
-});
-
-function slug(t){
-  return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-    .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-}
-function val(id){var e=document.getElementById(id); return e&&e.value.trim()?e.value.trim():'';}
-function esc(s){return String(s).replace(/"/g,'\\"');}
-function addField(c,k,v){ if(v) c+='    '+k+': "'+esc(v)+'",\n\n'; return c; }
-
-function autoFill(){
-  var id=val('id');
-  var nome=val('nome');
-  if(!capaManual && id){
-    document.getElementById('capa').value='mod'+id+'.jpg';
-    document.getElementById('hint-capa').textContent='Automatico: mod'+id+'.jpg';
-  }
-  if(!pastaManual && nome){
-    var p=slug(nome);
-    document.getElementById('pasta').value=p;
-    document.getElementById('hint-pasta').textContent='Automatico: '+p;
-  }
-}
-
-function addDownload(nome, link){
-  if(qtdDownloads>=5) return;
-  qtdDownloads++;
-  var box=document.getElementById('lista-downloads');
-  var div=document.createElement('div');
-  div.className='dl-item';
-  div.id='dl-'+qtdDownloads;
-  div.innerHTML=
-    '<div class="tag">Link '+qtdDownloads+'</div>'+
-    '<label>Nome do botao</label>'+
-    '<input class="dl-nome" value="'+(nome||'Download')+'">'+
-    '<label>URL do arquivo *</label>'+
-    '<input class="dl-link" placeholder="https://..." value="'+(link||'')+'">';
-  box.appendChild(div);
-}
-
-function remDownload(){
-  if(qtdDownloads<=1) return;
-  var el=document.getElementById('dl-'+qtdDownloads);
-  if(el) el.remove();
-  qtdDownloads--;
-}
-
-function presetDl(nomesArr){
-  document.getElementById('lista-downloads').innerHTML='';
-  qtdDownloads=0;
-  nomesArr.forEach(function(n){ addDownload(n,''); });
-}
-
-function getDownloads(){
-  var itens=[];
-  document.querySelectorAll('#lista-downloads .dl-item').forEach(function(box){
-    var nome=(box.querySelector('.dl-nome')&&box.querySelector('.dl-nome').value.trim())||'Download';
-    var link=box.querySelector('.dl-link')&&box.querySelector('.dl-link').value.trim();
-    if(link) itens.push({nome:nome,link:link});
-  });
-  return itens;
-}
-
-function validar(){
-  var erros=[], nome=document.getElementById('nome'), cat=document.getElementById('categoria');
-  var id=document.getElementById('id'), desc=document.getElementById('descricao');
-  [nome,cat,id,desc].forEach(function(e){e.classList.remove('erro');});
-  if(!nome.value.trim()){erros.push('Nome obrigatorio');nome.classList.add('erro');}
-  if(!cat.value){erros.push('Selecione a categoria');cat.classList.add('erro');}
-  if(!id.value||Number(id.value)<1){erros.push('ID deve ser > 0');id.classList.add('erro');}
-  if(!desc.value.trim()||desc.value.trim().length<15){erros.push('Descricao com no minimo 15 caracteres');desc.classList.add('erro');}
-  var dls=getDownloads();
-  if(!dls.length) erros.push('Coloque pelo menos 1 link de download (http)');
-  dls.forEach(function(d,i){ if(d.link.indexOf('http')!==0) erros.push('Link '+(i+1)+' deve comecar com http'); });
-  var box=document.getElementById('erros');
-  if(erros.length){
-    box.style.display='block';
-    box.innerHTML='<b>Corrija:</b><ul>'+erros.map(function(e){return '<li>'+e+'</li>';}).join('')+'</ul>';
-    box.scrollIntoView({behavior:'smooth',block:'center'});
-    return false;
-  }
-  box.style.display='none';
-  return true;
-}
-
-function gerar(){
-  if(!validar()) return;
-  autoFill();
-  var key=document.getElementById('categoria').value;
-  var cat=nomes[key]||key;
-  var nome=val('nome'), id=val('id');
-  var versao=val('versao')||'1.0';
-  var autor=val('autor')||'Convertido por PS3ModsGlobal';
-  if(autor && autor.toLowerCase().indexOf('convertido')===-1 && autor.toLowerCase().indexOf('ps3mods')===-1){
-    autor = autor + ' (convertido por PS3ModsGlobal)';
-  }
-  var data=val('data');
-  var capa=val('capa')||('mod'+id+'.jpg');
-  var pasta=val('pasta')||slug(nome);
-  var descricao=val('descricao');
-  var dls=getDownloads();
-
-  var c='{\n';
-  c+='    id: '+id+',\n\n';
-  c+='    nome: "'+esc(nome)+'",\n\n';
-  c+='    categoria: "'+esc(cat)+'",\n\n';
-  c+='    autor: "'+esc(autor)+'",\n\n';
-  c+='    versao: "'+esc(versao)+'",\n\n';
-  c+='    compatibilidade: "Skyrim Legendary Edition (PS3)",\n\n';
-  c+='    data: "'+esc(data)+'",\n\n';
-
-  if(key==='1'){ c=addField(c,'casamento',val('casamento')||'N/A'); c=addField(c,'localizacao',val('localizacao')||'N/A'); c=addField(c,'classe',val('classe')||'N/A'); }
-  if(key==='2'){ c=addField(c,'genero','Masculino'); c=addField(c,'tipo',val('arm_tipo')||'N/A'); c=addField(c,'forjavel',val('arm_forjavel')||'N/A'); c=addField(c,'corpo',val('arm_corpo')||'N/A'); }
-  if(key==='3'){ c=addField(c,'genero','Feminino'); c=addField(c,'tipo',val('armf_tipo')||'N/A'); c=addField(c,'forjavel',val('armf_forjavel')||'N/A'); c=addField(c,'corpo',val('armf_corpo')||'N/A'); }
-  if(key==='4'){ c=addField(c,'tipo',val('arma_tipo')||
+</script>
+</body>
+</html>
