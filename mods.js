@@ -901,5 +901,41 @@ const mods = [
         
     ]
 },
+
+{
+    id: 29,
+
+    nome: "Demon Hunter Armor",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "Jojjo (convertido por PS3ModsGlobal)",
+
+    versao: "4.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Armadura/roupa",
+
+    forjavel: "Sim ( categoria N/A)",
+
+    corpo: "Cbbe e unp",
+
+    imagem: "../imagens/mod29.jpg",
+
+    descricao: "Adiciona uma armadura feminina de caçadora de demônios, com versões leve e pesada. O mod possui suporte para vários corpos, incluindo UNP e CBBE",
+
+    download: "https://www.mediafire.com/file/0yagkzwfq1o5cij/Armadura+de+Cazador+de+Demônios+(1).zip/file",
+
+    galeria: [
+        "../imagens/demon-hunter-armor/foto1.jpg",
+        "../imagens/demon-hunter-armor/foto2.jpg",
+        "../imagens/demon-hunter-armor/foto3.jpg"
+    ]
+},
     
 ];
