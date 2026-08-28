@@ -1116,4 +1116,42 @@ const mods = [
         "../imagens/medusa-drakul-armors-and-thanatos-dragon/foto3.jpg"
     ]
 },
+
+
+{
+    id: 35,
+
+    nome: "Angel Vixen Armor - CBBEv3 Curvy",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "BB Drac( convertido por ps3modsglobal)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "28/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Roupa/ armadura",
+
+    forjavel: "Sim ( categoria N/A)",
+
+    corpo: "Cbbe curvy",
+
+    imagem: "../imagens/mod35.jpg",
+
+    descricao: "Adiciona duas armaduras femininas de fantasia ao Skyrim, ambas desenvolvidas para o corpo CBBEv3 Curvy. Cada conjunto possui diferentes variações de aparência e cobertura, permitindo escolher entre estilos mais completos ou mais reveladores.",
+
+    download: "https://www.mediafire.com/file/y2c8059xy3pk3dw/BBD_AngelVixenArmor+(atualizado).zip/file",
+
+    galeria: [
+        "../imagens/angel-vixen-armor-cbbev3-curvy/foto1.jpg",
+        "../imagens/angel-vixen-armor-cbbev3-curvy/foto2.jpg",
+        "../imagens/angel-vixen-armor-cbbev3-curvy/foto3.jpg"
+    ]
+},
+    
 ];
