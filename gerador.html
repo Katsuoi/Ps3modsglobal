@@ -22,8 +22,8 @@ textarea{min-height:70px}
 .erros{display:none;background:#2a1515;border:1px solid #ff6b6b;color:#ffb4b4;padding:10px;border-radius:8px;margin-bottom:12px;font-size:13px}
 .dl{background:#0e131b;border:1px solid #2a3344;border-radius:8px;padding:10px;margin-top:8px}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
-.chips button,.mini{padding:8px 10px;border-radius:8px;border:1px solid #2a3a50;background:#1a2230;color:#5ec8ff;font-size:12px;font-weight:600}
-.mini.danger{color:#ffb4b4;border-color:#5a2a2a;background:#2a1515}
+.chips button{padding:8px 10px;border-radius:8px;border:1px solid #2a3a50;background:#1a2230;color:#5ec8ff;font-size:12px;font-weight:600}
+.chips button.danger{color:#ffb4b4;border-color:#5a2a2a;background:#2a1515}
 .extra{display:none;margin-top:8px;padding-top:8px;border-top:1px solid #1c2330}
 .bar{position:fixed;left:0;right:0;bottom:0;background:#0f131a;border-top:1px solid #1c2330;padding:10px 12px}
 .bar button{width:100%;max-width:720px;margin:0 auto;display:block;padding:13px;border:0;border-radius:8px;background:#5ec8ff;color:#0b0e14;font-weight:800;font-size:15px}
@@ -38,20 +38,20 @@ pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;w
 <body>
 <div class="wrap">
   <h1>Gerador de Mods</h1>
-  <p class="sub">Preencha e gere o codigo. Capa e pasta sao preenchidas sozinhas.</p>
+  <p class="sub">Preencha e gere o codigo. Capa e pasta sao automaticas.</p>
   <div class="erros" id="erros"></div>
 
   <div class="card">
     <h2>1. Dados do mod</h2>
     <label>Nome *</label>
-    <input id="nome" placeholder="Sofia - The Funny Fully Voiced Follower">
+    <input id="nome" placeholder="Rogue armor">
 
     <label>Categoria *</label>
     <select id="categoria">
       <option value="">Selecione...</option>
       <option value="Companions">Companions</option>
-      <option value="Armaduras Masculinas">Armaduras Masculinas</option>
       <option value="Armaduras Femininas">Armaduras Femininas</option>
+      <option value="Armaduras Masculinas">Armaduras Masculinas</option>
       <option value="Armas">Armas</option>
       <option value="Magias">Magias</option>
       <option value="Construcoes e Casas">Construcoes e Casas</option>
@@ -77,7 +77,7 @@ pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;w
     <div class="row">
       <div>
         <label>ID *</label>
-        <input id="id" type="number" min="1" placeholder="19">
+        <input id="id" type="number" min="1" placeholder="25">
       </div>
       <div>
         <label>Versao</label>
@@ -87,7 +87,7 @@ pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;w
 
     <label>Autor</label>
     <input id="autor" placeholder="Autor original">
-    <p class="hint">Se deixar vazio: Convertido por PS3ModsGlobal</p>
+    <p class="hint">Se vazio: Convertido por PS3ModsGlobal</p>
 
     <label>Data</label>
     <input id="data">
@@ -99,11 +99,11 @@ pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;w
   <div class="card">
     <h2>2. Imagens</h2>
     <label>Capa</label>
-    <input id="capa" placeholder="mod19.jpg">
-    <p class="okhint" id="capah">Vira mod+ID.jpg sozinho</p>
+    <input id="capa" placeholder="mod25.jpg">
+    <p class="okhint" id="capah">Automatico pelo ID</p>
     <label>Pasta da galeria</label>
-    <input id="pasta" placeholder="sofia-follower">
-    <p class="okhint" id="pastah">Vira pelo nome do mod sozinho</p>
+    <input id="pasta" placeholder="rogue-armor">
+    <p class="okhint" id="pastah">Automatico pelo nome</p>
   </div>
 
   <div class="card">
@@ -112,21 +112,49 @@ pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;w
       <button type="button" id="btn1">1 link</button>
       <button type="button" id="btn2">Dublagem / Sem</button>
       <button type="button" id="btn3">+ Link</button>
-      <button type="button" id="btn4" class="mini danger">- Link</button>
+      <button type="button" id="btn4" class="danger">- Link</button>
     </div>
     <div id="dls"></div>
   </div>
 
   <div class="card">
     <h2>4. Extras da categoria</h2>
-    <p class="hint" id="exhint">Escolha a categoria acima para ver os campos.</p>
+    <p class="hint" id="exhint">Escolha a categoria para ver os campos.</p>
 
     <div class="extra" id="ex-Companions">
       <div class="row">
         <div><label>Casamento</label><input id="casamento" placeholder="Sim / Nao"></div>
         <div><label>Classe</label><input id="classe" placeholder="Guerreira"></div>
       </div>
-      <label>Localizacao</label><input id="localizacao" placeholder="Estabulo de Whiterun">
+      <label>Localizacao</label><input id="localizacao" placeholder="Whiterun">
+    </div>
+
+    <div class="extra" id="ex-Armaduras Femininas">
+      <label>Disponivel para *</label>
+      <select id="armf_genero">
+        <option value="Feminino">So feminina</option>
+        <option value="Ambos">Feminina e masculina</option>
+      </select>
+      <p class="hint">Se escolher "Feminina e masculina", o mod aparece nas duas categorias</p>
+      <div class="row">
+        <div><label>Tipo</label><input id="armf_tipo" placeholder="Leve / Pesada"></div>
+        <div><label>Forjavel</label><input id="armf_forjavel" placeholder="Sim / Nao"></div>
+      </div>
+      <label>Corpo</label><input id="armf_corpo" placeholder="CBBE / UNP">
+    </div>
+
+    <div class="extra" id="ex-Armaduras Masculinas">
+      <label>Disponivel para *</label>
+      <select id="armm_genero">
+        <option value="Masculino">So masculina</option>
+        <option value="Ambos">Feminina e masculina</option>
+      </select>
+      <p class="hint">Se escolher "Feminina e masculina", o mod aparece nas duas categorias</p>
+      <div class="row">
+        <div><label>Tipo</label><input id="arm_tipo" placeholder="Leve / Pesada"></div>
+        <div><label>Forjavel</label><input id="arm_forjavel" placeholder="Sim / Nao"></div>
+      </div>
+      <label>Corpo</label><input id="arm_corpo" placeholder="Vanilla / outro">
     </div>
 
     <div class="extra" id="ex-Armas">
@@ -138,22 +166,6 @@ pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;w
         <div><label>Localizacao</label><input id="arma_loc"></div>
         <div><label>Quantidade</label><input id="arma_qtd"></div>
       </div>
-    </div>
-
-    <div class="extra" id="ex-Armaduras Masculinas">
-      <div class="row">
-        <div><label>Tipo</label><input id="arm_tipo"></div>
-        <div><label>Forjavel</label><input id="arm_forjavel"></div>
-      </div>
-      <label>Corpo</label><input id="arm_corpo">
-    </div>
-
-    <div class="extra" id="ex-Armaduras Femininas">
-      <div class="row">
-        <div><label>Tipo</label><input id="armf_tipo"></div>
-        <div><label>Forjavel</label><input id="armf_forjavel"></div>
-      </div>
-      <label>Corpo</label><input id="armf_corpo">
     </div>
 
     <div class="extra" id="ex-Magias">
@@ -171,7 +183,6 @@ pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;w
   </div>
 
   <div class="check" id="check"></div>
-
   <div class="out" id="out">
     <h2 style="color:#5ec8ff;font-size:14px;margin-bottom:8px">Codigo gerado</h2>
     <pre id="code"></pre>
@@ -197,10 +208,10 @@ pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;w
     var d=new Date();
     return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear();
   }
+  function val(id){ return ($(id)&&$(id).value.trim()) || ''; }
 
   $('data').value = today();
 
-  // downloads
   var count = 0;
   function addDl(nome, link){
     count++;
@@ -215,8 +226,7 @@ pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;w
   }
   function clearDls(){ $('dls').innerHTML=''; count=0; }
   function getDls(){
-    var arr=[];
-    var nodes=$('dls').querySelectorAll('.dl');
+    var arr=[], nodes=$('dls').querySelectorAll('.dl');
     for(var i=0;i<nodes.length;i++){
       var n=nodes[i].querySelector('.n').value.trim()||'Download';
       var l=nodes[i].querySelector('.l').value.trim();
@@ -224,9 +234,7 @@ pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;w
     }
     return arr;
   }
-
   addDl('Download','');
-
   $('btn1').onclick=function(){ clearDls(); addDl('Download',''); };
   $('btn2').onclick=function(){ clearDls(); addDl('Com dublagem PT-BR',''); addDl('Sem dublagem',''); };
   $('btn3').onclick=function(){ if(count<5) addDl('Download '+(count+1),''); };
@@ -235,47 +243,32 @@ pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;w
     if(nodes.length>1){ nodes[nodes.length-1].remove(); count=Math.max(1,count-1); }
   };
 
-  // auto capa/pasta
   function auto(){
-    var id=$('id').value.trim();
-    var nome=$('nome').value.trim();
+    var id=val('id'), nome=val('nome');
     if(id){ $('capa').value='mod'+id+'.jpg'; $('capah').textContent='Automatico: mod'+id+'.jpg'; }
     if(nome){ var p=slug(nome); $('pasta').value=p; $('pastah').textContent='Automatico: '+p; }
   }
   $('id').oninput=auto;
   $('nome').oninput=auto;
 
-  // categoria extras
   function showExtra(){
-    var cat=$('categoria').value;
+    var cat=val('categoria');
     var extras=document.querySelectorAll('.extra');
     for(var i=0;i<extras.length;i++) extras[i].style.display='none';
-    if(!cat){ $('exhint').textContent='Escolha a categoria acima para ver os campos.'; return; }
+    if(!cat){ $('exhint').textContent='Escolha a categoria para ver os campos.'; return; }
     var el=$('ex-'+cat);
-    if(el){
-      el.style.display='block';
-      $('exhint').textContent='Campos de '+cat;
-    } else {
-      $('ex-default').style.display='block';
-      $('exhint').textContent='Campo extra opcional para '+cat;
-    }
+    if(el){ el.style.display='block'; $('exhint').textContent='Campos de '+cat; }
+    else { $('ex-default').style.display='block'; $('exhint').textContent='Campo extra opcional'; }
   }
   $('categoria').onchange=showExtra;
 
-  // tentar proximo id
   try{
     fetch('mods.js').then(function(r){return r.text()}).then(function(t){
-      var m=t.match(/id:\s*(\d+)/g)||[];
-      var max=0;
-      for(var i=0;i<m.length;i++){
-        var n=parseInt(m[i].replace(/\D/g,''),10);
-        if(n>max) max=n;
-      }
-      if(max>0 && !$('id').value){ $('id').value=String(max+1); auto(); }
+      var m=t.match(/id:\s*(\d+)/g)||[], max=0;
+      for(var i=0;i<m.length;i++){ var n=parseInt(m[i].replace(/\D/g,''),10); if(n>max) max=n; }
+      if(max>0 && !val('id')){ $('id').value=String(max+1); auto(); }
     }).catch(function(){});
   }catch(e){}
-
-  function val(id){ return ($(id)&&$(id).value.trim()) || ''; }
 
   function validar(){
     var errs=[];
@@ -286,9 +279,7 @@ pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;w
     if(val('descricao').length<15){ errs.push('Descricao muito curta'); $('descricao').classList.add('erro'); }
     var dls=getDls();
     if(!dls.length) errs.push('Coloque pelo menos 1 link http');
-    for(var i=0;i<dls.length;i++){
-      if(dls[i].link.indexOf('http')!==0) errs.push('Link '+(i+1)+' deve comecar com http');
-    }
+    for(var i=0;i<dls.length;i++){ if(dls[i].link.indexOf('http')!==0) errs.push('Link '+(i+1)+' invalido'); }
     if(errs.length){
       $('erros').style.display='block';
       $('erros').innerHTML='<b>Corrija:</b><br>'+errs.join('<br>');
@@ -316,10 +307,25 @@ pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;w
     var desc=val('descricao');
     var dls=getDls();
 
+    // Armaduras F/M
+    var generoArm = '';
+    var catFinal = cat;
+    if(cat==='Armaduras Femininas'){
+      generoArm = val('armf_genero') || 'Feminino';
+      if(generoArm==='Ambos') catFinal = 'Armaduras';
+    }
+    if(cat==='Armaduras Masculinas'){
+      generoArm = val('armm_genero') || 'Masculino';
+      if(generoArm==='Ambos') catFinal = 'Armaduras';
+    }
+
     var c='{\n';
     c+='    id: '+id+',\n\n';
     c+='    nome: "'+esc(nome)+'",\n\n';
-    c+='    categoria: "'+esc(cat)+'",\n\n';
+    c+='    categoria: "'+esc(catFinal)+'",\n\n';
+    if(generoArm==='Ambos'){
+      c+='    categorias: ["Armaduras Femininas", "Armaduras Masculinas"],\n\n';
+    }
     c+='    autor: "'+esc(autor)+'",\n\n';
     c+='    versao: "'+esc(versao)+'",\n\n';
     c+='    compatibilidade: "Skyrim Legendary Edition (PS3)",\n\n';
@@ -330,32 +336,31 @@ pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;w
       c+='    localizacao: "'+esc(val('localizacao')||'N/A')+'",\n\n';
       c+='    classe: "'+esc(val('classe')||'N/A')+'",\n\n';
     }
+
+    if(cat==='Armaduras Femininas'){
+      c+='    genero: "'+esc(generoArm)+'",\n\n';
+      c+='    tipo: "'+esc(val('armf_tipo')||'N/A')+'",\n\n';
+      c+='    forjavel: "'+esc(val('armf_forjavel')||'N/A')+'",\n\n';
+      c+='    corpo: "'+esc(val('armf_corpo')||'N/A')+'",\n\n';
+    }
+    if(cat==='Armaduras Masculinas'){
+      c+='    genero: "'+esc(generoArm)+'",\n\n';
+      c+='    tipo: "'+esc(val('arm_tipo')||'N/A')+'",\n\n';
+      c+='    forjavel: "'+esc(val('arm_forjavel')||'N/A')+'",\n\n';
+      c+='    corpo: "'+esc(val('arm_corpo')||'N/A')+'",\n\n';
+    }
     if(cat==='Armas'){
       c+='    tipo: "'+esc(val('arma_tipo')||'N/A')+'",\n\n';
       c+='    localizacao: "'+esc(val('arma_loc')||'N/A')+'",\n\n';
       c+='    quantidade: "'+esc(val('arma_qtd')||'N/A')+'",\n\n';
       c+='    forjavel: "'+esc(val('arma_forjavel')||'N/A')+'",\n\n';
     }
-    if(cat==='Armaduras Masculinas'){
-      c+='    genero: "Masculino",\n\n';
-      c+='    tipo: "'+esc(val('arm_tipo')||'N/A')+'",\n\n';
-      c+='    forjavel: "'+esc(val('arm_forjavel')||'N/A')+'",\n\n';
-      c+='    corpo: "'+esc(val('arm_corpo')||'N/A')+'",\n\n';
-    }
-    if(cat==='Armaduras Femininas'){
-      c+='    genero: "Feminino",\n\n';
-      c+='    tipo: "'+esc(val('armf_tipo')||'N/A')+'",\n\n';
-      c+='    forjavel: "'+esc(val('armf_forjavel')||'N/A')+'",\n\n';
-      c+='    corpo: "'+esc(val('armf_corpo')||'N/A')+'",\n\n';
-    }
     if(cat==='Magias'){
       c+='    escola: "'+esc(val('mag_escola')||'N/A')+'",\n\n';
       c+='    custo: "'+esc(val('mag_custo')||'N/A')+'",\n\n';
       c+='    vendedor: "'+esc(val('mag_vendedor')||'N/A')+'",\n\n';
     }
-    if(val('tipo_extra')){
-      c+='    tipo: "'+esc(val('tipo_extra'))+'",\n\n';
-    }
+    if(val('tipo_extra')) c+='    tipo: "'+esc(val('tipo_extra'))+'",\n\n';
 
     c+='    imagem: "../imagens/'+esc(capa)+'",\n\n';
     c+='    descricao: "'+esc(desc)+'",\n\n';
@@ -391,23 +396,19 @@ pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;w
       '<code>imagens/'+pasta+'/foto1.jpg</code>'+
       '<code>imagens/'+pasta+'/foto2.jpg</code>'+
       '<code>imagens/'+pasta+'/foto3.jpg</code>'+
-      '<div>3. Colar o codigo no mods.js</div>'+
-      '<div>4. Commit</div>';
+      (generoArm==='Ambos'?'<div>3. Este mod vai aparecer em <b>Armaduras Femininas</b> e <b>Masculinas</b></div>':'')+
+      '<div>4. Colar no mods.js e fazer Commit</div>';
     $('out').scrollIntoView({behavior:'smooth'});
   }
 
   $('btngerar').onclick=gerar;
   $('btncopy').onclick=function(){
     var t=$('code').textContent;
-    if(navigator.clipboard){
-      navigator.clipboard.writeText(t).then(function(){ $('copied').style.display='block'; });
-    } else {
-      var r=document.createRange();
-      r.selectNode($('code'));
-      getSelection().removeAllRanges();
-      getSelection().addRange(r);
-      document.execCommand('copy');
-      $('copied').style.display='block';
+    if(navigator.clipboard) navigator.clipboard.writeText(t).then(function(){ $('copied').style.display='block'; });
+    else {
+      var r=document.createRange(); r.selectNode($('code'));
+      getSelection().removeAllRanges(); getSelection().addRange(r);
+      document.execCommand('copy'); $('copied').style.display='block';
     }
   };
 })();
