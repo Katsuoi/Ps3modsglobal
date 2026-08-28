@@ -412,4 +412,137 @@ document.addEventListener("DOMContentLoaded", function() {
             if (downloadBox) {
                 downloadBox.innerHTML = "";
                 if (mod.downloads && mod.downloads.length) {
-                    mod.d
+                    mod.downloads.forEach(function(item) {
+                        var a = document.createElement("a");
+                        a.className = "download";
+                        a.href = item.link;
+                        a.target = "_blank";
+                        a.rel = "noopener noreferrer";
+                        a.textContent = item.nome || "Download";
+                        a.style.display = "inline-block";
+                        a.style.margin = "6px 8px 6px 0";
+                        downloadBox.appendChild(a);
+                    });
+                } else if (mod.download) {
+                    var a = document.createElement("a");
+                    a.className = "download";
+                    a.href = mod.download;
+                    a.target = "_blank";
+                    a.rel = "noopener noreferrer";
+                    a.textContent = "DOWNLOAD";
+                    downloadBox.appendChild(a);
+                }
+            }
+
+            var galeria = document.getElementById("galeria");
+            if (galeria && mod.galeria) {
+                galeria.innerHTML = "";
+                mod.galeria.forEach(function(src) {
+                    var img = document.createElement("img");
+                    img.src = src;
+                    img.alt = mod.nome;
+                    img.loading = "lazy";
+                    img.decoding = "async";
+                    img.style.cursor = "pointer";
+                    img.onclick = function() { window.open(src, "_blank"); };
+                    galeria.appendChild(img);
+                });
+            }
+
+            var favBtn = document.getElementById("btn-favorito");
+            if (favBtn) {
+                favBtn.setAttribute("data-fav", mod.id);
+                favBtn.onclick = function() { toggleFavorito(mod.id); };
+            }
+        }
+        atualizarBotoesFavorito();
+    }
+
+    // HOME
+    var statMods = document.getElementById("stat-mods");
+    if (statMods && typeof mods !== "undefined") statMods.textContent = mods.length;
+
+    var destaques = document.getElementById("destaques");
+    if (destaques && typeof mods !== "undefined") {
+        destaques.innerHTML = "";
+        mods.slice(0, 6).forEach(function(mod) {
+            var img = String(mod.imagem || "").replace("../", "");
+            destaques.innerHTML +=
+                '<div class="card-home">' +
+                '<img src="' + img + '" alt="' + mod.nome + '" loading="lazy" decoding="async">' +
+                '<span class="categoria">' + labelCategoria(mod) + '</span>' +
+                '<h3>' + mod.nome + '</h3>' +
+                '<p>' + String(mod.descricao || "").substring(0, 70) + '...</p>' +
+                '<a class="download" href="mods/mod.html?id=' + mod.id + '">VER MOD</a>' +
+                '<button class="btn-fav" data-fav="' + mod.id + '" onclick="toggleFavorito(' + mod.id + ')">☆ Favoritar</button>' +
+                '</div>';
+        });
+        atualizarBotoesFavorito();
+    }
+
+    var ultimos = document.getElementById("ultimos");
+    if (ultimos && typeof mods !== "undefined") {
+        ultimos.innerHTML = "";
+        mods.slice().reverse().slice(0, 3).forEach(function(mod) {
+            var img = String(mod.imagem || "").replace("../", "");
+            ultimos.innerHTML +=
+                '<div class="ultimo-card">' +
+                '<img src="' + img + '" alt="' + mod.nome + '" loading="lazy" decoding="async">' +
+                '<div class="ultimo-info">' +
+                '<span class="categoria">' + labelCategoria(mod) + '</span>' +
+                '<h3>' + mod.nome + '</h3>' +
+                '<p>' + String(mod.descricao || "").substring(0, 90) + '...</p>' +
+                '<a href="mods/mod.html?id=' + mod.id + '">Ler mais →</a>' +
+                '</div></div>';
+        });
+    }
+
+    var elUpdate = document.getElementById("stat-update");
+    if (elUpdate && typeof mods !== "undefined" && mods.length) {
+        var ultimo = mods.slice().sort(function(a, b) { return b.id - a.id; })[0];
+        elUpdate.textContent = ultimo.data || "--";
+    }
+
+    aplicarContagemCategorias();
+
+    // PESQUISA HEADER
+    var searchInput = document.querySelector(".search input, #pesquisa");
+    if (searchInput) {
+        searchInput.addEventListener("input", function() {
+            var termo = this.value.toLowerCase().trim();
+            if (containerLista && typeof mods !== "undefined" && (document.getElementById("todos-mods") || document.getElementById("lista-mods"))) {
+                var baTexto = document.getElementById("ba-texto");
+                if (baTexto) baTexto.value = this.value;
+                var base = listaBase.length ? listaBase : mods;
+                if (!termo) {
+                    renderMods(base, containerLista);
+                    return;
+                }
+                var filtrados = base.filter(function(m) {
+                    var texto = (m.nome + " " + m.descricao + " " + m.categoria + " " + (m.autor || "")).toLowerCase();
+                    return texto.indexOf(termo) !== -1;
+                });
+                renderMods(filtrados, containerLista);
+                return;
+            }
+            document.querySelectorAll(".card-mod, .card-home").forEach(function(card) {
+                var texto = card.textContent.toLowerCase();
+                card.style.display = (termo === "" || texto.indexOf(termo) !== -1) ? "" : "none";
+            });
+        });
+    }
+
+    // AVISO MOBILE
+    var aviso = document.getElementById("aviso-mobile");
+    var fechar = document.getElementById("fechar-aviso");
+    var isMobile = window.innerWidth <= 900 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (aviso && isMobile && !sessionStorage.getItem("avisoMobileOk")) {
+        aviso.style.display = "flex";
+    }
+    if (fechar) {
+        fechar.addEventListener("click", function() {
+            if (aviso) aviso.style.display = "none";
+            sessionStorage.setItem("avisoMobileOk", "1");
+        });
+    }
+});
