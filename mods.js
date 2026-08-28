@@ -1481,4 +1481,42 @@ const mods = [
         "../imagens/one-winged-swift-outfit/foto3.jpg"
     ]
 }, 
+
+ {
+    id: 45,
+
+    nome: "Colovian Leather Armor v2",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "Xtudo (convertido por PS3ModsGlobal)",
+
+    versao: "2.1.1",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "28/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Armadura/roupa",
+
+    forjavel: "Sim ( categoria N/A)",
+
+    corpo: "Cbbe",
+
+    imagem: "../imagens/mod45.jpg",
+
+    descricao: "Adiciona um conjunto de armadura de couro feminina inspirado na estética Coloviana, com versões de armadura e roupa e diversas peças modulares. A versão 2 possui 15 itens disponíveis no jogo, incluindo opções com/sem ombreiras e com/sem saia.",
+
+    download: "https://",
+
+    galeria: [
+        "../imagens/colovian-leather-armor-v2/foto1.jpg",
+        "../imagens/colovian-leather-armor-v2/foto2.jpg",
+        "../imagens/colovian-leather-armor-v2/foto3.jpg"
+    ]
+},
+    
 ];
+
