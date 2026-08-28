@@ -1263,4 +1263,40 @@ const mods = [
         "../imagens/midnight-breed-armor/foto3.jpg"
     ]
 },
+
+{
+    id: 39,
+
+    nome: "LustDesign - Sovngarde Steel Armor v2",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "Lustrianna( convertido por ps3modsglobal)",
+
+    versao: "2.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "28/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Armadura",
+
+    forjavel: "Sim (categoria aço)",
+
+    corpo: "Cbbe",
+
+    imagem: "../imagens/mod39.jpg",
+
+    descricao: "Adiciona um conjunto completo de armadura pesada de aço inspirada em Sovngarde, com visual nórdico/fantástico e várias peças complementares. A V2 adiciona novas malhas e texturas, corrige problemas de crafting e inclui espada, escudo, capa e amuleto junto da armadura",
+
+    download: "https://www.mediafire.com/file/70rzukdorqef2s4/Sovngarde_Steel_Armor_-_Version_2_-_CBBEv3.zip/file",
+
+    galeria: [
+        "../imagens/lustdesign-sovngarde-steel-armor-v2/foto1.jpg",
+        "../imagens/lustdesign-sovngarde-steel-armor-v2/foto2.jpg",
+        "../imagens/lustdesign-sovngarde-steel-armor-v2/foto3.jpg"
+    ]
+},    
 ];
