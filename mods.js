@@ -1044,5 +1044,41 @@ const mods = [
         "../imagens/succubus-armor-by-hentai/foto3.jpg"
     ]
 },
+
+{
+    id: 33,
+
+    nome: "Katarina armor",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "NewerMind43 (convertido por ps3modsglobal)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "28/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Armadura/roupa",
+
+    forjavel: "Sim ( categoria couro)",
+
+    corpo: "Unp",
+
+    imagem: "../imagens/mod33.jpg",
+
+    descricao: "Adiciona ao Skyrim uma armadura feminina inspirada na Katarina de League of Legends. A versão original para LE foi criada para o corpo UNP e é uma armadura leve.",
+
+    download: "https://www.mediafire.com/file/h2ts8kw1bsxc4bj/KATARINA.zip/file",
+
+    galeria: [
+        "../imagens/katarina-armor/foto1.jpg",
+        "../imagens/katarina-armor/foto2.jpg",
+        "../imagens/katarina-armor/foto3.jpg"
+    ]
+},
     
 ];
