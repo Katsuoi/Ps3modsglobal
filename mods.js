@@ -1227,5 +1227,40 @@ const mods = [
         "../imagens/ashtoreth-ahlanna-armor/foto3.jpg"
     ]
 },
-    
+
+    {
+    id: 38,
+
+    nome: "Midnight Breed Armor",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "Stealthic Khaos( convertido por ps3modsglobal)",
+
+    versao: "1.2",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "28/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Armadura",
+
+    forjavel: "Sim( categoria couro)",
+
+    corpo: "Cbbe",
+
+    imagem: "../imagens/mod38.jpg",
+
+    descricao: "Adiciona uma armadura feminina modular inspirada em um traje de fantasia/combate, com várias peças que podem ser combinadas livremente",
+
+    download: "https://www.mediafire.com/file/gt0hx09ggrtfwbw/MIDNIGTBREED.zip/file",
+
+    galeria: [
+        "../imagens/midnight-breed-armor/foto1.jpg",
+        "../imagens/midnight-breed-armor/foto2.jpg",
+        "../imagens/midnight-breed-armor/foto3.jpg"
+    ]
+},
 ];
