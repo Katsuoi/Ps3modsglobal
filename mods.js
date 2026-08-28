@@ -865,5 +865,41 @@ const mods = [
         "../imagens/gatti-03-evilrose-armor/foto3.jpg"
     ]
 },
+
+{
+    id: 28,
+
+    nome: "Dynasty White Armor - CBBE v2",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "Simomax(convertido por ps3modsglobal)",
+
+    versao: "1.2",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Armadura/Roupa",
+
+    forjavel: "Sim( categoria N/A)",
+
+    corpo: "Cbbe",
+
+    imagem: "../imagens/mod28.jpg",
+
+    descricao: "Adiciona ao Skyrim a Dynasty Armor para personagens femininas usando CBBE, com várias versões de cobertura, incluindo a original, skimpy e super skimpy.",
+
+    download: "https://www.mediafire.com/file/rw7756g8w8q3wxn/Dynasty+White+Armor+-+CBBE+v2.zip/file",
+
+    galeria: [
+        "../imagens/dynasty-white-armor-cbbe-v2/foto1.jpg",
+        "../imagens/dynasty-white-armor-cbbe-v2/foto2.jpg",
+        
+    ]
+},
     
 ];
