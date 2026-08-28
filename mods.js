@@ -1299,4 +1299,40 @@ const mods = [
         "../imagens/lustdesign-sovngarde-steel-armor-v2/foto3.jpg"
     ]
 },    
+
+{
+    id: 40,
+
+    nome: "Layer Bikini - UNP and CBBE",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "anano( convertido por ps3modsglobal)",
+
+    versao: "2.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "28/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Roupa",
+
+    forjavel: "Não ( localização na imagem)",
+
+    corpo: "Cbbe e unp",
+
+    imagem: "../imagens/mod40.jpg",
+
+    descricao: "Adiciona um conjunto de bikini/roupa íntima feminina em camadas, desenvolvido para UNP e CBBE.",
+
+    download: "https://www.mediafire.com/file/nczif7kptmbds9b/Layer+Bikini+(1).zip/file",
+
+    galeria: [
+        "../imagens/layer-bikini-unp-and-cbbe/foto1.jpg",
+        "../imagens/layer-bikini-unp-and-cbbe/foto2.jpg",
+        "../imagens/layer-bikini-unp-and-cbbe/foto3.jpg"
+    ]
+},    
 ];
