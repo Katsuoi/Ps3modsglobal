@@ -1080,5 +1080,40 @@ const mods = [
         "../imagens/katarina-armor/foto3.jpg"
     ]
 },
-    
+
+    {
+    id: 34,
+
+    nome: "Medusa Drakul armors and Thanatos dragon",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "Zerofrost Satyr ( convertido por N/A)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "28/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Roupa/ armadura",
+
+    forjavel: "Sim, só requisitos N/A( categoria N/A)",
+
+    corpo: "As armaduras podem ser encontradas em um baú trancado e protegido, localizado a nordeste das Ruínas de Kjenstag. A chave está com a aranha Athena.",
+
+    imagem: "../imagens/mod34.jpg",
+
+    descricao: "Adiciona dois conjuntos de armadura pesada em alta resolução: Medusa, exclusiva para personagens femininas, e Drakul, exclusiva para personagens masculinos. Também adiciona o dragão Thanatos, que substitui o Odahviing",
+
+    download: "https://www.mediafire.com/file/avrkpn5fsx0egen/Medusa+Drakul+armors.zip/file",
+
+    galeria: [
+        "../imagens/medusa-drakul-armors-and-thanatos-dragon/foto1.jpg",
+        "../imagens/medusa-drakul-armors-and-thanatos-dragon/foto2.jpg",
+        "../imagens/medusa-drakul-armors-and-thanatos-dragon/foto3.jpg"
+    ]
+},
 ];
