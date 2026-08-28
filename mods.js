@@ -758,4 +758,41 @@ const mods = [
         "../imagens/dark-lilith-sexy-armor-for-cbbe/foto3.jpg"
     ]
 },
+
+{
+    id: 25,
+
+    nome: "Alyn Shir Armor",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "BloodFree( convertido por: ps3modsglobal)",
+
+    versao: "1.1",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Tipo armadura/roupa",
+
+    forjavel: "Sim ( categoria couro )",
+
+    corpo: "Cbbe e ump",
+
+    imagem: "../imagens/mod25.jpg",
+
+    descricao: "Adiciona ao Skyrim a armadura usada por Alyn Shir em Kingdoms of Amalur: Reckoning. É uma armadura leve feminina com versões para CBBE e unp",
+
+    download: "https://www.mediafire.com/file/1y0san3kd38rj9j/AylinShir.zip/file",
+
+    galeria: [
+        "../imagens/alyn-shir-armor/foto1.jpg",
+        "../imagens/alyn-shir-armor/foto2.jpg",
+        "../imagens/alyn-shir-armor/foto3.jpg"
+    ]
+},
+    
 ];
