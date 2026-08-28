@@ -1,18 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    // ===== FAVORITOS =====
     function getFavoritos() {
-        try {
-            return JSON.parse(localStorage.getItem("ps3mods_favoritos") || "[]");
-        } catch(e) {
-            return [];
-        }
+        try { return JSON.parse(localStorage.getItem("ps3mods_favoritos") || "[]"); }
+        catch(e) { return []; }
     }
-
     function salvarFavoritos(lista) {
         localStorage.setItem("ps3mods_favoritos", JSON.stringify(lista));
     }
-
     window.toggleFavorito = function(id) {
         var favs = getFavoritos();
         id = parseInt(id);
@@ -22,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function() {
         salvarFavoritos(favs);
         atualizarBotoesFavorito();
     };
-
     function atualizarBotoesFavorito() {
         var favs = getFavoritos();
         document.querySelectorAll("[data-fav]").forEach(function(btn) {
@@ -37,7 +30,13 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // ===== RENDER MODS =====
+    function labelCategoria(mod) {
+        if (mod.genero === "Ambos" || (mod.categorias && mod.categorias.length > 1)) {
+            return "Armaduras (F/M)";
+        }
+        return mod.categoria || "";
+    }
+
     function renderMods(listaMods, container) {
         if (!container) return;
         container.innerHTML = "";
@@ -50,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
             card.className = "card-mod";
             card.innerHTML =
                 '<img src="' + mod.imagem + '" alt="' + mod.nome + '" loading="lazy">' +
-                '<span class="categoria">' + mod.categoria + '</span>' +
+                '<span class="categoria">' + labelCategoria(mod) + '</span>' +
                 '<h3>' + mod.nome + '</h3>' +
                 '<p>' + mod.descricao + '</p>' +
                 '<a class="download" href="mod.html?id=' + mod.id + '">Ver Mod</a>' +
@@ -60,16 +59,25 @@ document.addEventListener("DOMContentLoaded", function() {
         atualizarBotoesFavorito();
     }
 
-    // ===== LISTA DE MODS =====
+    function matchCategoria(mod, categoria) {
+        var busca = categoria.toLowerCase();
+        var cat = (mod.categoria || "").toLowerCase();
+        if (cat.indexOf(busca) !== -1 || busca.indexOf(cat) !== -1) return true;
+        if (mod.categorias && mod.categorias.some(function(c) {
+            return String(c).toLowerCase().indexOf(busca) !== -1;
+        })) return true;
+        // armadura ambos tambem entra em filtro generico de armaduras
+        if (busca.indexOf("armadura") !== -1 && (mod.genero === "Ambos" || cat === "armaduras")) return true;
+        if (busca === "followers" && cat.indexOf("companion") !== -1) return true;
+        return false;
+    }
+
     var lista = document.getElementById("todos-mods") || document.getElementById("lista-mods");
     if (lista && typeof mods !== "undefined") {
         var params = new URLSearchParams(window.location.search);
         var categoria = params.get("categoria");
         if (categoria) {
-            var filtrados = mods.filter(function(m) {
-                return m.categoria.toLowerCase().includes(categoria.toLowerCase()) ||
-                       (categoria.toLowerCase() === "followers" && m.categoria.toLowerCase().includes("companion"));
-            });
+            var filtrados = mods.filter(function(m) { return matchCategoria(m, categoria); });
             renderMods(filtrados, lista);
             var titulo = document.querySelector(".hero-content h2, .banner-pequeno h2");
             if (titulo) titulo.textContent = categoria;
@@ -78,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // ===== PÁGINA DO MOD =====
+    // ===== PAGINA DO MOD =====
     var params2 = new URLSearchParams(window.location.search);
     var id = parseInt(params2.get("id"));
     if (id && document.getElementById("titulo-mod") && typeof mods !== "undefined") {
@@ -97,14 +105,13 @@ document.addEventListener("DOMContentLoaded", function() {
             if (elNome) elNome.textContent = mod.nome;
             if (elTitulo) elTitulo.textContent = mod.nome;
             if (elDesc) elDesc.textContent = mod.descricao;
-            if (elCat) elCat.textContent = mod.categoria;
-            if (elCatBanner) elCatBanner.textContent = mod.categoria;
+            if (elCat) elCat.textContent = labelCategoria(mod);
+            if (elCatBanner) elCatBanner.textContent = labelCategoria(mod);
             if (elAutor) elAutor.textContent = mod.autor || "Desconhecido";
             if (elVersao) elVersao.textContent = mod.versao || "-";
             if (elCompat) elCompat.textContent = mod.compatibilidade || "Skyrim LE PS3";
             if (elData) elData.textContent = mod.data || "-";
 
-            // Campos extras dinamicos (todas as categorias)
             var tabela = document.getElementById("tabela-mod");
             if (tabela) {
                 var mapa = [
@@ -115,8 +122,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     ["tipo", "Tipo"],
                     ["forjavel", "Forjável"],
                     ["corpo", "Corpo"],
-                    ["dano", "Dano"],
-                    ["velocidade", "Velocidade"],
                     ["quantidade", "Quantidade"],
                     ["escola", "Escola"],
                     ["custo", "Custo"],
@@ -135,27 +140,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     ["funcao", "Função"],
                     ["ganhoFPS", "Ganho de FPS"],
                     ["perdaVisual", "Perda visual"],
-                    ["recomendado", "Recomendado"],
-                    ["ambiente", "Ambiente"],
-                    ["combate", "Combate"],
-                    ["musica", "Música"],
-                    ["personagem", "Personagem"],
-                    ["flechas", "Flechas"],
-                    ["arcos", "Arcos"],
-                    ["mira", "Mira"],
-                    ["criatura", "Criatura"],
-                    ["invocavel", "Invocável"],
-                    ["hud", "HUD"],
-                    ["menus", "Menus"],
-                    ["clima", "Clima"],
-                    ["particulas", "Partículas"],
-                    ["iluminacao", "Iluminação"],
-                    ["scripts", "Scripts"]
+                    ["recomendado", "Recomendado"]
                 ];
-
                 mapa.forEach(function(item) {
-                    var chave = item[0];
-                    var label = item[1];
+                    var chave = item[0], label = item[1];
                     if (mod[chave] && String(mod[chave]).trim() !== "" && mod[chave] !== "N/A") {
                         var tr = document.createElement("tr");
                         tr.innerHTML = "<td>" + label + "</td><td>" + mod[chave] + "</td>";
@@ -171,7 +159,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 capa.loading = "lazy";
             }
 
-            // Downloads (1 ou varios)
             var downloadBox = document.getElementById("download-box");
             if (downloadBox) {
                 downloadBox.innerHTML = "";
@@ -223,9 +210,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // ===== HOME =====
     var statMods = document.getElementById("stat-mods");
-    if (statMods && typeof mods !== "undefined") {
-        statMods.textContent = mods.length;
-    }
+    if (statMods && typeof mods !== "undefined") statMods.textContent = mods.length;
 
     var destaques = document.getElementById("destaques");
     if (destaques && typeof mods !== "undefined") {
@@ -235,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function() {
             destaques.innerHTML +=
                 '<div class="card-home">' +
                     '<img src="' + img + '" alt="' + mod.nome + '" loading="lazy">' +
-                    '<span class="categoria">' + mod.categoria + '</span>' +
+                    '<span class="categoria">' + labelCategoria(mod) + '</span>' +
                     '<h3>' + mod.nome + '</h3>' +
                     '<p>' + mod.descricao.substring(0, 70) + '...</p>' +
                     '<a class="download" href="mods/mod.html?id=' + mod.id + '">VER MOD</a>' +
@@ -254,7 +239,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 '<div class="ultimo-card">' +
                     '<img src="' + img + '" alt="' + mod.nome + '" loading="lazy">' +
                     '<div class="ultimo-info">' +
-                        '<span class="categoria">' + mod.categoria + '</span>' +
+                        '<span class="categoria">' + labelCategoria(mod) + '</span>' +
                         '<h3>' + mod.nome + '</h3>' +
                         '<p>' + mod.descricao.substring(0, 90) + '...</p>' +
                         '<a href="mods/mod.html?id=' + mod.id + '">Ler mais →</a>' +
@@ -269,30 +254,25 @@ document.addEventListener("DOMContentLoaded", function() {
         elUpdate.textContent = ultimo.data || "--";
     }
 
-    // ===== PESQUISA =====
     var searchInput = document.querySelector(".search input, #pesquisa");
     if (searchInput) {
         searchInput.addEventListener("input", function() {
             var termo = this.value.toLowerCase().trim();
             document.querySelectorAll(".card-mod, .card-home").forEach(function(card) {
                 var texto = card.textContent.toLowerCase();
-                card.style.display = (termo === "" || texto.includes(termo)) ? "" : "none";
+                card.style.display = (termo === "" || texto.indexOf(termo) !== -1) ? "" : "none";
             });
         });
     }
 
-    // ===== AVISO MOBILE =====
     var aviso = document.getElementById("aviso-mobile");
     var fechar = document.getElementById("fechar-aviso");
     var isMobile = window.innerWidth <= 900 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    if (aviso && isMobile && !sessionStorage.getItem("avisoMobileOk")) {
-        aviso.style.display = "flex";
-    }
+    if (aviso && isMobile && !sessionStorage.getItem("avisoMobileOk")) aviso.style.display = "flex";
     if (fechar) {
         fechar.addEventListener("click", function() {
             if (aviso) aviso.style.display = "none";
             sessionStorage.setItem("avisoMobileOk", "1");
         });
     }
-
 });
