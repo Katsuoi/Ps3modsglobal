@@ -1010,7 +1010,7 @@ const mods = [
 },
 
 {
-    id: 31,
+    id: 32,
 
     nome: "Succubus armor by hentai",
 
@@ -1032,7 +1032,7 @@ const mods = [
 
     corpo: "Cbbe",
 
-    imagem: "../imagens/mod31.jpg",
+    imagem: "../imagens/mod32.jpg",
 
     descricao: "Adiciona ao Skyrim uma armadura feminina temática de súcubo, com asas e meias, criada originalmente para CBBEv3M. O conjunto é craftável e possui opções para remover as asas e alterar alguns elementos da aparência",
 
