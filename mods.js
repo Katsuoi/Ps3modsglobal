@@ -1444,5 +1444,41 @@ const mods = [
         "../imagens/scarlet-dawn-armor/foto3.jpg"
     ]
 },
-    
+
+
+   {
+    id: 44,
+
+    nome: "One-Winged Swift Outfit",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "imsotired( convertido por ps3modsglobal)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "28/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Roupa/ armadura",
+
+    forjavel: "Sim (categoria N/A)",
+
+    corpo: "Vanilla",
+
+    imagem: "../imagens/mod44.jpg",
+
+    descricao: "Adiciona uma nova roupa/armadura feminina inspirada em equipamento de espionagem do Thalmor.",
+
+    download: "https://www.mediafire.com/file/j1pks6a6g198tpe/Swift+Armor.zip/file",
+
+    galeria: [
+        "../imagens/one-winged-swift-outfit/foto1.jpg",
+        "../imagens/one-winged-swift-outfit/foto2.jpg",
+        "../imagens/one-winged-swift-outfit/foto3.jpg"
+    ]
+}, 
 ];
