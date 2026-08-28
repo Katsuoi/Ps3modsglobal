@@ -1192,4 +1192,40 @@ const mods = [
     ]
 },
 
+    {
+    id: 37,
+
+    nome: "Ashtoreth Ahlanna Armor",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "AshtorethH ( convertido por membro N/A.ps3modsglobal)",
+
+    versao: "1.3",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "28/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Armadura/roupa",
+
+    forjavel: "Sim( categoria N/A)",
+
+    corpo: "Cbbe",
+
+    imagem: "../imagens/mod37.jpg",
+
+    descricao: "Adiciona um conjunto de armadura leve de couro feminina, composto por 19 peças e disponível em 6 cores diferentes.",
+
+    download: "https://www.mediafire.com/file/7rbicwjb34mzkoc/Ahlanna+Armor7z.zip/file",
+
+    galeria: [
+        "../imagens/ashtoreth-ahlanna-armor/foto1.jpg",
+        "../imagens/ashtoreth-ahlanna-armor/foto2.jpg",
+        "../imagens/ashtoreth-ahlanna-armor/foto3.jpg"
+    ]
+},
+    
 ];
