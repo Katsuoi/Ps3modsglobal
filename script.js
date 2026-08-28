@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+    var POR_PAGINA = 20;
+    var paginaAtual = 1;
+    var listaAtual = [];
+    var containerLista = null;
+
+    // ===== FAVORITOS =====
     function getFavoritos() {
         try { return JSON.parse(localStorage.getItem("ps3mods_favoritos") || "[]"); }
         catch(e) { return []; }
@@ -37,28 +43,6 @@ document.addEventListener("DOMContentLoaded", function() {
         return mod.categoria || "";
     }
 
-    function renderMods(listaMods, container) {
-        if (!container) return;
-        container.innerHTML = "";
-        if (listaMods.length === 0) {
-            container.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#8b95a5;padding:40px;">Nenhum mod encontrado.</p>';
-            return;
-        }
-        listaMods.forEach(function(mod) {
-            var card = document.createElement("div");
-            card.className = "card-mod";
-            card.innerHTML =
-                '<img src="' + mod.imagem + '" alt="' + mod.nome + '" loading="lazy">' +
-                '<span class="categoria">' + labelCategoria(mod) + '</span>' +
-                '<h3>' + mod.nome + '</h3>' +
-                '<p>' + mod.descricao + '</p>' +
-                '<a class="download" href="mod.html?id=' + mod.id + '">Ver Mod</a>' +
-                '<button class="btn-fav" data-fav="' + mod.id + '" onclick="toggleFavorito(' + mod.id + ')">☆ Favoritar</button>';
-            container.appendChild(card);
-        });
-        atualizarBotoesFavorito();
-    }
-
     function matchCategoria(mod, categoria) {
         var busca = categoria.toLowerCase();
         var cat = (mod.categoria || "").toLowerCase();
@@ -66,12 +50,117 @@ document.addEventListener("DOMContentLoaded", function() {
         if (mod.categorias && mod.categorias.some(function(c) {
             return String(c).toLowerCase().indexOf(busca) !== -1;
         })) return true;
-        // armadura ambos tambem entra em filtro generico de armaduras
         if (busca.indexOf("armadura") !== -1 && (mod.genero === "Ambos" || cat === "armaduras")) return true;
         if (busca === "followers" && cat.indexOf("companion") !== -1) return true;
         return false;
     }
 
+    // ===== RENDER COM PAGINAÇÃO =====
+    function garantirBotaoMais() {
+        var btn = document.getElementById("btn-carregar-mais");
+        if (btn) return btn;
+
+        if (!containerLista || !containerLista.parentNode) return null;
+
+        var wrap = document.createElement("div");
+        wrap.id = "wrap-carregar-mais";
+        wrap.style.cssText = "grid-column:1/-1;text-align:center;padding:24px 10px 10px;";
+
+        btn = document.createElement("button");
+        btn.id = "btn-carregar-mais";
+        btn.type = "button";
+        btn.textContent = "Carregar mais";
+        btn.style.cssText = "padding:12px 22px;border:none;border-radius:8px;background:#5ec8ff;color:#0b0e14;font-weight:700;font-size:14px;cursor:pointer;";
+        btn.onclick = function() {
+            paginaAtual++;
+            renderPagina(false);
+        };
+
+        var info = document.createElement("p");
+        info.id = "info-paginacao";
+        info.style.cssText = "margin-top:10px;color:#8b95a5;font-size:13px;";
+
+        wrap.appendChild(btn);
+        wrap.appendChild(info);
+        containerLista.appendChild(wrap);
+        return btn;
+    }
+
+    function atualizarInfoPaginacao() {
+        var info = document.getElementById("info-paginacao");
+        var btn = document.getElementById("btn-carregar-mais");
+        var wrap = document.getElementById("wrap-carregar-mais");
+        if (!info || !btn || !wrap) return;
+
+        var total = listaAtual.length;
+        var mostrando = Math.min(paginaAtual * POR_PAGINA, total);
+
+        if (total === 0) {
+            wrap.style.display = "none";
+            return;
+        }
+
+        wrap.style.display = "block";
+        info.textContent = "Mostrando " + mostrando + " de " + total + " mods";
+
+        if (mostrando >= total) {
+            btn.style.display = "none";
+        } else {
+            btn.style.display = "inline-block";
+            btn.textContent = "Carregar mais";
+        }
+    }
+
+    function criarCard(mod) {
+        var card = document.createElement("div");
+        card.className = "card-mod";
+        card.innerHTML =
+            '<img src="' + mod.imagem + '" alt="' + mod.nome + '" loading="lazy">' +
+            '<span class="categoria">' + labelCategoria(mod) + '</span>' +
+            '<h3>' + mod.nome + '</h3>' +
+            '<p>' + mod.descricao + '</p>' +
+            '<a class="download" href="mod.html?id=' + mod.id + '">Ver Mod</a>' +
+            '<button class="btn-fav" data-fav="' + mod.id + '" onclick="toggleFavorito(' + mod.id + ')">☆ Favoritar</button>';
+        return card;
+    }
+
+    function renderPagina(reset) {
+        if (!containerLista) return;
+
+        if (reset) {
+            containerLista.innerHTML = "";
+            paginaAtual = 1;
+        }
+
+        // remove botao antigo temporariamente para reordenar no fim
+        var wrap = document.getElementById("wrap-carregar-mais");
+        if (wrap) wrap.remove();
+
+        if (listaAtual.length === 0) {
+            containerLista.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#8b95a5;padding:40px;">Nenhum mod encontrado.</p>';
+            return;
+        }
+
+        var inicio = (paginaAtual - 1) * POR_PAGINA;
+        var fim = paginaAtual * POR_PAGINA;
+        var fatia = listaAtual.slice(inicio, fim);
+
+        fatia.forEach(function(mod) {
+            containerLista.appendChild(criarCard(mod));
+        });
+
+        garantirBotaoMais();
+        atualizarInfoPaginacao();
+        atualizarBotoesFavorito();
+    }
+
+    function renderMods(listaMods, container) {
+        containerLista = container;
+        listaAtual = listaMods.slice();
+        renderPagina(true);
+    }
+
+    // ===== LISTA DE MODS =====
     var lista = document.getElementById("todos-mods") || document.getElementById("lista-mods");
     if (lista && typeof mods !== "undefined") {
         var params = new URLSearchParams(window.location.search);
@@ -254,10 +343,33 @@ document.addEventListener("DOMContentLoaded", function() {
         elUpdate.textContent = ultimo.data || "--";
     }
 
+    // ===== PESQUISA (na lista paginada, filtra a listaAtual e reinicia pagina) =====
     var searchInput = document.querySelector(".search input, #pesquisa");
     if (searchInput) {
         searchInput.addEventListener("input", function() {
             var termo = this.value.toLowerCase().trim();
+
+            // Se estiver na lista de mods, filtra com paginação
+            if (containerLista && typeof mods !== "undefined" && (document.getElementById("todos-mods") || document.getElementById("lista-mods"))) {
+                var base = mods;
+                var params = new URLSearchParams(window.location.search);
+                var cat = params.get("categoria");
+                if (cat) base = mods.filter(function(m) { return matchCategoria(m, cat); });
+
+                if (!termo) {
+                    renderMods(base, containerLista);
+                    return;
+                }
+
+                var filtrados = base.filter(function(m) {
+                    var texto = (m.nome + " " + m.descricao + " " + m.categoria + " " + (m.autor || "")).toLowerCase();
+                    return texto.indexOf(termo) !== -1;
+                });
+                renderMods(filtrados, containerLista);
+                return;
+            }
+
+            // Home / outros: esconde cards
             document.querySelectorAll(".card-mod, .card-home").forEach(function(card) {
                 var texto = card.textContent.toLowerCase();
                 card.style.display = (termo === "" || texto.indexOf(termo) !== -1) ? "" : "none";
@@ -265,6 +377,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // ===== AVISO MOBILE =====
     var aviso = document.getElementById("aviso-mobile");
     var fechar = document.getElementById("fechar-aviso");
     var isMobile = window.innerWidth <= 900 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
