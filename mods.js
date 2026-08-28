@@ -794,5 +794,41 @@ const mods = [
         "../imagens/alyn-shir-armor/foto3.jpg"
     ]
 },
+
+{
+    id: 26,
+
+    nome: "R18Pn Set - Inner Wear Set for CBBEV3",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "NPR.( Convertido por ps3modsglobal)",
+
+    versao: "N/A",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Roupa",
+
+    forjavel: "Não",
+
+    corpo: "No fosso/canal ao redor de Whiterun, converme a imagem.",
+
+    imagem: "../imagens/mod26.jpg",
+
+    descricao: "Adiciona um conjunto de roupas íntimas femininas ao Skyrim, desenvolvido para os corpos UNP e CBBE V3",
+
+    download: "https://www.mediafire.com/file/vslx3v0u0yb4m9b/R18Pn+Set+-+Inner+Wear+Set+for+CBBEV3+v1.2.zip/file",
+
+    galeria: [
+        "../imagens/r18pn-set-inner-wear-set-for-cbbev3/foto1.jpg",
+        "../imagens/r18pn-set-inner-wear-set-for-cbbev3/foto2.jpg",
+        "../imagens/r18pn-set-inner-wear-set-for-cbbev3/foto3.jpg"
+    ]
+},
     
 ];
