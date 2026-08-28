@@ -830,5 +830,40 @@ const mods = [
         "../imagens/r18pn-set-inner-wear-set-for-cbbev3/foto3.jpg"
     ]
 },
+{
+    id: 27,
+
+    nome: "Gatti 03 Evilrose Armor",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "Gatti( convertido por ps3modsglobal)",
+
+    versao: "N/A",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Armadura/Roupa",
+
+    forjavel: "Sim (categoria N/A)",
+
+    corpo: "Cbbe",
+
+    imagem: "../imagens/mod27.jpg",
+
+    descricao: "Conjunto de armadura feminina em estilo bondage/latex, com visual vermelho e preto.",
+
+    download: "https://www.mediafire.com/file/lpj32b98gq86g3w/Gatti3Evilrose+(1).zip/file",
+
+    galeria: [
+        "../imagens/gatti-03-evilrose-armor/foto1.jpg",
+        "../imagens/gatti-03-evilrose-armor/foto2.jpg",
+        "../imagens/gatti-03-evilrose-armor/foto3.jpg"
+    ]
+},
     
 ];
