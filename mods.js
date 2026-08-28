@@ -1159,9 +1159,11 @@ const mods = [
 
     nome: "Rogue armor",
 
-    categoria: "Armaduras Femininas",
+    categoria: "Armaduras",
 
-    autor: "steelfeathers( convertido por ps3modsglobal)",
+    categorias: ["Armaduras Femininas", "Armaduras Masculinas"],
+
+    autor: "steelfeathers (convertido por PS3ModsGlobal)",
 
     versao: "1.0",
 
@@ -1169,17 +1171,17 @@ const mods = [
 
     data: "28/08/2026",
 
-    genero: "Feminino",
+    genero: "Ambos",
 
-    tipo: "Roupa/ armadura",
+    tipo: "Roupa / armadura",
 
-    forjavel: "Sim( categoria couro , requer o perk Advanced Armors. )",
+    forjavel: "Sim (categoria couro, requer o perk Advanced Armors)",
 
     corpo: "Vanilla",
 
     imagem: "../imagens/mod36.jpg",
 
-    descricao: "Adiciona um conjunto de armadura leve para ladinas, ladras, foras da lei e aventureiras. O conjunto é standalone, compatível com qualquer raça e possui visual baseado em equipamentos de couro, com estatísticas equilibradas",
+    descricao: "Adiciona um conjunto de armadura leve para ladinas, ladras, foras da lei e aventureiras. O conjunto é standalone, compatível com qualquer raça e possui visual baseado em equipamentos de couro, com estatísticas equilibradas.",
 
     download: "https://www.mediafire.com/file/t4sjljpz6shckay/ARMADURA+GEMIO+DE+LADRONES+[SKYRIM+PS3].zip/file",
 
@@ -1189,4 +1191,5 @@ const mods = [
         "../imagens/rogue-armor/foto3.jpg"
     ]
 },
+
 ];
