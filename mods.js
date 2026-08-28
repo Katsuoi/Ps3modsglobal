@@ -1408,5 +1408,41 @@ const mods = [
         "../imagens/wine-duchess-le-by-xtudo/foto3.jpg"
     ]
 },
+
+{
+    id: 43,
+
+    nome: "Scarlet Dawn Armor",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "jmenaru ( convertido por N/A)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "28/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Armadura/roupa",
+
+    forjavel: "Sim ( categoria couro)",
+
+    corpo: "Cbbe",
+
+    imagem: "../imagens/mod43.jpg",
+
+    descricao: "Adiciona uma armadura feminina de estilo assassina/ladina, com visual inspirado em trabalhos artísticos e jogos como Assassin's Creed. O conjunto possui texturas em alta definição e diferentes versões para corpos femininos, além de variações de cores.",
+
+    download: "https://www.mediafire.com/file/k0x99hm7juewchu/ScarletDawnArmor.zip/file",
+
+    galeria: [
+        "../imagens/scarlet-dawn-armor/foto1.jpg",
+        "../imagens/scarlet-dawn-armor/foto2.jpg",
+        "../imagens/scarlet-dawn-armor/foto3.jpg"
+    ]
+},
     
 ];
