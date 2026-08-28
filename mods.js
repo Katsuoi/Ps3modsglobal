@@ -937,5 +937,41 @@ const mods = [
         "../imagens/demon-hunter-armor/foto3.jpg"
     ]
 },
+
+{
+    id: 30,
+
+    nome: "Gatti 04 Satsuki Armor",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "Gatti( convertido por ps3modsglobal)",
+
+    versao: "N/A",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Armadura/roupa",
+
+    forjavel: "Sim ( categoria N/A)",
+
+    corpo: "Cbbe",
+
+    imagem: "../imagens/mod30.jpg",
+
+    descricao: "Adiciona ao Skyrim uma armadura feminina inspirada em Satsuki, da obra Kikou Shoujo wa Kizutsukanai / Valkyrie Complex? A fonte histórica identifica o conjunto como Gatti 04 Satsuki Armor e confirma que é uma armadura feminina CBBE para Skyrim LE.",
+
+    download: "https://www.mediafire.com/file/vinc3frgeruo9gi/Gatti4Satsuki+(1).zip/file",
+
+    galeria: [
+        "../imagens/gatti-04-satsuki-armor/foto1.jpg",
+        "../imagens/gatti-04-satsuki-armor/foto2.jpg",
+        "../imagens/gatti-04-satsuki-armor/foto3.jpg"
+    ]
+},
     
 ];
