@@ -1372,5 +1372,41 @@ const mods = [
         "../imagens/ashara-s-princes-of-the-woods/foto3.jpg"
     ]
 },
+
+    {
+    id: 42,
+
+    nome: "Wine Duchess - LE by Xtudo",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "Xtudo — port (convertido por ps3modsglobal)",
+
+    versao: "1.1",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "28/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Armadura/ roupa",
+
+    forjavel: "Sim, Crie o Wine Duchess Crafting Book em qualquer tanning rack; depois, todos os itens podem ser fabricados em qualquer forja( categoria N/A)",
+
+    corpo: "Cbbe",
+
+    imagem: "../imagens/mod42.jpg",
+
+    descricao: "Adiciona um conjunto de armadura e roupas femininas inspirado no mod Wine Duchess de SmolSaltLemon. A versão LE possui 14 itens",
+
+    download: "https://www.mediafire.com/file/0yagkzwfq1o5cij/Armadura_de_Cazador_de_Dem%25C3%25B4nios_%25281%25",
+
+    galeria: [
+        "../imagens/wine-duchess-le-by-xtudo/foto1.jpg",
+        "../imagens/wine-duchess-le-by-xtudo/foto2.jpg",
+        "../imagens/wine-duchess-le-by-xtudo/foto3.jpg"
+    ]
+},
     
 ];
