@@ -1335,4 +1335,42 @@ const mods = [
         "../imagens/layer-bikini-unp-and-cbbe/foto3.jpg"
     ]
 },    
+{
+    id: 41,
+
+    nome: "Ashara's Princes of the Woods",
+
+    categoria: "Armaduras",
+
+    categorias: ["Armaduras Femininas", "Armaduras Masculinas"],
+
+    autor: "Ashara / SydneyB( convertido por ps3modsglobal)",
+
+    versao: "5.4",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "28/08/2026",
+
+    genero: "Ambos",
+
+    tipo: "Roupa/armadura",
+
+    forjavel: "Sim (categoria couro)",
+
+    corpo: "Unp",
+
+    imagem: "../imagens/mod41.jpg",
+
+    descricao: "Adiciona um grande conjunto de armaduras leves de estilo medieval/florestal, com aparência de caçadora/arqueira. O conjunto é altamente modular, possui 17 peças principais, 6 complementos de pele e uma peruca para o capuz, além de seis cores diferentes.",
+
+    download: "https://www.mediafire.com/file/py175bqtqe5jjb1/Princes_of_the_Woods.zip/file",
+
+    galeria: [
+        "../imagens/ashara-s-princes-of-the-woods/foto1.jpg",
+        "../imagens/ashara-s-princes-of-the-woods/foto2.jpg",
+        "../imagens/ashara-s-princes-of-the-woods/foto3.jpg"
+    ]
+},
+    
 ];
