@@ -973,5 +973,40 @@ const mods = [
         "../imagens/gatti-04-satsuki-armor/foto3.jpg"
     ]
 },
+{
+    id: 31,
+
+    nome: "R18Pn 01 - Eisen Platte Armor for UNP and CBBE",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "NPR / KURESE( convertido por ps3modsglobal)",
+
+    versao: "1.5",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Armadura/roupa",
+
+    forjavel: "Sim(categoria N/A)",
+
+    corpo: "Cbbe e unp",
+
+    imagem: "../imagens/mod31.jpg",
+
+    descricao: "Armadura feminina pesada inspirada em equipamentos de Final Fantasy XI, com aparência medieval/fantástica e várias opções de configuração",
+
+    download: "https://www.mediafire.com/file/8u8o6h8huoumvib/EisenPlatteRoyal.zip/file",
+
+    galeria: [
+        "../imagens/r18pn-01-eisen-platte-armor-for-unp-and-cbbe/foto1.jpg",
+        "../imagens/r18pn-01-eisen-platte-armor-for-unp-and-cbbe/foto2.jpg",
+        "../imagens/r18pn-01-eisen-platte-armor-for-unp-and-cbbe/foto3.jpg"
+    ]
+},
     
 ];
