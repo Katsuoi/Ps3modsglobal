@@ -1153,5 +1153,40 @@ const mods = [
         "../imagens/angel-vixen-armor-cbbev3-curvy/foto3.jpg"
     ]
 },
-    
+
+    {
+    id: 36,
+
+    nome: "Rogue armor",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "steelfeathers( convertido por ps3modsglobal)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "28/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Roupa/ armadura",
+
+    forjavel: "Sim( categoria couro , requer o perk Advanced Armors. )",
+
+    corpo: "Vanilla",
+
+    imagem: "../imagens/mod36.jpg",
+
+    descricao: "Adiciona um conjunto de armadura leve para ladinas, ladras, foras da lei e aventureiras. O conjunto é standalone, compatível com qualquer raça e possui visual baseado em equipamentos de couro, com estatísticas equilibradas",
+
+    download: "https://www.mediafire.com/file/t4sjljpz6shckay/ARMADURA+GEMIO+DE+LADRONES+[SKYRIM+PS3].zip/file",
+
+    galeria: [
+        "../imagens/rogue-armor/foto1.jpg",
+        "../imagens/rogue-armor/foto2.jpg",
+        "../imagens/rogue-armor/foto3.jpg"
+    ]
+},
 ];
