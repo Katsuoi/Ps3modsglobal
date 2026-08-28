@@ -1008,5 +1008,41 @@ const mods = [
         "../imagens/r18pn-01-eisen-platte-armor-for-unp-and-cbbe/foto3.jpg"
     ]
 },
+
+{
+    id: 31,
+
+    nome: "Succubus armor by hentai",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "Hentai( convertido por ps3modsglobal)",
+
+    versao: "1.2",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "27/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Roupa/armadura",
+
+    forjavel: "Sim ( categoria N/A)",
+
+    corpo: "Cbbe",
+
+    imagem: "../imagens/mod31.jpg",
+
+    descricao: "Adiciona ao Skyrim uma armadura feminina temática de súcubo, com asas e meias, criada originalmente para CBBEv3M. O conjunto é craftável e possui opções para remover as asas e alterar alguns elementos da aparência",
+
+    download: "https://www.mediafire.com/file/mejpr6vovhtz0ks/Succubus+Armor+by+Hentai.zip/file",
+
+    galeria: [
+        "../imagens/succubus-armor-by-hentai/foto1.jpg",
+        "../imagens/succubus-armor-by-hentai/foto2.jpg",
+        "../imagens/succubus-armor-by-hentai/foto3.jpg"
+    ]
+},
     
 ];
