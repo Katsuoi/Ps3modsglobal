@@ -1553,6 +1553,51 @@ const mods = [
         "../imagens/tes4mod-for-skyrim/foto3.jpg"
     ]
 },
+
+{
+    id: 47,
+
+    nome: "Gatti 07 Siggy Armor for CBBEv3 Royal ReTexture",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "Messias Mummo( convertido por ps3modsglobal)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "01/09/2026",
+
+    genero: "Feminino",
+
+    tipo: "Roupa/armadura",
+
+    forjavel: "Sim (categoria N/A)",
+
+    corpo: "Cbbe",
+
+    imagem: "../imagens/mod47.jpg",
+
+    descricao: "Adiciona a Gatti 07 Siggy Armor, uma armadura feminina leve para CBBEv3, com suporte ao Weight Slider e diversas peças de equipamento. O mod também inclui a Royal ReTexture, que oferece uma aparência alternativa e mais refinada para o conjunto original, mantendo seus modelos e características.",
+
+    downloads: [
+        {
+            nome: "Original",
+            link: "https://www.mediafire.com/file/j8mfbc46nlsbk2t/Gatti_07_Siggy_v1_normal.zip/file"
+        },
+        {
+            nome: "Retexture",
+            link: "https://www.mediafire.com/file/wiken16uxpv2ume/Gatti_07_Siggy_Royal-_textura_modificada.zip/file"
+        }
+    ],
+
+    galeria: [
+        "../imagens/gatti-07-siggy-armor-for-cbbev3-royal-retexture/foto1.jpg",
+        "../imagens/gatti-07-siggy-armor-for-cbbev3-royal-retexture/foto2.jpg",
+        "../imagens/gatti-07-siggy-armor-for-cbbev3-royal-retexture/foto3.jpg"
+    ]
+},
     
 ];
 
