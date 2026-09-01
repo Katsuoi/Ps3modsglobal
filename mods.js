@@ -1517,6 +1517,42 @@ const mods = [
         "../imagens/colovian-leather-armor-v2/foto3.jpg"
     ]
 },
+
+    {
+    id: 46,
+
+    nome: "Tes4Mod for Skyrim",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "akatuki408( convertido por ps3modsglobal)",
+
+    versao: "1.3",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "31/08/2026",
+
+    genero: "Feminino",
+
+    tipo: "Roupa/armadura",
+
+    forjavel: "Sim (categoria Daedric)",
+
+    corpo: "Cbbe",
+
+    imagem: "../imagens/mod46.jpg",
+
+    descricao: "Pacote que converte para Skyrim vários equipamentos originalmente criados para TES IV: Oblivion, reunindo armaduras, roupas, vestidos e capas em um único mod. A versão LE é voltada principalmente para CBBE, embora a maioria das peças possa ser usada com UNP.",
+
+    download: "https://www.mediafire.com/file/v0zhbjrqnnd2k2h/Tes4mod.zip/file",
+
+    galeria: [
+        "../imagens/tes4mod-for-skyrim/foto1.jpg",
+        "../imagens/tes4mod-for-skyrim/foto2.jpg",
+        "../imagens/tes4mod-for-skyrim/foto3.jpg"
+    ]
+},
     
 ];
 
