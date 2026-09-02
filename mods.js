@@ -1634,6 +1634,44 @@ const mods = [
         "../imagens/ivory-hunter-armor-and-weapon-cbbe/foto3.jpg"
     ]
 },
+
+{
+    id: 49,
+
+    nome: "Shadow Ranger Gear",
+
+    categoria: "Armaduras",
+
+    categorias: ["Armaduras Femininas", "Armaduras Masculinas"],
+
+    autor: "Natterforme( convertido por ps3modsglobal)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "02/09/2026",
+
+    genero: "Ambos",
+
+    tipo: "Armadura/ roupa",
+
+    forjavel: "Sim( categoria N/A)",
+
+    corpo: "Vanilla",
+
+    imagem: "../imagens/mod49.jpg",
+
+    descricao: "Adiciona um conjunto de equipamentos independente voltado para personagens do tipo ranger e arqueiros. O conjunto não substitui as armaduras vanilla",
+
+    download: "https://www.mediafire.com/file/oy55j367pzemy67/Shadow+Ranger+Gear+Official+Release+(1).zip/file",
+
+    galeria: [
+        "../imagens/shadow-ranger-gear/foto1.jpg",
+        "../imagens/shadow-ranger-gear/foto2.jpg",
+        "../imagens/shadow-ranger-gear/foto3.jpg"
+    ]
+},
     
 ];
 
