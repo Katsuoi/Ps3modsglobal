@@ -1598,6 +1598,42 @@ const mods = [
         "../imagens/gatti-07-siggy-armor-for-cbbev3-royal-retexture/foto3.jpg"
     ]
 },
+
+{
+    id: 48,
+
+    nome: "Ivory Hunter Armor and Weapon cbbe",
+
+    categoria: "Armaduras Femininas",
+
+    autor: "Loshirai14( convertido por ps3modsglobal)",
+
+    versao: "2.0a",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "02/09/2026",
+
+    genero: "Feminino",
+
+    tipo: "Armadura/roupa",
+
+    forjavel: "Sim ( categoria Daedric)",
+
+    corpo: "Cbbe",
+
+    imagem: "../imagens/mod48.jpg",
+
+    descricao: "Adiciona o conjunto Ivory Hunter Armor, uma armadura feminina de fantasia acompanhada de uma espada de uma mão e asas.",
+
+    download: "https://www.mediafire.com/file/0561crtmcbdzbxp/Ivory_Hunter_CBBE.zip/file",
+
+    galeria: [
+        "../imagens/ivory-hunter-armor-and-weapon-cbbe/foto1.jpg",
+        "../imagens/ivory-hunter-armor-and-weapon-cbbe/foto2.jpg",
+        "../imagens/ivory-hunter-armor-and-weapon-cbbe/foto3.jpg"
+    ]
+},
     
 ];
 
