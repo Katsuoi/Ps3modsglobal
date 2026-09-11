@@ -339,3 +339,58 @@ footer {
   cursor: pointer;
   width: 100%;
 }
+
+/* ===== CONTAGEM DE CATEGORIAS (destaque) ===== */
+.categorias-grid a{
+  height:auto;
+  min-height:78px;
+  flex-direction:column;
+  gap:8px;
+  padding:14px 10px;
+  text-align:center;
+  line-height:1.2;
+}
+.cat-nome{
+  font-size:13px;
+  font-weight:700;
+  color:#e8eaed;
+}
+.cat-badge{
+  display:inline-block;
+  background:#5ec8ff;
+  color:#0b0e14;
+  font-size:11px;
+  font-weight:800;
+  padding:4px 10px;
+  border-radius:999px;
+}
+.cat-badge.zero{
+  background:#1c2330;
+  color:#6b7585;
+  border:1px solid #2a3344;
+}
+.side-count{
+  display:inline-block;
+  min-width:28px;
+  text-align:center;
+  background:#5ec8ff22;
+  color:#5ec8ff;
+  border:1px solid #5ec8ff55;
+  font-size:11px;
+  font-weight:800;
+  padding:2px 8px;
+  border-radius:999px;
+}
+.side-count.zero{
+  background:#1c2330;
+  color:#6b7585;
+  border-color:#2a3344;
+}
+aside a[href*="categoria="],
+.lista-categorias a,
+.side-cats a{
+  display:flex !important;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
