@@ -1990,7 +1990,7 @@ const mods = [
 
     nome: "Sima Mod – Better Lighting V1.6",
 
-    categoria: "Gráficos",
+    categoria: "Efeitos Visuais",
 
     autor: "Askinnn_80 (convertido por Mods Global)",
 
@@ -2002,7 +2002,7 @@ const mods = [
 
     imagem: "../imagens/mod61.jpg",
 
-    descricao: "Melhora a iluminação de Skyrim para proporcionar uma aparência visual mais agradável e atmosférica. O mod trabalha com ajustes de iluminação para deixar ambientes e cenas mais imersivos.",
+    descricao: " O Better Lighting (Sima Mod) aprimora a iluminação de personagens e NPCs, adicionando luzes sutis e dinâmicas que destacam o rosto e o corpo, dando um visual mais realista e cinematográfico.",
 
     download: "https://www.mediafire.com/file/pz3uxow9rbqd26u/Sima+Mod-Better+lighting+V+1.6.zip/file",
 
