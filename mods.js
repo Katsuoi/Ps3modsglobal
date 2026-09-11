@@ -1672,6 +1672,346 @@ const mods = [
         "../imagens/shadow-ranger-gear/foto3.jpg"
     ]
 },
+
+    {
+    id: 50,
+
+    nome: "MGO – Revisão da Jogabilidade Mágica",
+
+    categoria: "Magias",
+
+    autor: "NA (convertido por Mods Global)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "11/09/2026",
+
+    imagem: "../imagens/mod50.jpg",
+
+    descricao: "O MGO (Magical Gameplay Overhaul) reformula profundamente o sistema de magia de Skyrim. As magias se tornam mais impactantes, o combate mágico fica mais dinâmico e as escolas de magia ganham maior utilidade.",
+
+    download: "COLE_O_LINK_AQUI",
+
+    galeria: [
+        "../imagens/mgo-revisao-da-jogabilidade-magica/foto1.jpg",
+        "../imagens/mgo-revisao-da-jogabilidade-magica/foto2.jpg",
+        "../imagens/mgo-revisao-da-jogabilidade-magica/foto3.jpg"
+    ]
+},
+
+{
+    id: 51,
+
+    nome: "Ace Blood Magic",
+
+    categoria: "Magias",
+
+    autor: "Elias555 (convertido por Mods Global)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "11/09/2026",
+
+    imagem: "../imagens/mod51.jpg",
+
+    descricao: "Adiciona um sistema de magia de sangue que permite utilizar a própria vida para lançar poderosos feitiços. Possui os caminhos Blood Knight, Vampire Hunter e Blood Mage, além de 30 magias exclusivas.",
+
+    download: "https://www.mediafire.com/file/2txhvu0lyb1bafq/Ace+Blood+Magic-.zip/file",
+
+    galeria: [
+        "../imagens/ace-blood-magic/foto1.jpg",
+        "../imagens/ace-blood-magic/foto2.jpg",
+        "../imagens/ace-blood-magic/foto3.jpg"
+    ]
+},
+
+{
+    id: 52,
+
+    nome: "Blood Magic Evolved",
+
+    categoria: "Magias",
+
+    autor: "DarthJay (convertido por Mods Global)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "11/09/2026",
+
+    imagem: "../imagens/mod52.jpg",
+
+    descricao: "Permite utilizar poderes de magia de sangue enquanto estiver em forma humana. As habilidades, feitiços e vantagens consomem saúde ou poder vital, incluindo efeitos como Blood Drain e Blood Cloud.",
+
+    download: "https://www.mediafire.com/file/n1g6cnw5q40isuu/BloodMagicEvolved-.zip/file",
+
+    galeria: [
+        "../imagens/blood-magic-evolved/foto1.jpg",
+        "../imagens/blood-magic-evolved/foto2.jpg",
+        "../imagens/blood-magic-evolved/foto3.jpg"
+    ]
+},
+
+{
+    id: 53,
+
+    nome: "Mysticism",
+
+    categoria: "Magias",
+
+    autor: "Simon Magus (convertido por Mods Global)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "11/09/2026",
+
+    imagem: "../imagens/mod53.jpg",
+
+    descricao: "Mysticism reformula o sistema de magia de Skyrim, corrigindo problemas das magias originais e preenchendo lacunas de progressão. Também adiciona feitiços inspirados em outros jogos da série Elder Scrolls, mantendo a estética e a mecânica do jogo.",
+
+    download: "https://www.mediafire.com/file/amb9ob89m4m8c9l/Mysticism.zip/file",
+
+    galeria: [
+        "../imagens/mysticism/foto1.jpg",
+        "../imagens/mysticism/foto2.jpg",
+        "../imagens/mysticism/foto3.jpg"
+    ]
+},
+
+{
+    id: 54,
+
+    nome: "Phenderix Magic Evolved",
+
+    categoria: "Magias",
+
+    autor: "Phenderix (convertido por Mods Global)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "11/09/2026",
+
+    imagem: "../imagens/mod54.jpg",
+
+    descricao: "Adiciona mais de 400 novos feitiços únicos para diferentes escolas de magia. O mod oferece estilos variados, incluindo magia elemental, controle, manipulação, teletransporte e poderes relacionados ao tempo.",
+
+    download: "https://www.mediafire.com/file/e49r8pye47slbsy/Phenderix+Magic+Evolved+-+Featured+Mod+Update+pt+br.zip/file",
+
+    galeria: [
+        "../imagens/phenderix-magic-evolved/foto1.jpg",
+        "../imagens/phenderix-magic-evolved/foto2.jpg",
+        "../imagens/phenderix-magic-evolved/foto3.jpg"
+    ]
+},
+
+{
+    id: 55,
+
+    nome: "Ordinator – Perks of Skyrim",
+
+    categoria: "Raças e Habilidades",
+
+    categorias: ["Raças e Habilidades", "Combate e Dificuldade"],
+
+    autor: "Enai Siaion (convertido por Mods Global)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "11/09/2026",
+
+    imagem: "../imagens/mod55.jpg",
+
+    descricao: "Reformula completamente as árvores de vantagens de Skyrim, adicionando centenas de novas habilidades criativas e equilibradas. O sistema proporciona uma progressão de personagem muito mais profunda e diversificada.",
+
+    download: "https://www.mediafire.com/file/twn2981hye7dsb/ordenator+otimizado.ptbr.zip/file",
+
+    galeria: [
+        "../imagens/ordinator-perks-of-skyrim/foto1.jpg",
+        "../imagens/ordinator-perks-of-skyrim/foto2.jpg",
+        "../imagens/ordinator-perks-of-skyrim/foto3.jpg"
+    ]
+},
+
+{
+    id: 56,
+
+    nome: "Apocalypse – Magic of Skyrim",
+
+    categoria: "Magias",
+
+    autor: "Enai Siaion (convertido por Mods Global)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "11/09/2026",
+
+    imagem: "../imagens/mod56.jpg",
+
+    descricao: "Adiciona cerca de 175 novos feitiços únicos e de alta qualidade ao Skyrim. As magias possuem efeitos visuais personalizados e foram desenvolvidas para se integrar ao sistema mágico original do jogo.",
+
+    download: "https://www.mediafire.com/file/zf1b4wwq76unz81/Apocalypse+pt+br.zip/file",
+
+    galeria: [
+        "../imagens/apocalypse-magic-of-skyrim/foto1.jpg",
+        "../imagens/apocalypse-magic-of-skyrim/foto2.jpg",
+        "../imagens/apocalypse-magic-of-skyrim/foto3.jpg"
+    ]
+},
+
+{
+    id: 57,
+
+    nome: "Call Assassins",
+
+    categoria: "Magias",
+
+    autor: "Flippetized (convertido por Mods Global)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "11/09/2026",
+
+    imagem: "../imagens/mod57.jpg",
+
+    descricao: "Adiciona um poder especial capaz de invocar quatro assassinos da Irmandade Sombria por tempo limitado. Os assassinos são treinados, possuem versões masculinas e femininas e evoluem automaticamente com o jogador.",
+
+    download: "https://www.mediafire.com/file/w6774b49oquv9l5/Call+Assassins.zip/file",
+
+    galeria: [
+        "../imagens/call-assassins/foto1.jpg",
+        "../imagens/call-assassins/foto2.jpg",
+        "../imagens/call-assassins/foto3.jpg"
+    ]
+},
+
+{
+    id: 58,
+
+    nome: "Paladin Spell Pack",
+
+    categoria: "Magias",
+
+    autor: "Voodu (convertido por Mods Global)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "11/09/2026",
+
+    imagem: "../imagens/mod58.jpg",
+
+    descricao: "Adiciona 43 novos feitiços de Restauração voltados para personagens com estilo de paladino. O pacote combina combate corpo a corpo, defesa, proteção, cura e poderes de punição sagrada.",
+
+    download: "https://www.mediafire.com/file/oqm3dg3h8ubxf6v/Paladin+Spell+Pack.zip/file",
+
+    galeria: [
+        "../imagens/paladin-spell-pack/foto1.jpg",
+        "../imagens/paladin-spell-pack/foto2.jpg",
+        "../imagens/paladin-spell-pack/foto3.jpg"
+    ]
+},
+
+{
+    id: 59,
+
+    nome: "Arcane Assassin",
+
+    categoria: "Arqueiria",
+
+    categorias: ["Arqueiria", "Magias"],
+
+    autor: "PROXiCiDE (convertido por Mods Global)",
+
+    versao: "1.0",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "11/09/2026",
+
+    imagem: "../imagens/mod59.jpg",
+
+    descricao: "Combina magia e furtividade para criar um estilo de assassino arcano. O mod permite canalizar energia mágica através do arco e das flechas, criando novas possibilidades para personagens furtivos.",
+
+    download: "https://www.mediafire.com/file/a339xbyjicw246e/Arcane+Assassin.zip/file",
+
+    galeria: [
+        "../imagens/arcane-assassin/foto1.jpg",
+        "../imagens/arcane-assassin/foto2.jpg",
+        "../imagens/arcane-assassin/foto3.jpg"
+    ]
+},
+
+{
+    id: 60,
+
+    nome: "Eo Geom Summon Swords V1.2 – Lightning Order",
+
+    categoria: "Magias",
+
+    autor: "elysees (convertido por Mods Global)",
+
+    versao: "1.2",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "11/09/2026",
+
+    imagem: "../imagens/mod60.jpg",
+
+    descricao: "Adiciona poderes de invocação de espadas mágicas inspirados no estilo de combate Eo Geom. O mod permite utilizar armas conjuradas e efeitos mágicos para criar um estilo de batalha único.",
+
+    download: "https://www.mediafire.com/file/903fx15wlo5hgyl/Eo+Geom+V+1.2+-+LightningOrder.zip/file",
+
+    galeria: [
+        "../imagens/eo-geom-summon-swords-lightning-order/foto1.jpg",
+        "../imagens/eo-geom-summon-swords-lightning-order/foto2.jpg",
+        "../imagens/eo-geom-summon-swords-lightning-order/foto3.jpg"
+    ]
+},
+
+{
+    id: 61,
+
+    nome: "Sima Mod – Better Lighting V1.6",
+
+    categoria: "Gráficos",
+
+    autor: "Askinnn_80 (convertido por Mods Global)",
+
+    versao: "1.6",
+
+    compatibilidade: "Skyrim Legendary Edition (PS3)",
+
+    data: "11/09/2026",
+
+    imagem: "../imagens/mod61.jpg",
+
+    descricao: "Melhora a iluminação de Skyrim para proporcionar uma aparência visual mais agradável e atmosférica. O mod trabalha com ajustes de iluminação para deixar ambientes e cenas mais imersivos.",
+
+    download: "https://www.mediafire.com/file/pz3uxow9rbqd26u/Sima+Mod-Better+lighting+V+1.6.zip/file",
+
+    galeria: [
+        "../imagens/sima-mod-better-lighting/foto1.jpg",
+        "../imagens/sima-mod-better-lighting/foto2.jpg",
+        "../imagens/sima-mod-better-lighting/foto3.jpg"
+    ]
+},
     
 ];
 
