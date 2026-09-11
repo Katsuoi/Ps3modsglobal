@@ -93,15 +93,29 @@ document.addEventListener("DOMContentLoaded", function() {
                 var url = new URL(a.href, window.location.href);
                 var cat = url.searchParams.get("categoria");
                 if (!cat) return;
+                cat = decodeURIComponent(cat);
                 var qtd = qtdDaCategoria(contagem, cat);
-                var base = a.textContent.replace(/\s*\(\d+\)\s*$/, "").trim();
-                if (a.querySelector("small")) {
-                    base = ((a.childNodes[0] && a.childNodes[0].textContent) || base).replace(/\s*\(\d+\)\s*$/, "").trim();
-                }
-                if (a.closest(".categorias-grid")) {
-                    a.innerHTML = base + "<br><small style='opacity:.7;font-weight:500'>" + qtd + " mod" + (qtd === 1 ? "" : "s") + "</small>";
+
+                // recupera nome limpo
+                var base = cat;
+                if (a.getAttribute("data-cat-nome")) {
+                    base = a.getAttribute("data-cat-nome");
                 } else {
-                    a.textContent = base + " (" + qtd + ")";
+                    var bruto = a.textContent.replace(/\s*\(\d+\)\s*$/, "").replace(/\d+\s*mods?/i, "").trim();
+                    if (bruto) base = bruto;
+                    a.setAttribute("data-cat-nome", base);
+                }
+
+                if (a.closest(".categorias-grid")) {
+                    var zeroClass = qtd === 0 ? " zero" : "";
+                    a.innerHTML =
+                        '<span class="cat-nome">' + base + '</span>' +
+                        '<span class="cat-badge' + zeroClass + '">' + qtd + ' mod' + (qtd === 1 ? '' : 's') + '</span>';
+                } else {
+                    var zeroClass2 = qtd === 0 ? " zero" : "";
+                    a.innerHTML =
+                        '<span class="cat-nome-side">' + base + '</span>' +
+                        '<span class="side-count' + zeroClass2 + '">' + qtd + '</span>';
                 }
             } catch (e) {}
         });
