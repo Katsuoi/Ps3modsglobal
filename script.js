@@ -16,11 +16,62 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
 
 
+    var downloadCounts = {};
+    try {
+        if (window.PS3MODS_API_URL) {
+            var countResponse = await fetch(window.PS3MODS_API_URL + "/api/download-counts");
+            if (countResponse.ok) {
+                var countData = await countResponse.json();
+                downloadCounts = countData.counts || {};
+            }
+        }
+    } catch (countError) {
+        console.warn("Não foi possível carregar as contagens de downloads.", countError);
+    }
+    window.PS3MODS_DOWNLOAD_COUNTS = downloadCounts;
+
     var POR_PAGINA = 20;
     var paginaAtual = 1;
     var listaAtual = [];
     var containerLista = null;
     var listaBase = [];
+    function formatarContagemDownloads(valor) {
+        return new Intl.NumberFormat("pt-BR").format(Math.max(0, Number(valor) || 0));
+    }
+    function atualizarContagensDownloads() {
+        document.querySelectorAll("[data-download-count]").forEach(function(el) {
+            var id = el.getAttribute("data-mod-id");
+            var total = Number(downloadCounts[String(id)] || 0);
+            el.textContent = "↓ " + formatarContagemDownloads(total) + " downloads";
+        });
+        var statDownloads = document.getElementById("stat-downloads");
+        if (statDownloads) {
+            var totalGeral = Object.keys(downloadCounts).reduce(function(soma, id) {
+                return soma + Math.max(0, Number(downloadCounts[id]) || 0);
+            }, 0);
+            statDownloads.textContent = formatarContagemDownloads(totalGeral);
+        }
+    }
+    function registrarCliqueDownload(modId) {
+        var token = localStorage.getItem("ps3member") || "";
+        if (!token || !window.PS3MODS_API_URL) return;
+        fetch(window.PS3MODS_API_URL + "/api/download-counts/" + encodeURIComponent(modId), {
+            method: "POST",
+            headers: {"Authorization": "Bearer " + token},
+            keepalive: true
+        }).then(function(response) {
+            if (!response.ok) return null;
+            return response.json();
+        }).then(function(data) {
+            if (!data || !data.ok) return;
+            downloadCounts[String(modId)] = Number(data.count) || 0;
+            window.PS3MODS_DOWNLOAD_COUNTS = downloadCounts;
+            atualizarContagensDownloads();
+        }).catch(function(error) {
+            console.warn("Não foi possível registrar este download.", error);
+        });
+    }
+
 
     function getFavoritos() {
         try { return JSON.parse(localStorage.getItem("ps3mods_favoritos") || "[]"); }
@@ -259,6 +310,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             '<span class="categoria">' + labelCategoria(mod) + '</span>' +
             '<h3>' + mod.nome + '</h3>' +
             '<p>' + mod.descricao + '</p>' +
+            '<span class="download-count" data-download-count data-mod-id="' + mod.id + '">↓ ' + formatarContagemDownloads(downloadCounts[String(mod.id)] || 0) + ' downloads</span>' +
             '<a class="download" href="mod.html?id=' + mod.id + '">Ver Mod</a>' +
             '<button class="btn-fav" data-fav="' + mod.id + '" onclick="toggleFavorito(' + mod.id + ')">☆ Favoritar</button>';
         return card;
@@ -284,6 +336,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         garantirBotaoMais();
         atualizarInfoPaginacao();
         atualizarBotoesFavorito();
+        atualizarContagensDownloads();
     }
 
     function renderMods(listaMods, container) {
@@ -507,6 +560,10 @@ document.addEventListener("DOMContentLoaded", async function() {
                 capa.decoding = "async";
             }
 
+            var countLabel = document.getElementById("mod-download-count");
+            if (countLabel) countLabel.setAttribute("data-mod-id", mod.id);
+            atualizarContagensDownloads();
+
             var downloadBox = document.getElementById("download-box");
             if (downloadBox) {
                 downloadBox.innerHTML = "";
@@ -542,6 +599,7 @@ document.addEventListener("DOMContentLoaded", async function() {
                             a.textContent = item.nome || "Download";
                             a.style.display = "inline-block";
                             a.style.margin = "6px 8px 6px 0";
+                            a.addEventListener("click", function() { registrarCliqueDownload(mod.id); });
                             downloadBox.appendChild(a);
                         });
                         if (!downloadBox.children.length) downloadBox.textContent = "Nenhum download disponível.";
@@ -577,6 +635,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     // HOME
     var statMods = document.getElementById("stat-mods");
     if (statMods && typeof mods !== "undefined") statMods.textContent = mods.length;
+    atualizarContagensDownloads();
 
     var destaques = document.getElementById("destaques");
     if (destaques && typeof mods !== "undefined") {
@@ -589,6 +648,7 @@ document.addEventListener("DOMContentLoaded", async function() {
                 '<span class="categoria">' + labelCategoria(mod) + '</span>' +
                 '<h3>' + mod.nome + '</h3>' +
                 '<p>' + String(mod.descricao || "").substring(0, 70) + '...</p>' +
+                '<span class="download-count" data-download-count data-mod-id="' + mod.id + '">↓ ' + formatarContagemDownloads(downloadCounts[String(mod.id)] || 0) + ' downloads</span>' +
                 '<a class="download" href="mods/mod.html?id=' + mod.id + '">VER MOD</a>' +
                 '<button class="btn-fav" data-fav="' + mod.id + '" onclick="toggleFavorito(' + mod.id + ')">☆ Favoritar</button>' +
                 '</div>';
@@ -608,6 +668,7 @@ document.addEventListener("DOMContentLoaded", async function() {
                 '<span class="categoria">' + labelCategoria(mod) + '</span>' +
                 '<h3>' + mod.nome + '</h3>' +
                 '<p>' + String(mod.descricao || "").substring(0, 90) + '...</p>' +
+                '<span class="download-count" data-download-count data-mod-id="' + mod.id + '">↓ ' + formatarContagemDownloads(downloadCounts[String(mod.id)] || 0) + ' downloads</span>' +
                 '<a href="mods/mod.html?id=' + mod.id + '">Ler mais →</a>' +
                 '</div></div>';
         });
@@ -652,17 +713,5 @@ document.addEventListener("DOMContentLoaded", async function() {
         });
     }
 
-    // AVISO MOBILE
-    var aviso = document.getElementById("aviso-mobile");
-    var fechar = document.getElementById("fechar-aviso");
-    var isMobile = window.innerWidth <= 900 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    if (aviso && isMobile && !sessionStorage.getItem("avisoMobileOk")) {
-        aviso.style.display = "flex";
-    }
-    if (fechar) {
-        fechar.addEventListener("click", function() {
-            if (aviso) aviso.style.display = "none";
-            sessionStorage.setItem("avisoMobileOk", "1");
-        });
-    }
+
 });
