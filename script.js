@@ -43,12 +43,17 @@ document.addEventListener("DOMContentLoaded", function() {
         return mod.categoria || "";
     }
 
+    function normalizarCategoria(valor) {
+        return String(valor || "").normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLowerCase().trim();
+    }
+
     function matchCategoria(mod, categoria) {
-        var busca = String(categoria || "").toLowerCase();
-        var cat = String(mod.categoria || "").toLowerCase();
-        if (cat.indexOf(busca) !== -1 || busca.indexOf(cat) !== -1) return true;
+        var busca = normalizarCategoria(categoria);
+        var cat = normalizarCategoria(mod.categoria);
+        if (cat && (cat.indexOf(busca) !== -1 || busca.indexOf(cat) !== -1)) return true;
         if (mod.categorias && mod.categorias.some(function(c) {
-            return String(c).toLowerCase().indexOf(busca) !== -1;
+            var nome = normalizarCategoria(c);
+            return nome.indexOf(busca) !== -1 || busca.indexOf(nome) !== -1;
         })) return true;
         if (busca.indexOf("armadura") !== -1 && (mod.genero === "Ambos" || cat === "armaduras")) return true;
         if (busca === "followers" && cat.indexOf("companion") !== -1) return true;
@@ -80,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var busca = nomeBusca.toLowerCase();
         var total = 0;
         Object.keys(contagem).forEach(function(nome) {
-            if (nome.toLowerCase() === busca) total = contagem[nome];
+            if (normalizarCategoria(nome) === normalizarCategoria(busca)) total = contagem[nome];
         });
         return total;
     }
@@ -270,7 +275,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var catUrl = params.get("categoria");
         if (catUrl) {
             for (var i = 0; i < sel.options.length; i++) {
-                if (sel.options[i].value.toLowerCase() === catUrl.toLowerCase()) {
+                if (normalizarCategoria(sel.options[i].value) === normalizarCategoria(catUrl)) {
                     sel.value = sel.options[i].value;
                     break;
                 }
