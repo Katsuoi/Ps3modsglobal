@@ -689,3 +689,53 @@ footer{
   .card-home img,.card-mod img{height:180px}
   .hero-content h2{font-size:36px}
 }
+
+
+/* ===== MODO DESKTOP NO CELULAR =====
+   As páginas usam viewport de 980px no mobile para manter
+   a composição de PC: navegação completa, sidebar e 3 colunas. */
+@media(max-width:700px){
+  html,body{min-width:980px}
+  .container{width:92%;max-width:1320px}
+  .topo{position:relative;height:82px;min-height:82px}
+  .topo .container{
+    height:100%;min-height:82px;padding:0;
+    display:flex;flex-direction:row;flex-wrap:nowrap;
+    justify-content:space-between;align-items:center;gap:14px;
+  }
+  .logo{margin:0;flex:0 0 auto}
+  .logo h1{font-size:18px}
+  .logo h1:before{width:35px;height:35px}
+  .logo span{font-size:9px}
+  nav{
+    order:initial;width:auto;flex:1 1 auto;
+    display:flex;flex-wrap:nowrap;justify-content:center;
+    overflow:visible;gap:1px;padding:0;
+  }
+  nav a{white-space:nowrap;padding:8px 7px;font-size:10px}
+  .search{width:150px;flex:0 0 150px;margin:0}
+  .search input{width:100%;height:35px}
+  .hero{margin-top:0;height:510px;background-position:center 48%}
+  .hero-content{width:580px;max-width:62%;margin-left:6%;text-align:left}
+  .hero-content h2{font-size:48px;letter-spacing:-1.8px}
+  .hero-content p{font-size:14px}
+  .stats-bar{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:26px 0 38px}
+  .stat-item{padding:17px 10px}
+  .stat-item strong{font-size:21px}
+  .home-grid{grid-template-columns:235px minmax(0,1fr);gap:24px}
+  .side-cats{padding:18px 13px}
+  .side-cats a{padding:9px 8px;font-size:11px}
+  .cards-home,.lista-mods{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .card-home img,.card-mod img{height:145px}
+  .card-home h3,.card-mod h3{font-size:12px;padding:9px 10px 3px}
+  .card-home p,.card-mod p{font-size:10px;padding:0 10px 8px}
+  .categoria{font-size:8px;margin:7px 10px 0}
+  .download,.btn-fav{margin-left:10px;margin-right:5px;padding:8px 10px;font-size:9px}
+  .ultimo-card{flex-direction:row;padding:14px!important;gap:14px!important}
+  .ultimo-card img{width:140px;height:92px}
+  .footer{grid-template-columns:2fr 1fr 1fr;gap:24px}
+  .galeria{grid-template-columns:repeat(3,1fr)}
+  .galeria img{height:145px}
+  .categorias-grid{grid-template-columns:repeat(4,1fr)}
+  .banner-pequeno{margin-top:0}
+}
