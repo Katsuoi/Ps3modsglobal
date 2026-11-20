@@ -1,4 +1,20 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
+    // Aplica alterações feitas pelo painel administrativo aos mods antigos.
+    try {
+        if (typeof mods !== "undefined" && window.PS3MODS_API_URL) {
+            var overrideResponse = await fetch(window.PS3MODS_API_URL + "/api/legacy-overrides");
+            if (overrideResponse.ok) {
+                var overrideData = await overrideResponse.json();
+                Object.keys(overrideData.items || {}).forEach(function(id) {
+                    var target = mods.find(function(item) { return Number(item.id) === Number(id); });
+                    if (target) Object.assign(target, overrideData.items[id]);
+                });
+            }
+        }
+    } catch (overrideError) {
+        console.warn("Não foi possível carregar as alterações administrativas do catálogo.", overrideError);
+    }
+
 
     var POR_PAGINA = 20;
     var paginaAtual = 1;
