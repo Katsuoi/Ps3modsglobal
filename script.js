@@ -47,6 +47,64 @@ document.addEventListener("DOMContentLoaded", function() {
         return String(valor || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
     }
 
+    var GRUPOS_BUSCA = [
+        ["follower","followers","companion","companions","compenion","seguidor","seguidores","seguidora","seguidoras","aliado","aliados","npc aliado","npc companheiro"],
+        ["armor","armour","armadura","armaduras"],
+        ["weapon","weapons","arma","armas"],
+        ["spell","spells","magic","magia","magias","feitiço","feitico","feitiços","feiticos"],
+        ["house","houses","home","homes","casa","casas","construção","construcao","construcoes"],
+        ["quest","quests","mission","missions","missão","missao","missoes","aventura","aventuras"],
+        ["graphics","graphic","visual","gráfico","grafico","graficos"],
+        ["creature","creatures","monster","monsters","criatura","criaturas","monstro","monstros"],
+        ["horse","horses","mount","mounts","montaria","montarias","cavalo","cavalos"],
+        ["archery","bow","bows","arco","arcos","arqueiria"]
+    ];
+
+    function distanciaEdicao(a, b) {
+        if (Math.abs(a.length - b.length) > 2) return 99;
+        var prev = [];
+        for (var j = 0; j <= b.length; j++) prev[j] = j;
+        for (var i = 1; i <= a.length; i++) {
+            var cur = [i], min = i;
+            for (var k = 1; k <= b.length; k++) {
+                cur[k] = Math.min(cur[k - 1] + 1, prev[k] + 1, prev[k - 1] + (a[i - 1] === b[k - 1] ? 0 : 1));
+                if (cur[k] < min) min = cur[k];
+            }
+            if (min > 2) return 99;
+            prev = cur;
+        }
+        return prev[b.length];
+    }
+
+    function normalizarBusca(valor) {
+        return String(valor || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
+            .replace(/[^a-z0-9]+/g, " ").trim();
+    }
+
+    function tokenCombina(token, palavras) {
+        if (palavras.some(function(p) { return p === token || p.indexOf(token) === 0 || token.indexOf(p) === 0; })) return true;
+        if (token.length >= 5 && palavras.some(function(p) {
+            return p.length >= 5 && distanciaEdicao(token, p) <= (token.length >= 9 ? 2 : 1);
+        })) return true;
+        for (var i = 0; i < GRUPOS_BUSCA.length; i++) {
+            var grupo = GRUPOS_BUSCA[i].map(normalizarBusca);
+            if (grupo.some(function(alias) { return alias === token || (token.length >= 5 && distanciaEdicao(token, alias) <= 1); })) {
+                if (grupo.some(function(alias) { return palavras.some(function(p) { return p === alias || p.indexOf(alias) === 0 || alias.indexOf(p) === 0; }); })) return true;
+            }
+        }
+        return false;
+    }
+
+    function modCombinaBusca(mod, consulta) {
+        var q = normalizarBusca(consulta);
+        if (!q) return true;
+        var dados = [mod.nome, mod.descricao, mod.categoria, mod.autor, mod.classe, mod.localizacao,
+            mod.tipo, mod.genero, mod.escola, mod.vendedor, mod.casamento, mod.categorias || []].join(" ");
+        var palavras = normalizarBusca(dados).split(/\s+/).filter(Boolean);
+        var tokens = q.split(/\s+/).filter(Boolean);
+        return tokens.every(function(token) { return tokenCombina(token, palavras); });
+    }
+
     function matchCategoria(mod, categoria) {
         var busca = normalizarCategoria(categoria);
         var cat = normalizarCategoria(mod.categoria);
@@ -293,8 +351,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (cat) result = result.filter(function(m) { return matchCategoria(m, cat); });
             if (texto) {
                 result = result.filter(function(m) {
-                    var blob = (m.nome + " " + m.descricao + " " + (m.autor || "") + " " + (m.classe || "") + " " + (m.localizacao || "")).toLowerCase();
-                    return blob.indexOf(texto) !== -1;
+                    return modCombinaBusca(m, texto);
                 });
             }
             if (genero) {
@@ -538,15 +595,19 @@ document.addEventListener("DOMContentLoaded", function() {
                     return;
                 }
                 var filtrados = base.filter(function(m) {
-                    var texto = (m.nome + " " + m.descricao + " " + m.categoria + " " + (m.autor || "")).toLowerCase();
-                    return texto.indexOf(termo) !== -1;
+                    return modCombinaBusca(m, termo);
                 });
                 renderMods(filtrados, containerLista);
                 return;
             }
-            document.querySelectorAll(".card-mod, .card-home").forEach(function(card) {
-                var texto = card.textContent.toLowerCase();
-                card.style.display = (termo === "" || texto.indexOf(termo) !== -1) ? "" : "none";
+            document.querySelectorAll(".card-mod, .card-home, .ultimo-card").forEach(function(card) {
+                var heading = card.querySelector("h3");
+                var nome = heading ? heading.textContent : "";
+                var mod = (typeof mods !== "undefined" ? mods : []).find(function(item) {
+                    return String(item.nome || "").toLowerCase() === nome.toLowerCase();
+                });
+                var match = termo === "" || (mod ? modCombinaBusca(mod, termo) : normalizarBusca(card.textContent).indexOf(normalizarBusca(termo)) !== -1);
+                card.style.display = match ? "" : "none";
             });
         });
     }
