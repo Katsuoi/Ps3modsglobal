@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gerador de Mods - PS3ModsGlobal</title>
+<title>Gerador de Mods - Jogos Mods Global</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Segoe UI,Arial,sans-serif;background:#0b0e14;color:#e8eaed;padding:16px 12px 100px}
@@ -89,7 +89,7 @@ pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;w
 
     <label>Autor</label>
     <input id="autor" placeholder="Autor original">
-    <p class="hint">Se vazio: Convertido por PS3ModsGlobal</p>
+    <p class="hint">Se vazio: Convertido por Jogos Mods Global</p>
 
     <label>Data</label>
     <input id="data">
@@ -299,9 +299,9 @@ pre{background:#0e131b;border:1px solid #1c2330;border-radius:8px;padding:12px;w
     var id=val('id');
     var nome=val('nome');
     var versao=val('versao')||'1.0';
-    var autor=val('autor')||'Convertido por PS3ModsGlobal';
+    var autor=val('autor')||'Convertido por Jogos Mods Global';
     if(autor.toLowerCase().indexOf('convertido')===-1 && autor.toLowerCase().indexOf('ps3mods')===-1){
-      autor=autor+' (convertido por PS3ModsGlobal)';
+      autor=autor+' (convertido por Jogos Mods Global)';
     }
     var data=val('data')||today();
     var capa=val('capa')||('mod'+id+'.jpg');
