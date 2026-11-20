@@ -494,26 +494,37 @@ document.addEventListener("DOMContentLoaded", function() {
             var downloadBox = document.getElementById("download-box");
             if (downloadBox) {
                 downloadBox.innerHTML = "";
-                if (mod.downloads && mod.downloads.length) {
-                    mod.downloads.forEach(function(item) {
-                        var a = document.createElement("a");
-                        a.className = "download";
-                        a.href = item.link;
-                        a.target = "_blank";
-                        a.rel = "noopener noreferrer";
-                        a.textContent = item.nome || "Download";
-                        a.style.display = "inline-block";
-                        a.style.margin = "6px 8px 6px 0";
-                        downloadBox.appendChild(a);
+                var token = localStorage.getItem("ps3member") || "";
+                var notice = document.createElement("p");
+                notice.textContent = "Faça login para liberar os links de download.";
+                downloadBox.appendChild(notice);
+                var loginLink = document.createElement("a");
+                loginLink.className = "download";
+                loginLink.href = "../membro.html";
+                loginLink.textContent = "Entrar / Criar perfil";
+                downloadBox.appendChild(loginLink);
+                if (token && window.PS3MODS_API_URL) {
+                    fetch(window.PS3MODS_API_URL + "/api/auth/me", {headers: {"Authorization": "Bearer " + token}})
+                    .then(function(r) { if (!r.ok) throw new Error("Sessão expirada"); return r.json(); })
+                    .then(function() {
+                        downloadBox.innerHTML = "";
+                        var links = mod.downloads && mod.downloads.length ? mod.downloads : (mod.download ? [{nome:"DOWNLOAD",link:mod.download}] : []);
+                        if (!links.length) { downloadBox.textContent = "Nenhum download disponível."; return; }
+                        links.forEach(function(item) {
+                            var a = document.createElement("a");
+                            a.className = "download";
+                            a.href = item.link;
+                            a.target = "_blank";
+                            a.rel = "noopener noreferrer";
+                            a.textContent = item.nome || "Download";
+                            a.style.display = "inline-block";
+                            a.style.margin = "6px 8px 6px 0";
+                            downloadBox.appendChild(a);
+                        });
+                    })
+                    .catch(function() {
+                        notice.textContent = "Sua sessão expirou. Entre novamente para baixar.";
                     });
-                } else if (mod.download) {
-                    var a = document.createElement("a");
-                    a.className = "download";
-                    a.href = mod.download;
-                    a.target = "_blank";
-                    a.rel = "noopener noreferrer";
-                    a.textContent = "DOWNLOAD";
-                    downloadBox.appendChild(a);
                 }
             }
 
