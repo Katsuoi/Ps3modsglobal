@@ -13,7 +13,7 @@ const mods = [
     classe: "Guerreira",
     imagem: "../imagens/mod1.jpg",
     descricao: "Uma guerreira enigmática e poderosa, pronta para acompanhar o Dovahkiin em qualquer aventura..",
-    download: "https://www.mediafire.com/file/gw9ssk3ib6shs2i/Light+And+Shade.zip/file",
+    
     galeria: [
         "../imagens/follower light and shade/foto1.jpg",
         "../imagens/follower light and shade/foto2.jpg",
@@ -34,7 +34,7 @@ const mods = [
     classe: "Guerreira",
     imagem: "../imagens/mod2.jpg",
     descricao: "Adiciona Sha, uma seguidora personalizada localizada na Sleeping Giant Inn em Riverwood.",
-    download: "https://www.mediafire.com/file/010wvpidoqpkm59/YuiH_StandAlone_Follower_-_Sha_v1_1_%2528Renewal%2529_UNP.zip/file",
+    
     galeria: [
         "../imagens/YuiH-Standalone-Follower/foto1.jpg",
         "../imagens/YuiH-Standalone-Follower/foto2.jpg",
@@ -55,7 +55,7 @@ const mods = [
     classe: "Maga",
     imagem: "../imagens/mod3.jpg",
     descricao: "Conheça Misty, uma linda meio-elfa Nord e maga estudiosa do Colégio de Winterhold.",
-    download: "https://www.mediafire.com/file/jpz1ed368o7qlq8/Teyla+Elf.zip/file",
+    
     galeria: [
         "../imagens/Teyla-Nord-Half-Elf/foto1.jpg",
         "../imagens/Teyla-Nord-Half-Elf/foto2.jpg",
@@ -76,7 +76,7 @@ const mods = [
     classe: "guerreira",
     imagem: "../imagens/mod4.jpg",
     descricao: "Apresentamos Rebecca, uma seguidora elegante e letal, com um visual marcante. Perfeita para quem quer estilo e poder ao lado durante as aventuras em Skyrim.",
-    download: "https://www.mediafire.com/file/3dy8ix0wv7n6akk/Rebeca.7z/file",
+    
     galeria: [
         "../imagens/Overknee-Rebecca-Follower/foto1.jpg",
         "../imagens/Overknee-Rebecca-Follower/foto2.jpg",
@@ -97,7 +97,7 @@ const mods = [
     classe: "Maga de Restauração",
     imagem: "../imagens/mod5.jpg",
     descricao: "Uma curandeira experiente e companheira leal, dedicada a proteger seus aliados com poderosas magias de Restauração.",
-    download: "https://www.mediafire.com/file/ztr7im4bkmbng65/Myrcella+Follower+-+CBBE++(1).zip/file",
+    
     galeria: [
         "../imagens/Myrcella-Standalone-Healer-Follower/foto1.jpg",
         "../imagens/Myrcella-Standalone-Healer-Follower/foto2.jpg",
@@ -118,7 +118,7 @@ const mods = [
     classe: "Maga de Destruição",
     imagem: "../imagens/mod6.jpg",
     descricao: "Conheça Lili, uma seguidora fofa e leal, pronta para acompanhar você em qualquer jornada por Skyrim.",
-    download: "https://www.mediafire.com/file/5k8k9qyh7sw0fgf/LiliFollowerVer(YoungEager).zip/file",
+    
     galeria: [
         "../imagens/Lili-Follower/foto1.jpg",
         "../imagens/Lili-Follower/foto2.jpg",
@@ -151,7 +151,7 @@ const mods = [
 
     descricao: "Cinco seguidoras independentes com visual UNPB, cada uma localizada em uma cidade diferente de Skyrim e prontas para acompanhar o Dovahkiin em suas aventuras",
 
-    download: "https://www.mediafire.com/file/010wvpidoqpkm59/YuiH_StandAlone_Follower_-_Sha_v1_1_%2528Renewal%2529_UNP.zip/file",
+    
 
     galeria: [
         "../imagens/box66followersle/foto1.jpg",
@@ -185,7 +185,7 @@ const mods = [
 
     descricao: "Frederica é uma descendente de lendários caçadores de dragões, empunhando uma espada de duas mãos e treinada para derrotar as criaturas mais poderosas de Skyrim.",
 
-    download: "https://www.mediafire.com/file/pmlq1g41ug4x85g/fredrica+the+Dragon+Slayer+(1).7z/file",
+    
 
     galeria: [
         "../imagens/frederica-the-dragonslayer/foto1.jpg",
@@ -219,7 +219,7 @@ const mods = [
 
     descricao: "Kaitlyn é uma guerreira confiante e habilidosa, pronta para acompanhar o Dovahkiin em qualquer jornada. Sua aparência elegante contrasta com seu eficiente estilo de combate",
 
-    download: "https://www.mediafire.com/file/j4fw7rzvpkrzbz2/Overknee_Kaitlyn+(1).zip/file",
+    
 
     galeria: [
         "../imagens/kaitlyn-follower/foto1.jpg",
@@ -253,7 +253,7 @@ const mods = [
 
     descricao: "Ariel é uma jovem sereia determinada que deixou Atlântica em busca de aventuras e do seu verdadeiro amor. Especialista em Conjuração, é uma companheira mágica e leal",
 
-    download: "https://www.mediafire.com/file/ct29d7nr0kvn2z2/MOD+Ariel+Mermaid.zip/file",
+    
 
     galeria: [
         "../imagens/ariel-mermaid/foto1.jpg",
@@ -287,7 +287,7 @@ const mods = [
 
     descricao: "Uma seguidora Nord independente com visual inspirado em anime, criada para jogadores que procuram uma companheira forte e de aparência personalizada, sem adicionar missões ou histórias complexas",
 
-    download: "https://www.mediafire.com/file/25fkvfx08l1a7fz/Youko.zip/file",
+    
 
     galeria: [
         "../imagens/youko-follower/foto1.jpg",
@@ -324,7 +324,7 @@ const mods = [
 
     descricao: "Um pequeno droide Dwemer inspirado no BB-8 de Star Wars que acompanha o jogador oferecendo diversas ferramentas úteis em vez de lutar.",
 
-    download: "https://www.mediafire.com/file/faj1z0ggh02klge/Droid+Seguidor+-+Star+Wars.zip/file",
+    
 
     galeria: [
         "../imagens/snippy-droid-follower/foto1.jpg",
@@ -360,7 +360,7 @@ const mods = [
 
     descricao: "Adiciona Ahsoka Tano, de Star Wars: The Clone Wars, como uma seguidora personalizada",
 
-    download: "https://www.mediafire.com/file/8p6y5baobsfxvpf/SEGUIDORA+AHSOKA+(REINA+ROJA).zip/file",
+    
 
     galeria: [
         "../imagens/ahsoka-tano-follower-star-wars/foto1.jpg",
@@ -395,7 +395,7 @@ const mods = [
 
     descricao: "Vilja é uma jovem barda totalmente dublada que pode acompanhar o jogador em Skyrim. O mod vai muito além de adicionar uma seguidora comum, oferecendo uma longa linha de quests, diálogos, interações, romance opcional, cavalo próprio e diversos sistemas de comportamento",
 
-    download: "https://www.mediafire.com/file/657g7wi39oxgx2x/Vilja_ptbr.zip/file",
+    
 
     galeria: [
         "../imagens/vilja-in-skyrim/foto1.jpg",
@@ -429,7 +429,7 @@ const mods = [
 
     descricao: "Adiciona Dinok, um Sacerdote Dragão nórdico, como seguidor recrutável em Windhelm. Ele possui equipamentos, máscara, magias e gritos próprios, além de ser essencial e casável",
 
-    download: "https://www.mediafire.com/file/r5x02roru6ex2ft/Dinok+Follower+1.1.zip/file",
+    
 
     galeria: [
         "../imagens/dinok-dragon-priest-follower/foto1.jpg",
@@ -463,7 +463,7 @@ const mods = [
 
     descricao: "Adiciona a seguidora feminina Leticia, criada com High Poly Head, ao Skyrim. Ela pode ser encontrada na hospedaria Bannered Mare, em Whiterun",
 
-    download: "https://www.mediafire.com/file/m7rlglxhebrhtd4/Letícia+(1).zip/file",
+    
 
     galeria: [
         "../imagens/leticia-follower/foto1.jpg",
@@ -497,7 +497,7 @@ const mods = [
 
     descricao: "Adiciona duas seguidoras independentes, Hanako e Nanako, com estética japonesa/anime. Ambas são essenciais, podem ser recrutadas em Dragon Bridge e podem se casar com o jogador",
 
-    download: "https://www.mediafire.com/file/rddzga2vbjmsbxx/Follower+-+Hanako+and+Nanako+(1).zip/file",
+    
 
     galeria: [
         "../imagens/follower-hanako-and-nanako/foto1.jpg",
@@ -531,7 +531,7 @@ const mods = [
 
     descricao: "Expande drasticamente a personagem Serana, adicionando milhares de novas falas totalmente dubladas, novos diálogos durante quests, comentários sobre locais, romance, interações com outros NPCs e diversas novas funcionalidades de seguidora",
 
-    download: "https://www.mediafire.com/file/jy2u0jlsrxfl4hl/Serana+novos+dialogos.zip/file",
+    
 
     galeria: [
         "../imagens/serena-dialogue-add-on/foto1.jpg",
@@ -566,16 +566,7 @@ const mods = [
 
     descricao: "Sofia é uma seguidora totalmente dublada, com personalidade própria, sistema de diálogo avançado e muitos comentários sobre o jogador, quests e ambientes. Ela também possui sistemas próprios de relacionamento, bebida, canto, cavalo e armazenamento.",
 
-    downloads: [
-        {
-            nome: "Download (Com dublagem )",
-            link: "https://www.mediafire.com/file/09djbgaetg7omrm/Sofia+follower+dublagem+ptbr.zip/file"
-        },
-        {
-            nome: "Download (sem dublagem en)",
-            link: "https://www.mediafire.com/file/svrssdof4wvjmh8/Sofia+follower+sem+dublagem.zip/file"
-        }
-    ],
+    
 
     galeria: [
         "../imagens/sofia-the-funny-fully-voiced-follower/foto1.jpg",
@@ -609,7 +600,7 @@ const mods = [
 
     descricao: "Adiciona a seguidora Verity ao Skyrim, com versões para diferentes corpos e suporte a High Poly Head/RaceMenu. O mod também inclui um preset de RaceMenu da personagem.",
 
-    download: "https://www.mediafire.com/file/ed34ogm9ow2ajta/Verity+Follower+CBBE+LE.zip/file",
+    
 
     galeria: [
         "../imagens/verity-follower-cbbe/foto1.jpg",
@@ -642,7 +633,7 @@ const mods = [
 
     descricao: "Adiciona Mango, uma seguidora feminina independente, que foi capturada por bandidos e está presa em Embershard Mine",
 
-    download: "https://www.mediafire.com/file/qqi14k8qun9lh5c/Mango.zip/file",
+    
 
     galeria: [
         "../imagens/mango-follower/foto1.jpg",
@@ -678,7 +669,7 @@ const mods = [
 
     descricao: "Adiciona ao Skyrim a armadura Seraphine, baseada na armadura do jogo Hunted: The Demon's Forge. É uma armadura leve para personagens femininas, com versões para CBBE e UNP.",
 
-    download: "https://www.mediafire.com/file/myfme96jpdyryg3/SeraphineArmor.zip/file",
+    
 
     galeria: [
         "../imagens/seraphine-armor/foto1.jpg",
@@ -714,7 +705,7 @@ const mods = [
 
     descricao: "Adiciona a segunda versão da armadura de Demon Hunter inspirada na arte conceitual da Demon Hunter feminina de Diablo III. A armadura é feminina, pode ser fabricada, aprimorada e encantada.",
 
-    download: "https://www.mediafire.com/file/troa99xdgjxo6ki/Demon+Hunter+v2+-+(CBBEv3).zip/file",
+    
 
     galeria: [
         "../imagens/demon-hunter-armor-v2/foto1.jpg",
@@ -750,7 +741,7 @@ const mods = [
 
     descricao: "Adiciona um conjunto de armadura feminina inspirado em uma temática de súcubo/Lilith, com visual bastante sensual e elementos como chifres, asas e salto alto. O conjunto foi criado para CBBE e é uma armadura leve.",
 
-    download: "https://www.mediafire.com/file/fthpilzwvlwdg0k/Dark+Lilith+Armor.zip/file",
+    
 
     galeria: [
         "../imagens/dark-lilith-sexy-armor-for-cbbe/foto1.jpg",
@@ -786,7 +777,7 @@ const mods = [
 
     descricao: "Adiciona ao Skyrim a armadura usada por Alyn Shir em Kingdoms of Amalur: Reckoning. É uma armadura leve feminina com versões para CBBE e unp",
 
-    download: "https://www.mediafire.com/file/1y0san3kd38rj9j/AylinShir.zip/file",
+    
 
     galeria: [
         "../imagens/alyn-shir-armor/foto1.jpg",
@@ -822,7 +813,7 @@ const mods = [
 
     descricao: "Adiciona um conjunto de roupas íntimas femininas ao Skyrim, desenvolvido para os corpos UNP e CBBE V3",
 
-    download: "https://www.mediafire.com/file/vslx3v0u0yb4m9b/R18Pn+Set+-+Inner+Wear+Set+for+CBBEV3+v1.2.zip/file",
+    
 
     galeria: [
         "../imagens/r18pn-set-inner-wear-set-for-cbbev3/foto1.jpg",
@@ -857,7 +848,7 @@ const mods = [
 
     descricao: "Conjunto de armadura feminina em estilo bondage/latex, com visual vermelho e preto.",
 
-    download: "https://www.mediafire.com/file/lpj32b98gq86g3w/Gatti3Evilrose+(1).zip/file",
+    
 
     galeria: [
         "../imagens/gatti-03-evilrose-armor/foto1.jpg",
@@ -893,7 +884,7 @@ const mods = [
 
     descricao: "Adiciona ao Skyrim a Dynasty Armor para personagens femininas usando CBBE, com várias versões de cobertura, incluindo a original, skimpy e super skimpy.",
 
-    download: "https://www.mediafire.com/file/rw7756g8w8q3wxn/Dynasty+White+Armor+-+CBBE+v2.zip/file",
+    
 
     galeria: [
         "../imagens/dynasty-white-armor-cbbe-v2/foto1.jpg",
@@ -929,7 +920,7 @@ const mods = [
 
     descricao: "Adiciona uma armadura feminina de caçadora de demônios, com versões leve e pesada. O mod possui suporte para vários corpos, incluindo UNP e CBBE",
 
-    download: "https://www.mediafire.com/file/0yagkzwfq1o5cij/Armadura+de+Cazador+de+Demônios+(1).zip/file",
+    
 
     galeria: [
         "../imagens/demon-hunter-armor/foto1.jpg",
@@ -965,7 +956,7 @@ const mods = [
 
     descricao: "Adiciona ao Skyrim uma armadura feminina inspirada em Satsuki, da obra Kikou Shoujo wa Kizutsukanai / Valkyrie Complex? A fonte histórica identifica o conjunto como Gatti 04 Satsuki Armor e confirma que é uma armadura feminina CBBE para Skyrim LE.",
 
-    download: "https://www.mediafire.com/file/vinc3frgeruo9gi/Gatti4Satsuki+(1).zip/file",
+    
 
     galeria: [
         "../imagens/gatti-04-satsuki-armor/foto1.jpg",
@@ -1000,7 +991,7 @@ const mods = [
 
     descricao: "Armadura feminina pesada inspirada em equipamentos de Final Fantasy XI, com aparência medieval/fantástica e várias opções de configuração",
 
-    download: "https://www.mediafire.com/file/8u8o6h8huoumvib/EisenPlatteRoyal.zip/file",
+    
 
     galeria: [
         "../imagens/r18pn-01-eisen-platte-armor-for-unp-and-cbbe/foto1.jpg",
@@ -1036,7 +1027,7 @@ const mods = [
 
     descricao: "Adiciona ao Skyrim uma armadura feminina temática de súcubo, com asas e meias, criada originalmente para CBBEv3M. O conjunto é craftável e possui opções para remover as asas e alterar alguns elementos da aparência",
 
-    download: "https://www.mediafire.com/file/mejpr6vovhtz0ks/Succubus+Armor+by+Hentai.zip/file",
+    
 
     galeria: [
         "../imagens/succubus-armor-by-hentai/foto1.jpg",
@@ -1072,7 +1063,7 @@ const mods = [
 
     descricao: "Adiciona ao Skyrim uma armadura feminina inspirada na Katarina de League of Legends. A versão original para LE foi criada para o corpo UNP e é uma armadura leve.",
 
-    download: "https://www.mediafire.com/file/h2ts8kw1bsxc4bj/KATARINA.zip/file",
+    
 
     galeria: [
         "../imagens/katarina-armor/foto1.jpg",
@@ -1108,7 +1099,7 @@ const mods = [
 
     descricao: "Adiciona dois conjuntos de armadura pesada em alta resolução: Medusa, exclusiva para personagens femininas, e Drakul, exclusiva para personagens masculinos. Também adiciona o dragão Thanatos, que substitui o Odahviing",
 
-    download: "https://www.mediafire.com/file/avrkpn5fsx0egen/Medusa+Drakul+armors.zip/file",
+    
 
     galeria: [
         "../imagens/medusa-drakul-armors-and-thanatos-dragon/foto1.jpg",
@@ -1145,7 +1136,7 @@ const mods = [
 
     descricao: "Adiciona duas armaduras femininas de fantasia ao Skyrim, ambas desenvolvidas para o corpo CBBEv3 Curvy. Cada conjunto possui diferentes variações de aparência e cobertura, permitindo escolher entre estilos mais completos ou mais reveladores.",
 
-    download: "https://www.mediafire.com/file/y2c8059xy3pk3dw/BBD_AngelVixenArmor+(atualizado).zip/file",
+    
 
     galeria: [
         "../imagens/angel-vixen-armor-cbbev3-curvy/foto1.jpg",
@@ -1183,7 +1174,7 @@ const mods = [
 
     descricao: "Adiciona um conjunto de armadura leve para ladinas, ladras, foras da lei e aventureiras. O conjunto é standalone, compatível com qualquer raça e possui visual baseado em equipamentos de couro, com estatísticas equilibradas.",
 
-    download: "https://www.mediafire.com/file/t4sjljpz6shckay/ARMADURA+GEMIO+DE+LADRONES+[SKYRIM+PS3].zip/file",
+    
 
     galeria: [
         "../imagens/rogue-armor/foto1.jpg",
@@ -1219,7 +1210,7 @@ const mods = [
 
     descricao: "Adiciona um conjunto de armadura leve de couro feminina, composto por 19 peças e disponível em 6 cores diferentes.",
 
-    download: "https://www.mediafire.com/file/7rbicwjb34mzkoc/Ahlanna+Armor7z.zip/file",
+    
 
     galeria: [
         "../imagens/ashtoreth-ahlanna-armor/foto1.jpg",
@@ -1255,7 +1246,7 @@ const mods = [
 
     descricao: "Adiciona uma armadura feminina modular inspirada em um traje de fantasia/combate, com várias peças que podem ser combinadas livremente",
 
-    download: "https://www.mediafire.com/file/gt0hx09ggrtfwbw/MIDNIGTBREED.zip/file",
+    
 
     galeria: [
         "../imagens/midnight-breed-armor/foto1.jpg",
@@ -1291,7 +1282,7 @@ const mods = [
 
     descricao: "Adiciona um conjunto completo de armadura pesada de aço inspirada em Sovngarde, com visual nórdico/fantástico e várias peças complementares. A V2 adiciona novas malhas e texturas, corrige problemas de crafting e inclui espada, escudo, capa e amuleto junto da armadura",
 
-    download: "https://www.mediafire.com/file/70rzukdorqef2s4/Sovngarde_Steel_Armor_-_Version_2_-_CBBEv3.zip/file",
+    
 
     galeria: [
         "../imagens/lustdesign-sovngarde-steel-armor-v2/foto1.jpg",
@@ -1327,7 +1318,7 @@ const mods = [
 
     descricao: "Adiciona um conjunto de bikini/roupa íntima feminina em camadas, desenvolvido para UNP e CBBE.",
 
-    download: "https://www.mediafire.com/file/nczif7kptmbds9b/Layer+Bikini+(1).zip/file",
+    
 
     galeria: [
         "../imagens/layer-bikini-unp-and-cbbe/foto1.jpg",
@@ -1364,7 +1355,7 @@ const mods = [
 
     descricao: "Adiciona um grande conjunto de armaduras leves de estilo medieval/florestal, com aparência de caçadora/arqueira. O conjunto é altamente modular, possui 17 peças principais, 6 complementos de pele e uma peruca para o capuz, além de seis cores diferentes.",
 
-    download: "https://www.mediafire.com/file/py175bqtqe5jjb1/Princes_of_the_Woods.zip/file",
+    
 
     galeria: [
         "../imagens/ashara-s-princes-of-the-woods/foto1.jpg",
@@ -1400,7 +1391,7 @@ const mods = [
 
     descricao: "Adiciona um conjunto de armadura e roupas femininas inspirado no mod Wine Duchess de SmolSaltLemon. A versão LE possui 14 itens",
 
-    download: "https://www.mediafire.com/file/0yagkzwfq1o5cij/Armadura_de_Cazador_de_Dem%25C3%25B4nios_%25281%25",
+    
 
     galeria: [
         "../imagens/wine-duchess-le-by-xtudo/foto1.jpg",
@@ -1436,7 +1427,7 @@ const mods = [
 
     descricao: "Adiciona uma armadura feminina de estilo assassina/ladina, com visual inspirado em trabalhos artísticos e jogos como Assassin's Creed. O conjunto possui texturas em alta definição e diferentes versões para corpos femininos, além de variações de cores.",
 
-    download: "https://www.mediafire.com/file/k0x99hm7juewchu/ScarletDawnArmor.zip/file",
+    
 
     galeria: [
         "../imagens/scarlet-dawn-armor/foto1.jpg",
@@ -1473,7 +1464,7 @@ const mods = [
 
     descricao: "Adiciona uma nova roupa/armadura feminina inspirada em equipamento de espionagem do Thalmor.",
 
-    download: "https://www.mediafire.com/file/j1pks6a6g198tpe/Swift+Armor.zip/file",
+    
 
     galeria: [
         "../imagens/one-winged-swift-outfit/foto1.jpg",
@@ -1509,7 +1500,7 @@ const mods = [
 
     descricao: "Adiciona um conjunto de armadura de couro feminina inspirado na estética Coloviana, com versões de armadura e roupa e diversas peças modulares. A versão 2 possui 15 itens disponíveis no jogo, incluindo opções com/sem ombreiras e com/sem saia.",
 
-    download: "https://",
+    
 
     galeria: [
         "../imagens/colovian-leather-armor-v2/foto1.jpg",
@@ -1545,7 +1536,7 @@ const mods = [
 
     descricao: "Pacote que converte para Skyrim vários equipamentos originalmente criados para TES IV: Oblivion, reunindo armaduras, roupas, vestidos e capas em um único mod. A versão LE é voltada principalmente para CBBE, embora a maioria das peças possa ser usada com UNP.",
 
-    download: "https://www.mediafire.com/file/v0zhbjrqnnd2k2h/Tes4mod.zip/file",
+    
 
     galeria: [
         "../imagens/tes4mod-for-skyrim/foto1.jpg",
@@ -1581,16 +1572,7 @@ const mods = [
 
     descricao: "Adiciona a Gatti 07 Siggy Armor, uma armadura feminina leve para CBBEv3, com suporte ao Weight Slider e diversas peças de equipamento. O mod também inclui a Royal ReTexture, que oferece uma aparência alternativa e mais refinada para o conjunto original, mantendo seus modelos e características.",
 
-    downloads: [
-        {
-            nome: "Original",
-            link: "https://www.mediafire.com/file/j8mfbc46nlsbk2t/Gatti_07_Siggy_v1_normal.zip/file"
-        },
-        {
-            nome: "Retexture",
-            link: "https://www.mediafire.com/file/wiken16uxpv2ume/Gatti_07_Siggy_Royal-_textura_modificada.zip/file"
-        }
-    ],
+    
 
     galeria: [
         "../imagens/gatti-07-siggy-armor-for-cbbev3-royal-retexture/foto1.jpg",
@@ -1626,7 +1608,7 @@ const mods = [
 
     descricao: "Adiciona o conjunto Ivory Hunter Armor, uma armadura feminina de fantasia acompanhada de uma espada de uma mão e asas.",
 
-    download: "https://www.mediafire.com/file/0561crtmcbdzbxp/Ivory_Hunter_CBBE.zip/file",
+    
 
     galeria: [
         "../imagens/ivory-hunter-armor-and-weapon-cbbe/foto1.jpg",
@@ -1664,7 +1646,7 @@ const mods = [
 
     descricao: "Adiciona um conjunto de equipamentos independente voltado para personagens do tipo ranger e arqueiros. O conjunto não substitui as armaduras vanilla",
 
-    download: "https://www.mediafire.com/file/oy55j367pzemy67/Shadow+Ranger+Gear+Official+Release+(1).zip/file",
+    
 
     galeria: [
         "../imagens/shadow-ranger-gear/foto1.jpg",
@@ -1692,7 +1674,7 @@ const mods = [
 
     descricao: "O MGO (Magical Gameplay Overhaul) reformula profundamente o sistema de magia de Skyrim. As magias se tornam mais impactantes, o combate mágico fica mais dinâmico e as escolas de magia ganham maior utilidade.",
 
-    download: "COLE_O_LINK_AQUI",
+    
 
     galeria: [
         "../imagens/mgo-revisao-da-jogabilidade-magica/foto1.jpg",
@@ -1720,7 +1702,7 @@ const mods = [
 
     descricao: "Adiciona um sistema de magia de sangue que permite utilizar a própria vida para lançar poderosos feitiços. Possui os caminhos Blood Knight, Vampire Hunter e Blood Mage, além de 30 magias exclusivas.",
 
-    download: "https://www.mediafire.com/file/2txhvu0lyb1bafq/Ace+Blood+Magic-.zip/file",
+    
 
     galeria: [
         "../imagens/ace-blood-magic/foto1.jpg",
@@ -1748,7 +1730,7 @@ const mods = [
 
     descricao: "Permite utilizar poderes de magia de sangue enquanto estiver em forma humana. As habilidades, feitiços e vantagens consomem saúde ou poder vital, incluindo efeitos como Blood Drain e Blood Cloud.",
 
-    download: "https://www.mediafire.com/file/n1g6cnw5q40isuu/BloodMagicEvolved-.zip/file",
+    
 
     galeria: [
         "../imagens/blood-magic-evolved/foto1.jpg",
@@ -1776,7 +1758,7 @@ const mods = [
 
     descricao: "Mysticism reformula o sistema de magia de Skyrim, corrigindo problemas das magias originais e preenchendo lacunas de progressão. Também adiciona feitiços inspirados em outros jogos da série Elder Scrolls, mantendo a estética e a mecânica do jogo.",
 
-    download: "https://www.mediafire.com/file/amb9ob89m4m8c9l/Mysticism.zip/file",
+    
 
     galeria: [
         "../imagens/mysticism/foto1.jpg",
@@ -1804,7 +1786,7 @@ const mods = [
 
     descricao: "Adiciona mais de 400 novos feitiços únicos para diferentes escolas de magia. O mod oferece estilos variados, incluindo magia elemental, controle, manipulação, teletransporte e poderes relacionados ao tempo.",
 
-    download: "https://www.mediafire.com/file/e49r8pye47slbsy/Phenderix+Magic+Evolved+-+Featured+Mod+Update+pt+br.zip/file",
+    
 
     galeria: [
         "../imagens/phenderix-magic-evolved/foto1.jpg",
@@ -1834,7 +1816,7 @@ const mods = [
 
     descricao: "Reformula completamente as árvores de vantagens de Skyrim, adicionando centenas de novas habilidades criativas e equilibradas. O sistema proporciona uma progressão de personagem muito mais profunda e diversificada.",
 
-    download: "https://www.mediafire.com/file/twn2981hye7dsb/ordenator+otimizado.ptbr.zip/file",
+    
 
     galeria: [
         "../imagens/ordinator-perks-of-skyrim/foto1.jpg",
@@ -1862,7 +1844,7 @@ const mods = [
 
     descricao: "Adiciona cerca de 175 novos feitiços únicos e de alta qualidade ao Skyrim. As magias possuem efeitos visuais personalizados e foram desenvolvidas para se integrar ao sistema mágico original do jogo.",
 
-    download: "https://www.mediafire.com/file/zf1b4wwq76unz81/Apocalypse+pt+br.zip/file",
+    
 
     galeria: [
         "../imagens/apocalypse-magic-of-skyrim/foto1.jpg",
@@ -1890,7 +1872,7 @@ const mods = [
 
     descricao: "Adiciona um poder especial capaz de invocar quatro assassinos da Irmandade Sombria por tempo limitado. Os assassinos são treinados, possuem versões masculinas e femininas e evoluem automaticamente com o jogador.",
 
-    download: "https://www.mediafire.com/file/w6774b49oquv9l5/Call+Assassins.zip/file",
+    
 
     galeria: [
         "../imagens/call-assassins/foto1.jpg",
@@ -1918,7 +1900,7 @@ const mods = [
 
     descricao: "Adiciona 43 novos feitiços de Restauração voltados para personagens com estilo de paladino. O pacote combina combate corpo a corpo, defesa, proteção, cura e poderes de punição sagrada.",
 
-    download: "https://www.mediafire.com/file/oqm3dg3h8ubxf6v/Paladin+Spell+Pack.zip/file",
+    
 
     galeria: [
         "../imagens/paladin-spell-pack/foto1.jpg",
@@ -1948,7 +1930,7 @@ const mods = [
 
     descricao: "Combina magia e furtividade para criar um estilo de assassino arcano. O mod permite canalizar energia mágica através do arco e das flechas, criando novas possibilidades para personagens furtivos.",
 
-    download: "https://www.mediafire.com/file/a339xbyjicw246e/Arcane+Assassin.zip/file",
+    
 
     galeria: [
         "../imagens/arcane-assassin/foto1.jpg",
@@ -1976,7 +1958,7 @@ const mods = [
 
     descricao: "Adiciona poderes de invocação de espadas mágicas inspirados no estilo de combate Eo Geom. O mod permite utilizar armas conjuradas e efeitos mágicos para criar um estilo de batalha único.",
 
-    download: "https://www.mediafire.com/file/903fx15wlo5hgyl/Eo+Geom+V+1.2+-+LightningOrder.zip/file",
+    
 
     galeria: [
         "../imagens/eo-geom-summon-swords-lightning-order/foto1.jpg",
@@ -2004,7 +1986,7 @@ const mods = [
 
     descricao: " O Better Lighting (Sima Mod) aprimora a iluminação de personagens e NPCs, adicionando luzes sutis e dinâmicas que destacam o rosto e o corpo, dando um visual mais realista e cinematográfico.",
 
-    download: "https://www.mediafire.com/file/pz3uxow9rbqd26u/Sima+Mod-Better+lighting+V+1.6.zip/file",
+    
 
     galeria: [
         "../imagens/sima-mod-better-lighting/foto1.jpg",
