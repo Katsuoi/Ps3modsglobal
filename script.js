@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function normalizarCategoria(valor) {
-        return String(valor || "").normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLowerCase().trim();
+        return String(valor || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
     }
 
     function matchCategoria(mod, categoria) {
