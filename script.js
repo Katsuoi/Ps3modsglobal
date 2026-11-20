@@ -495,22 +495,29 @@ document.addEventListener("DOMContentLoaded", function() {
             if (downloadBox) {
                 downloadBox.innerHTML = "";
                 var token = localStorage.getItem("ps3member") || "";
-                var notice = document.createElement("p");
-                notice.textContent = "Faça login para liberar os links de download.";
-                downloadBox.appendChild(notice);
-                var loginLink = document.createElement("a");
-                loginLink.className = "download";
-                loginLink.href = "../membro.html";
-                loginLink.textContent = "Entrar / Criar perfil";
-                downloadBox.appendChild(loginLink);
-                if (token && window.PS3MODS_API_URL) {
+                function showLogin(message) {
+                    downloadBox.innerHTML = "";
+                    var p = document.createElement("p");
+                    p.textContent = message || "Faça login para liberar os links de download.";
+                    downloadBox.appendChild(p);
+                    var login = document.createElement("a");
+                    login.className = "download";
+                    login.href = "../membro.html";
+                    login.textContent = "Entrar / Criar perfil";
+                    downloadBox.appendChild(login);
+                }
+                if (!token || !window.PS3MODS_API_URL) {
+                    showLogin();
+                } else {
                     fetch(window.PS3MODS_API_URL + "/api/auth/me", {headers: {"Authorization": "Bearer " + token}})
-                    .then(function(r) { if (!r.ok) throw new Error("Sessão expirada"); return r.json(); })
+                    .then(function(r) { if (!r.ok) throw new Error("Sua sessão expirou. Entre novamente."); return r.json(); })
                     .then(function() {
+                        return fetch(window.PS3MODS_API_URL + "/api/legacy-downloads/" + encodeURIComponent(mod.id), {headers: {"Authorization": "Bearer " + token}});
+                    })
+                    .then(function(r) { return r.json().then(function(d) { if (!r.ok) throw new Error(d.error || "Não foi possível liberar os downloads."); return d; }); })
+                    .then(function(data) {
                         downloadBox.innerHTML = "";
-                        var links = mod.downloads && mod.downloads.length ? mod.downloads : (mod.download ? [{nome:"DOWNLOAD",link:mod.download}] : []);
-                        if (!links.length) { downloadBox.textContent = "Nenhum download disponível."; return; }
-                        links.forEach(function(item) {
+                        (data.downloads || []).forEach(function(item) {
                             var a = document.createElement("a");
                             a.className = "download";
                             a.href = item.link;
@@ -521,10 +528,9 @@ document.addEventListener("DOMContentLoaded", function() {
                             a.style.margin = "6px 8px 6px 0";
                             downloadBox.appendChild(a);
                         });
+                        if (!downloadBox.children.length) downloadBox.textContent = "Nenhum download disponível.";
                     })
-                    .catch(function() {
-                        notice.textContent = "Sua sessão expirou. Entre novamente para baixar.";
-                    });
+                    .catch(function(err) { showLogin(err.message); });
                 }
             }
 
