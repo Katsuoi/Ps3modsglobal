@@ -391,6 +391,13 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("ba-texto").addEventListener("keydown", function(e) {
             if (e.key === "Enter") aplicarFiltroAvancado();
         });
+
+        // Recupera a pesquisa enviada pela página inicial ou por um link compartilhado.
+        var buscaUrl = params.get("busca") || "";
+        if (buscaUrl) {
+            document.getElementById("ba-texto").value = buscaUrl;
+            aplicarFiltroAvancado();
+        }
     }
 
     // LISTA DE MODS
