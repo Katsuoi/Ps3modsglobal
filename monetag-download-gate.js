@@ -1,9 +1,18 @@
 (function () {
   "use strict";
-
-  // Monetag Direct Link fornecido pelo proprietário do site.
   var SMARTLINK = "https://uplcm.com/4/12318732";
   var SELECTOR = "#download-box a[data-monetag-download=\"1\"], #community-detail a[data-monetag-download=\"1\"]";
+  var STORAGE_PREFIX = "ps3mods_monetag_opened:";
+
+  function wasOpened(link) {
+    try { return sessionStorage.getItem(STORAGE_PREFIX + link.href) === "1"; }
+    catch (error) { return link.getAttribute("data-monetag-done") === "1"; }
+  }
+
+  function markOpened(link) {
+    link.setAttribute("data-monetag-done", "1");
+    try { sessionStorage.setItem(STORAGE_PREFIX + link.href, "1"); } catch (error) {}
+  }
 
   function addNotice(link) {
     var host = link.parentNode;
@@ -11,7 +20,7 @@
     var note = document.createElement("p");
     note.className = "monetag-download-note";
     note.setAttribute("role", "status");
-    note.textContent = "Obrigado por apoiar o Jogos Mods Global. Tentamos abrir uma oferta Monetag em outra aba; agora você pode continuar para o arquivo original.";
+    note.textContent = "A Monetag já foi aberta nesta sessão. Clique novamente para acessar o link de download.";
     host.insertBefore(note, link.nextSibling);
   }
 
@@ -19,28 +28,17 @@
     var link = event.target && event.target.closest ? event.target.closest(SELECTOR) : null;
     if (!link || !link.href || link.getAttribute("href") === "#") return;
 
-    if (link.getAttribute("data-monetag-ready") === "1") {
-      // Segundo clique: deixa o navegador abrir o endereço original do mod.
-      link.removeAttribute("data-monetag-ready");
+    // A Monetag é aberta apenas uma vez por link em cada sessão do navegador.
+    if (link.getAttribute("data-monetag-done") === "1" || wasOpened(link)) {
+      link.setAttribute("data-monetag-done", "1");
       return;
     }
 
     event.preventDefault();
     event.stopPropagation();
-
-    // Abre o SmartLink somente após uma ação explícita do visitante.
-    var adWindow = window.open(SMARTLINK, "_blank", "noopener,noreferrer");
-    if (!adWindow) {
-      // Se o navegador bloquear a nova aba, o download continua disponível
-      // pelo mesmo botão, sem prender o visitante numa página intermediária.
-      link.textContent = "Continuar para download";
-      link.setAttribute("data-monetag-ready", "1");
-      addNotice(link);
-      return;
-    }
-
+    markOpened(link);
+    window.open(SMARTLINK, "_blank", "noopener,noreferrer");
     link.textContent = "Continuar para download";
-    link.setAttribute("data-monetag-ready", "1");
     addNotice(link);
   }, true);
 
