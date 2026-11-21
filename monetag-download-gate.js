@@ -11,7 +11,7 @@
     var note = document.createElement("p");
     note.className = "monetag-download-note";
     note.setAttribute("role", "status");
-    note.textContent = "Obrigado por apoiar o Jogos Mods Global. A oferta abriu em outra aba; agora você pode continuar para o arquivo original.";
+    note.textContent = "Obrigado por apoiar o Jogos Mods Global. Tentamos abrir uma oferta Monetag em outra aba; agora você pode continuar para o arquivo original.";
     host.insertBefore(note, link.nextSibling);
   }
 
