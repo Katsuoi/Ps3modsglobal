@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", async function() {
+    // Uma única consulta alimenta o catálogo e os detalhes da comunidade.
+    window.PS3MODS_COMMUNITY_PROMISE = fetch((window.PS3MODS_API_URL || "") + "/api/mods")
+        .then(function(r) { if (!r.ok) throw new Error("API da comunidade indisponível"); return r.json(); })
+        .then(function(data) { return Array.isArray(data.items) ? data.items : []; })
+        .catch(function(e) { console.warn("Mods da comunidade indisponíveis:", e); return []; });
+    var comunidadeMods = await window.PS3MODS_COMMUNITY_PROMISE;
+    var catalogoMods = (typeof mods !== "undefined" ? mods.slice() : []).concat(comunidadeMods.map(function(item) {
+        var mod = Object.assign({}, item); mod.__community = true; return mod;
+    }));
     // Aplica alterações feitas pelo painel administrativo aos mods antigos.
     try {
         if (typeof mods !== "undefined") {
@@ -187,8 +196,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     function contarCategorias() {
         var contagem = {};
-        if (typeof mods === "undefined") return contagem;
-        mods.forEach(function(mod) {
+        if (!catalogoMods.length) return contagem;
+        catalogoMods.forEach(function(mod) {
             var set = {};
             if (mod.categoria) set[mod.categoria] = true;
             if (mod.categorias && mod.categorias.length) {
@@ -208,15 +217,11 @@ document.addEventListener("DOMContentLoaded", async function() {
     function qtdDaCategoria(contagem, nomeBusca) {
         if (!nomeBusca) return 0;
         var busca = nomeBusca.toLowerCase();
-        var total = 0;
-        Object.keys(contagem).forEach(function(nome) {
-            if (normalizarCategoria(nome) === normalizarCategoria(busca)) total = contagem[nome];
-        });
-        return total;
+        return catalogoMods.filter(function(mod) { return matchCategoria(mod, busca); }).length;
     }
 
     function aplicarContagemCategorias() {
-        if (typeof mods === "undefined") return;
+        if (!catalogoMods.length) return;
         var contagem = contarCategorias();
         document.querySelectorAll("a[href*='categoria=']").forEach(function(a) {
             try {
@@ -252,7 +257,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         var stats = document.querySelectorAll("#stats-bar .stat-item strong");
         if (stats && stats[1]) {
             var unicas = {};
-            mods.forEach(function(m) {
+            catalogoMods.forEach(function(m) {
                 if (m.categoria) unicas[m.categoria] = true;
                 if (m.categorias) m.categorias.forEach(function(c) { unicas[c] = true; });
             });
@@ -303,16 +308,39 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
 
     function criarCard(mod) {
-        var card = document.createElement("div");
-        card.className = "card-mod";
-        card.innerHTML =
-            '<img src="' + mod.imagem + '" alt="' + mod.nome + '" loading="lazy" decoding="async">' +
-            '<span class="categoria">' + labelCategoria(mod) + '</span>' +
-            '<h3>' + mod.nome + '</h3>' +
-            '<p>' + mod.descricao + '</p>' +
-            '<span class="download-count" data-download-count data-mod-id="' + mod.id + '">↓ ' + formatarContagemDownloads(downloadCounts[String(mod.id)] || 0) + ' downloads</span>' +
-            '<a class="download" href="mod.html?id=' + mod.id + '">Ver Mod</a>' +
-            '<button class="btn-fav" data-fav="' + mod.id + '" onclick="toggleFavorito(' + mod.id + ')">☆ Favoritar</button>';
+        var card = document.createElement("article");
+        card.className = "card-mod" + (mod.__community ? " card-comunidade" : "");
+        var img = document.createElement("img");
+        img.src = mod.imagem || ""; img.alt = mod.nome || "Mod";
+        img.loading = "lazy"; img.decoding = "async";
+        img.onerror = function() { this.style.display = "none"; };
+        card.appendChild(img);
+        if (mod.__community) {
+            var origem = document.createElement("span");
+            origem.className = "origem-comunidade"; origem.textContent = "Comunidade";
+            card.appendChild(origem);
+        }
+        var cat = document.createElement("span");
+        cat.className = "categoria"; cat.textContent = labelCategoria(mod) || "Comunidade";
+        card.appendChild(cat);
+        var title = document.createElement("h3"); title.textContent = mod.nome || "Mod sem nome"; card.appendChild(title);
+        var desc = document.createElement("p"); desc.textContent = mod.descricao || ""; card.appendChild(desc);
+        if (!mod.__community) {
+            var count = document.createElement("span");
+            count.className = "download-count"; count.setAttribute("data-download-count", "");
+            count.setAttribute("data-mod-id", mod.id);
+            count.textContent = "↓ " + formatarContagemDownloads(downloadCounts[String(mod.id)] || 0) + " downloads";
+            card.appendChild(count);
+        }
+        var link = document.createElement("a"); link.className = "download";
+        link.href = mod.__community ? "../mod-comunidade.html?id=" + encodeURIComponent(mod.id) : "mod.html?id=" + encodeURIComponent(mod.id);
+        link.textContent = "Ver Mod"; card.appendChild(link);
+        if (!mod.__community) {
+            var fav = document.createElement("button"); fav.className = "btn-fav";
+            fav.type = "button"; fav.setAttribute("data-fav", mod.id); fav.textContent = "☆ Favoritar";
+            fav.addEventListener("click", function() { window.toggleFavorito(mod.id); });
+            card.appendChild(fav);
+        }
         return card;
     }
 
@@ -351,41 +379,28 @@ document.addEventListener("DOMContentLoaded", async function() {
         var host = containerLista.parentNode;
         if (!host) return;
 
-        var box = document.createElement("div");
+        var box = document.createElement("section");
         box.id = "busca-avancada";
-        box.style.cssText = "background:#121821;border:1px solid #1c2330;border-radius:12px;padding:14px;margin-bottom:16px;";
+        box.className = "busca-catalogo";
         box.innerHTML =
-            '<div style="font-size:14px;color:#5ec8ff;font-weight:700;margin-bottom:10px;">Busca avancada</div>' +
-            '<div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:10px;">' +
-            '<div><label style="display:block;font-size:12px;color:#8b95a5;margin-bottom:4px;">Texto</label>' +
-            '<input id="ba-texto" type="text" placeholder="Nome, descricao, autor..." style="width:100%;padding:10px;border-radius:8px;border:1px solid #2a3344;background:#0e131b;color:#e8eaed;"></div>' +
-            '<div><label style="display:block;font-size:12px;color:#8b95a5;margin-bottom:4px;">Categoria</label>' +
-            '<select id="ba-cat" style="width:100%;padding:10px;border-radius:8px;border:1px solid #2a3344;background:#0e131b;color:#e8eaed;"><option value="">Todas</option></select></div>' +
-            '<div><label style="display:block;font-size:12px;color:#8b95a5;margin-bottom:4px;">Ordenar</label>' +
-            '<select id="ba-ordem" style="width:100%;padding:10px;border-radius:8px;border:1px solid #2a3344;background:#0e131b;color:#e8eaed;">' +
-            '<option value="recentes">Mais recentes</option>' +
-            '<option value="antigos">Mais antigos</option>' +
-            '<option value="az">A-Z</option>' +
-            '<option value="za">Z-A</option></select></div></div>' +
-            '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px;">' +
-            '<div><label style="display:block;font-size:12px;color:#8b95a5;margin-bottom:4px;">Genero (armaduras)</label>' +
-            '<select id="ba-genero" style="width:100%;padding:10px;border-radius:8px;border:1px solid #2a3344;background:#0e131b;color:#e8eaed;">' +
-            '<option value="">Qualquer</option><option value="Feminino">Feminino</option>' +
-            '<option value="Masculino">Masculino</option><option value="Ambos">Ambos (F/M)</option></select></div>' +
-            '<div><label style="display:block;font-size:12px;color:#8b95a5;margin-bottom:4px;">Casamento</label>' +
-            '<select id="ba-casamento" style="width:100%;padding:10px;border-radius:8px;border:1px solid #2a3344;background:#0e131b;color:#e8eaed;">' +
-            '<option value="">Qualquer</option><option value="sim">Sim</option><option value="nao">Nao</option></select></div>' +
-            '<div style="display:flex;align-items:flex-end;gap:8px;">' +
-            '<button type="button" id="ba-filtrar" style="flex:1;padding:11px;border:none;border-radius:8px;background:#5ec8ff;color:#0b0e14;font-weight:700;cursor:pointer;">Filtrar</button>' +
-            '<button type="button" id="ba-limpar" style="flex:1;padding:11px;border:1px solid #2a3a50;border-radius:8px;background:#1a2230;color:#8b95a5;font-weight:700;cursor:pointer;">Limpar</button>' +
-            '</div></div><p id="ba-info" style="margin-top:10px;color:#8b95a5;font-size:12px;"></p>';
+            '<div class="busca-principal"><label for="ba-texto">Pesquisar mods</label>' +
+            '<input id="ba-texto" type="search" placeholder="Nome, descrição ou autor..." autocomplete="off">' +
+            '<button type="button" id="ba-filtrar">Pesquisar</button></div>' +
+            '<details class="filtros-avancados"><summary>Filtros avançados <span>Categoria, gênero e mais</span></summary>' +
+            '<div class="filtros-grid">' +
+            '<label>Categoria<select id="ba-cat"><option value="">Todas as categorias</option></select></label>' +
+            '<label>Ordenar por<select id="ba-ordem"><option value="recentes">Mais recentes</option><option value="antigos">Mais antigos</option><option value="az">Nome: A–Z</option><option value="za">Nome: Z–A</option></select></label>' +
+            '<label>Gênero<select id="ba-genero"><option value="">Qualquer</option><option value="Feminino">Feminino</option><option value="Masculino">Masculino</option><option value="Ambos">Ambos (F/M)</option></select></label>' +
+            '<label>Casamento<select id="ba-casamento"><option value="">Qualquer</option><option value="sim">Sim</option><option value="nao">Não</option></select></label>' +
+            '</div><div class="filtros-acoes"><button type="button" id="ba-limpar" class="btn-limpar">Limpar filtros</button></div></details>' +
+            '<p id="ba-info" class="busca-info" aria-live="polite"></p>';
 
         host.insertBefore(box, containerLista);
 
         var sel = document.getElementById("ba-cat");
         var cats = {};
-        if (typeof mods !== "undefined") {
-            mods.forEach(function(m) {
+        if (catalogoMods.length) {
+            catalogoMods.forEach(function(m) {
                 if (m.categoria) cats[m.categoria] = true;
                 if (m.categorias) m.categorias.forEach(function(c) { cats[c] = true; });
             });
@@ -469,17 +484,40 @@ document.addEventListener("DOMContentLoaded", async function() {
         }
     }
 
+    function adicionarCategoriasComunidade() {
+        var hosts = [document.querySelector(".categorias-grid"), document.querySelector(".side-cats")].filter(Boolean);
+        var known = {};
+        hosts.forEach(function(host) {
+            host.querySelectorAll('a[href*="categoria="]').forEach(function(a) {
+                try { known[normalizarCategoria(new URL(a.href, window.location.href).searchParams.get("categoria"))] = true; } catch (e) {}
+            });
+        });
+        comunidadeMods.forEach(function(mod) {
+            [mod.categoria].concat(Array.isArray(mod.categorias) ? mod.categorias : []).forEach(function(nome) {
+                var label = String(nome || "").trim(), key = normalizarCategoria(label);
+                if (!label || known[key]) return;
+                known[key] = true;
+                hosts.forEach(function(host) {
+                    var a = document.createElement("a"); a.textContent = label;
+                    a.href = (host.classList.contains("categorias-grid") ? "index.html?categoria=" : "mods/index.html?categoria=") + encodeURIComponent(label);
+                    host.appendChild(a);
+                });
+            });
+        });
+    }
+    adicionarCategoriasComunidade();
+
     // LISTA DE MODS
     var lista = document.getElementById("todos-mods") || document.getElementById("lista-mods");
     if (lista && typeof mods !== "undefined") {
         var params = new URLSearchParams(window.location.search);
         var categoria = params.get("categoria");
         if (categoria) {
-            listaBase = mods.filter(function(m) { return matchCategoria(m, categoria); });
+            listaBase = catalogoMods.filter(function(m) { return matchCategoria(m, categoria); });
             var titulo = document.querySelector(".hero-content h2, .banner-pequeno h2");
             if (titulo) titulo.textContent = categoria;
         } else {
-            listaBase = mods.slice();
+            listaBase = catalogoMods.slice();
         }
         renderMods(listaBase, lista);
         montarBuscaAvancada();
@@ -634,7 +672,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     // HOME
     var statMods = document.getElementById("stat-mods");
-    if (statMods && typeof mods !== "undefined") statMods.textContent = mods.length;
+    if (statMods) statMods.textContent = catalogoMods.length;
     atualizarContagensDownloads();
 
     var destaques = document.getElementById("destaques");
@@ -690,7 +728,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             if (containerLista && typeof mods !== "undefined" && (document.getElementById("todos-mods") || document.getElementById("lista-mods"))) {
                 var baTexto = document.getElementById("ba-texto");
                 if (baTexto) baTexto.value = this.value;
-                var base = listaBase.length ? listaBase : mods;
+                var base = listaBase.length ? listaBase : catalogoMods;
                 if (!termo) {
                     renderMods(base, containerLista);
                     return;
