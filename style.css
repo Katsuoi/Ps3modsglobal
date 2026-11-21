@@ -15,7 +15,7 @@ nav a:hover{background:#1a2030;color:#5ec8ff}
 .search input{width:200px;height:36px;background:#1a2030;border:1px solid #2a3344;border-radius:6px;padding:0 12px;color:#e8eaed;font-size:14px}
 
 /* HERO */
-.hero{margin-top:70px;height:520px;background:linear-gradient(90deg,rgba(11,14,20,.93) 0%,rgba(11,14,20,.45) 55%,rgba(11,14,20,.8) 100%),url("/imagens/Banner.jpg");background-size:cover;background-position:center;display:flex;align-items:center;position:relative}
+.hero{margin-top:70px;height:520px;background:linear-gradient(90deg,rgba(11,14,20,.93) 0%,rgba(11,14,20,.45) 55%,rgba(11,14,20,.8) 100%),url("/imagens/banner.jpg");background-size:cover;background-position:center;display:flex;align-items:center;position:relative}
 .overlay{display:none}
 .hero-content{position:relative;z-index:2;width:580px;margin-left:7%}
 .hero-content span{color:#5ec8ff;font-size:12px;letter-spacing:2px;text-transform:uppercase}
@@ -489,7 +489,7 @@ nav a:hover,nav a:focus-visible{
   background-image:
     linear-gradient(90deg,rgba(7,12,17,.97) 0%,rgba(7,12,17,.78) 42%,rgba(7,12,17,.84) 72%,#090d12 100%),
     linear-gradient(0deg,#090d12 0%,transparent 27%,rgba(9,13,18,.15) 75%,#090d12 100%),
-    url("/imagens/Banner.jpg");
+    url("/imagens/banner.jpg");
   background-size:cover;
   background-position:center 48%;
   border-bottom:1px solid var(--jmg-line);
@@ -611,7 +611,7 @@ nav a:hover,nav a:focus-visible{
   margin-top:82px;padding:62px 0;
   background:
     linear-gradient(100deg,rgba(8,13,18,.96),rgba(14,25,33,.88)),
-    url("/imagens/Banner.jpg") center/cover;
+    url("/imagens/banner.jpg") center/cover;
   border-bottom:1px solid var(--jmg-line);
 }
 .banner-pequeno .hero-content{width:92%;text-align:left}
@@ -764,7 +764,7 @@ nav a:hover,nav a:focus-visible{
   background-image:
     linear-gradient(90deg,rgba(5,10,16,.92) 0%,rgba(5,10,16,.72) 44%,rgba(5,10,16,.48) 72%,rgba(5,10,16,.74) 100%),
     linear-gradient(0deg,#090e15 0%,transparent 34%,rgba(5,10,16,.12) 100%),
-    url("/imagens/Banner.jpg")!important;
+    url("/imagens/banner.jpg")!important;
   background-size:cover!important;background-position:center 48%!important;
   border-bottom:1px solid var(--jmg-border);
 }
@@ -841,7 +841,7 @@ nav a:hover,nav a:focus-visible{
 .ultimo-info h3{color:#eef2f4;font-size:15px}
 .banner-pequeno{
   margin-top:0!important;padding:52px 0!important;text-align:left;
-  background:linear-gradient(90deg,rgba(8,14,21,.96),rgba(13,25,35,.84)),url("/imagens/Banner.jpg") center/cover!important;
+  background:linear-gradient(90deg,rgba(8,14,21,.96),rgba(13,25,35,.84)),url("/imagens/banner.jpg") center/cover!important;
   border-bottom:1px solid var(--jmg-border);
 }
 .banner-pequeno .hero-content{width:min(1200px,92%);margin:0 auto;text-align:left}
