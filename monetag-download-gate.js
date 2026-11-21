@@ -3,7 +3,7 @@
 
   // Monetag Direct Link fornecido pelo proprietário do site.
   var SMARTLINK = "https://uplcm.com/4/12318732";
-  var SELECTOR = "#download-box a.download, #community-detail .download-gate a.download";
+  var SELECTOR = "#download-box a.download, #community-detail a[data-monetag-download=\"1\"]";
 
   function addNotice(link) {
     var host = link.parentNode;
