@@ -640,7 +640,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     var destaques = document.getElementById("destaques");
     if (destaques && typeof mods !== "undefined") {
         destaques.innerHTML = "";
-        mods.slice(0, 6).forEach(function(mod) {
+        mods.slice().sort(function(a, b) { return (Number(downloadCounts[String(b.id)] || 0) - Number(downloadCounts[String(a.id)] || 0)) || (Number(b.id) - Number(a.id)); }).slice(0, 8).forEach(function(mod) {
             var img = String(mod.imagem || "").replace("../", "");
             destaques.innerHTML +=
                 '<div class="card-home">' +
@@ -659,7 +659,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     var ultimos = document.getElementById("ultimos");
     if (ultimos && typeof mods !== "undefined") {
         ultimos.innerHTML = "";
-        mods.slice().reverse().slice(0, 3).forEach(function(mod) {
+        mods.slice().sort(function(a, b) { function ts(v) { var m = String(v || "").match(/^(\\d{2})\\/(\\d{2})\\/(\\d{4})$/); return m ? new Date(Number(m[3]), Number(m[2])-1, Number(m[1])).getTime() : (Date.parse(v) || 0); } return ts(b.data) - ts(a.data) || Number(b.id)-Number(a.id); }).slice(0, 3).forEach(function(mod) {
             var img = String(mod.imagem || "").replace("../", "");
             ultimos.innerHTML +=
                 '<div class="ultimo-card">' +
