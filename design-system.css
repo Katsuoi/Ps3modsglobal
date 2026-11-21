@@ -317,3 +317,51 @@ footer{background:#08090e!important;border-top-color:#393344!important}
 .origem-comunidade{display:inline-flex;width:max-content;margin:8px 10px 0;padding:3px 7px;border:1px solid rgba(169,145,210,.32);border-radius:99px;color:#c4b1e4;font-size:9px;font-weight:750;letter-spacing:.2px}
 .card-comunidade .categoria{margin-top:5px}
 @media(max-width:560px){.busca-catalogo{padding:11px;margin-bottom:14px}.busca-principal{grid-template-columns:minmax(0,1fr) auto;gap:7px}.busca-principal button{padding:9px 11px;font-size:12px}.filtros-grid{grid-template-columns:minmax(0,1fr)}.filtros-acoes button{width:100%}.filtros-avancados summary span{flex-basis:100%}}
+
+
+/* Correção da contagem: o tema global não pode sobrescrever o contraste dos badges. */
+.categorias-grid a .cat-badge{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  min-height:22px;
+  padding:4px 11px;
+  border:1px solid transparent;
+  border-radius:999px;
+  background:#e1c58c!important;
+  color:#17130e!important;
+  font-size:10px!important;
+  font-weight:850!important;
+  line-height:1!important;
+  white-space:nowrap;
+}
+.categorias-grid a .cat-badge.zero{
+  background:#1c2933!important;
+  color:#aab8c0!important;
+  border-color:#344653!important;
+}
+
+/* Rolagem e interação mais leves, especialmente em telas touch. */
+html{scroll-padding-top:76px;-webkit-tap-highlight-color:transparent}
+button,a,select,input{touch-action:manipulation}
+.card-home,.card-mod,.ultimo-card{
+  content-visibility:auto;
+  contain-intrinsic-size:auto 300px;
+  transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease;
+}
+.card-home img,.card-mod img,.ultimo-card img{
+  backface-visibility:hidden;
+}
+@media(hover:hover) and (pointer:fine){
+  .card-home:hover,.card-mod:hover{transform:translateY(-3px)}
+}
+@media(hover:none){
+  .card-home:hover,.card-mod:hover,.categorias-grid a:hover{
+    transform:none!important;
+    box-shadow:0 8px 22px rgba(0,0,0,.16)!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto!important}
+  .card-home,.card-mod,.ultimo-card,.categorias-grid a{transition:none!important}
+}
