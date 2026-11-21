@@ -632,6 +632,7 @@ document.addEventListener("DOMContentLoaded", async function() {
                         (data.downloads || []).forEach(function(item) {
                             var a = document.createElement("a");
                             a.className = "download";
+                            a.setAttribute("data-monetag-download", "1");
                             a.href = item.link;
                             a.target = "_blank";
                             a.rel = "noopener noreferrer";
