@@ -294,3 +294,26 @@ footer{background:#08090e!important;border-top-color:#393344!important}
 }
 .hero-content{position:relative!important;z-index:2!important}
 @media(max-width:760px){.hero-bg-image{object-position:58% center!important}.hero:after{background:linear-gradient(90deg,rgba(7,10,15,.34),rgba(7,10,15,.20)),linear-gradient(0deg,rgba(7,10,15,.34),rgba(7,10,15,.08))!important}}
+
+
+/* Catálogo: busca enxuta e filtros recolhíveis, com controles fluidos no celular */
+.busca-catalogo{width:100%;margin:0 0 18px;padding:14px;background:linear-gradient(145deg,#1b1c27,#12131a);border:1px solid #393344;border-radius:10px}
+.busca-principal{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:end}
+.busca-principal label{grid-column:1/-1;color:var(--jmg-muted);font-size:12px;font-weight:700}
+.busca-principal input{width:100%;min-width:0;min-height:44px;padding:10px 12px;border:1px solid var(--jmg-line);border-radius:7px;background:#0d1119;color:var(--jmg-text)}
+.busca-principal button,.filtros-acoes button{min-height:44px;padding:10px 16px;border:1px solid transparent;border-radius:7px;background:linear-gradient(110deg,#e8d09b,#b78e58);color:#17130e;font-weight:800;cursor:pointer}
+.filtros-avancados{margin-top:12px;border-top:1px solid var(--jmg-line);padding-top:10px}
+.filtros-avancados summary{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--jmg-text);font-size:12px;font-weight:750;cursor:pointer;list-style:none}
+.filtros-avancados summary::-webkit-details-marker{display:none}
+.filtros-avancados summary:after{content:"＋";margin-left:auto;color:var(--jmg-ice);font-size:16px}
+.filtros-avancados[open] summary:after{content:"−"}
+.filtros-avancados summary span{color:var(--jmg-muted);font-size:11px;font-weight:400}
+.filtros-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:13px}
+.filtros-grid label{display:grid;gap:5px;min-width:0;color:var(--jmg-muted);font-size:11px;font-weight:650}
+.filtros-grid select{width:100%;min-width:0;min-height:42px;padding:8px 10px;border:1px solid var(--jmg-line);border-radius:7px;background:#0d1119;color:var(--jmg-text)}
+.filtros-acoes{display:flex;justify-content:flex-end;margin-top:12px}
+.filtros-acoes .btn-limpar{background:transparent;border-color:var(--jmg-line);color:var(--jmg-text)}
+.busca-info{min-height:0;margin:9px 0 0;color:var(--jmg-muted);font-size:11px}
+.origem-comunidade{display:inline-flex;width:max-content;margin:8px 10px 0;padding:3px 7px;border:1px solid rgba(169,145,210,.32);border-radius:99px;color:#c4b1e4;font-size:9px;font-weight:750;letter-spacing:.2px}
+.card-comunidade .categoria{margin-top:5px}
+@media(max-width:560px){.busca-catalogo{padding:11px;margin-bottom:14px}.busca-principal{grid-template-columns:minmax(0,1fr) auto;gap:7px}.busca-principal button{padding:9px 11px;font-size:12px}.filtros-grid{grid-template-columns:minmax(0,1fr)}.filtros-acoes button{width:100%}.filtros-avancados summary span{flex-basis:100%}}
