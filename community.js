@@ -1,5 +1,5 @@
 (function(){
-var API=(window.PS3MODS_API_URL||"https://ps3modsglobal-community-api.madarauchiha76189.workers.dev");
+var API=(typeof window.PS3MODS_API_URL==="string"?window.PS3MODS_API_URL:"https://ps3modsglobal-community-api.madarauchiha76189.workers.dev");
 function normCat(v){return String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();}
 function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
 function card(m,detail){var c=el("article","card-mod"),img=el("img");img.src=m.imagem;img.alt=m.nome||"Mod";img.loading="lazy";img.onerror=function(){this.style.display="none"};c.appendChild(img);c.appendChild(el("span","categoria",m.genero==="Ambos"?"Armaduras (F/M)":(m.categoria||"Comunidade")));c.appendChild(el("h3","",m.nome||"Mod sem nome"));c.appendChild(el("p","",(m.descricao||"").slice(0,130)));var a=el("a","download","Ver Mod");a.href=detail?"../mod-comunidade.html?id="+encodeURIComponent(m.id):"mod-comunidade.html?id="+encodeURIComponent(m.id);c.appendChild(a);return c;}
