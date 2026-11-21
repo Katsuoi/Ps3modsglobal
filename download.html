@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Preparando seu download | Jogos Mods Global</title>
+<link rel="stylesheet" href="style.css">
+<script>(function(s){s.dataset.zone='12318802',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<style>
+.download-gate-page{min-height:100vh;display:grid;place-items:center;padding:24px;background:#090e16;color:#edf3fb;font-family:Arial,sans-serif}
+.download-gate-card{width:min(100%,560px);padding:30px;border:1px solid #29384d;border-radius:16px;background:#111b29;text-align:center;box-shadow:0 18px 60px #0008}
+.download-gate-card .brand{color:#70caff;font-size:13px;font-weight:800;letter-spacing:2px}
+.download-gate-card h1{font-size:clamp(24px,5vw,34px);margin:14px 0}
+.download-gate-card p{color:#aebbd0;line-height:1.65}
+.download-gate-progress{height:8px;margin:24px 0 12px;border-radius:20px;background:#263449;overflow:hidden}
+.download-gate-progress span{display:block;width:0;height:100%;background:#62c8ff;transition:width .25s linear}
+#download-continue{display:inline-block;margin-top:12px;padding:14px 24px;border-radius:9px;background:#62c8ff;color:#07111d;text-decoration:none;font-weight:800}
+#download-continue[aria-disabled=true]{opacity:.45;pointer-events:none}
+.download-gate-small{font-size:12px;color:#8291a7!important;margin-top:20px}
+</style>
+</head>
+<body>
+<main class="download-gate-page">
+<section class="download-gate-card">
+<div class="brand">JOGOS MODS GLOBAL</div>
+<h1>Seu download está quase pronto</h1>
+<p>Estamos preparando o link do mod. Aguarde a contagem terminar e toque no botão para continuar.</p>
+<div class="download-gate-progress" aria-hidden="true"><span id="gate-progress"></span></div>
+<p id="gate-status" role="status">Aguarde <strong id="gate-seconds">8</strong> segundos…</p>
+<a id="download-continue" href="#" aria-disabled="true" rel="nofollow">Aguarde…</a>
+<p class="download-gate-small">O anúncio pode aparecer como uma janela sobre esta página. Fechá-lo não substitui o botão de continuar.</p>
+</section>
+</main>
+<script>
+(function(){
+  var params=new URLSearchParams(location.search);
+  var raw=params.get("url")||"";
+  var target;
+  try{target=new URL(raw,location.href);}catch(e){target=null;}
+  var allowed=target && (target.protocol==="https:"||target.protocol==="http:");
+  var button=document.getElementById("download-continue");
+  var status=document.getElementById("gate-status");
+  var seconds=document.getElementById("gate-seconds");
+  var bar=document.getElementById("gate-progress");
+  if(!allowed){
+    status.textContent="Link de download inválido ou ausente. Volte à página do mod e tente novamente.";
+    button.textContent="Voltar aos mods";
+    button.href="mods/index.html";
+    button.removeAttribute("aria-disabled");
+    return;
+  }
+  var total=8,left=total;
+  var timer=setInterval(function(){
+    left--;
+    seconds.textContent=left;
+    bar.style.width=((total-left)/total*100)+"%";
+    if(left<=0){
+      clearInterval(timer);
+      status.textContent="Pronto! O link original do download está liberado.";
+      button.href=target.href;
+      button.textContent="CONTINUAR PARA O DOWNLOAD";
+      button.removeAttribute("aria-disabled");
+    }
+  },1000);
+})();
+</script>
+</body>
+</html>
