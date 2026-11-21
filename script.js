@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function() {
     // Aplica alterações feitas pelo painel administrativo aos mods antigos.
     try {
-        if (typeof mods !== "undefined" && window.PS3MODS_API_URL) {
+        if (typeof mods !== "undefined") {
             var overrideResponse = await fetch(window.PS3MODS_API_URL + "/api/legacy-overrides");
             if (overrideResponse.ok) {
                 var overrideData = await overrideResponse.json();
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     var downloadCounts = {};
     try {
-        if (window.PS3MODS_API_URL) {
+        {
             var countResponse = await fetch(window.PS3MODS_API_URL + "/api/download-counts");
             if (countResponse.ok) {
                 var countData = await countResponse.json();
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
     function registrarCliqueDownload(modId) {
         var token = localStorage.getItem("ps3member") || "";
-        if (!token || !window.PS3MODS_API_URL) return;
+        if (!token) return;
         fetch(window.PS3MODS_API_URL + "/api/download-counts/" + encodeURIComponent(modId), {
             method: "POST",
             headers: {"Authorization": "Bearer " + token},
@@ -579,7 +579,7 @@ document.addEventListener("DOMContentLoaded", async function() {
                     login.textContent = "Entrar / Criar perfil";
                     downloadBox.appendChild(login);
                 }
-                if (!token || !window.PS3MODS_API_URL) {
+                if (!token) {
                     showLogin();
                 } else {
                     fetch(window.PS3MODS_API_URL + "/api/auth/me", {headers: {"Authorization": "Bearer " + token}})
