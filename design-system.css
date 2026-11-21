@@ -239,3 +239,25 @@ header:not(.topo) nav a:hover{background:rgba(142,216,223,.08);color:var(--jmg-i
 .download-count{display:block;margin:7px 0 10px;color:#9fb6bf!important;font-size:11px!important;font-weight:750;letter-spacing:.25px}
 .info-mod .download-count{margin:16px 0 12px;padding:9px 12px;background:rgba(142,216,223,.07);border:1px solid rgba(142,216,223,.18);border-radius:6px;color:var(--jmg-ice)!important}
 @media(max-width:760px){.stats-bar{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+
+
+/* JMG — acabamento premium: grafite, ouro champagne e violeta */
+:root{--jmg-bg:#0a0b10;--jmg-surface:#14151d;--jmg-raised:#1b1c27;--jmg-line:#393344;--jmg-text:#f2eee8;--jmg-muted:#aaa3b2;--jmg-ice:#e1c58c;--jmg-ice-bright:#f4dfb1;--jmg-copper:#a991d2;--jmg-border:#393344;--jmg-blue:#e1c58c}
+body{background:radial-gradient(ellipse at 12% 0%,rgba(169,145,210,.11),transparent 36rem),radial-gradient(ellipse at 92% 20%,rgba(225,197,140,.075),transparent 34rem),linear-gradient(180deg,#0d0e14,#090a0f 70%,#0d0e14)}
+.topo{background:rgba(10,11,16,.96)!important;border-bottom-color:rgba(225,197,140,.2)!important}
+.topo .logo h1:before{background:linear-gradient(145deg,#f1dcae,#b78e58)!important;color:#17130e!important}
+.topo nav a:hover,.topo nav a:focus-visible{color:#f0d8a7!important;background:rgba(225,197,140,.08)!important;border-color:rgba(225,197,140,.22)!important}
+.topo .search input:focus{border-color:#e1c58c!important}
+.hero-content span,.banner-pequeno .hero-content span{color:#e1c58c!important}
+.hero-content span:before{background:#a991d2!important}
+.hero-content button,.hero-content a button{background:linear-gradient(110deg,#e8d09b,#b78e58)!important;color:#17130e!important}
+.stat-item{background:linear-gradient(145deg,#1b1b25,#12131a)!important;border-color:#393344!important}
+.stat-item strong,.side-cats h3,.titulo a,.categoria,.cat-badge{color:#e1c58c!important}
+.side-cats,.card-home,.card-mod,.ultimo-card,.categorias-grid a,.info-mod,.step-card,.panel{background:linear-gradient(150deg,#1b1c27,#12131a)!important;border-color:#393344!important}
+.side-cats a:hover,.categorias-grid a:hover{color:#e1c58c!important;background:rgba(225,197,140,.07)!important}
+.card-home:after,.card-mod:after{background:#a991d2!important}
+.card-home:hover,.card-mod:hover{border-color:rgba(225,197,140,.55)!important;box-shadow:0 16px 34px rgba(0,0,0,.4),0 0 22px rgba(169,145,210,.08)!important}
+.download,.hero-content button,.bottom-action button{background:linear-gradient(110deg,#e8d09b,#b78e58)!important;color:#17130e!important}
+.btn-fav:hover,.btn-fav.favoritado{border-color:#a991d2!important;color:#c4b1e4!important}
+footer{background:#08090e!important;border-top-color:#393344!important}
+.footer h3,.info-mod h1,.submit-head h1{color:#e1c58c!important}
