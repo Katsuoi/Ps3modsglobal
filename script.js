@@ -1,9 +1,10 @@
+// Compartilha a resposta antes do DOMContentLoaded para que community.js use a mesma consulta.
+window.PS3MODS_COMMUNITY_PROMISE = fetch((window.PS3MODS_API_URL || "") + "/api/mods")
+    .then(function(r) { if (!r.ok) throw new Error("API da comunidade indisponível"); return r.json(); })
+    .then(function(data) { return Array.isArray(data.items) ? data.items : []; })
+    .catch(function(e) { console.warn("Mods da comunidade indisponíveis:", e); return []; });
+
 document.addEventListener("DOMContentLoaded", async function() {
-    // Uma única consulta alimenta o catálogo e os detalhes da comunidade.
-    window.PS3MODS_COMMUNITY_PROMISE = fetch((window.PS3MODS_API_URL || "") + "/api/mods")
-        .then(function(r) { if (!r.ok) throw new Error("API da comunidade indisponível"); return r.json(); })
-        .then(function(data) { return Array.isArray(data.items) ? data.items : []; })
-        .catch(function(e) { console.warn("Mods da comunidade indisponíveis:", e); return []; });
     var comunidadeMods = await window.PS3MODS_COMMUNITY_PROMISE;
     var catalogoMods = (typeof mods !== "undefined" ? mods.slice() : []).concat(comunidadeMods.map(function(item) {
         var mod = Object.assign({}, item); mod.__community = true; return mod;
