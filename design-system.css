@@ -261,3 +261,36 @@ body{background:radial-gradient(ellipse at 12% 0%,rgba(169,145,210,.11),transpar
 .btn-fav:hover,.btn-fav.favoritado{border-color:#a991d2!important;color:#c4b1e4!important}
 footer{background:#08090e!important;border-top-color:#393344!important}
 .footer h3,.info-mod h1,.submit-head h1{color:#e1c58c!important}
+
+
+/* HERO FIX — imagem como elemento real, não como background escondido por gradientes */
+.hero{
+  position:relative!important;
+  isolation:isolate!important;
+  overflow:hidden!important;
+  background-color:#080d13!important;
+  background-image:none!important;
+}
+.hero-bg-image{
+  position:absolute!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  object-fit:cover!important;
+  object-position:center 48%!important;
+  opacity:1!important;
+  z-index:0!important;
+  pointer-events:none!important;
+}
+.hero:after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:1!important;
+  pointer-events:none!important;
+  background:linear-gradient(90deg,rgba(7,10,15,.36) 0%,rgba(7,10,15,.16) 45%,rgba(7,10,15,.42) 100%),linear-gradient(0deg,rgba(7,10,15,.30) 0%,transparent 42%,rgba(7,10,15,.16) 100%)!important;
+}
+.hero-content{position:relative!important;z-index:2!important}
+@media(max-width:760px){.hero-bg-image{object-position:58% center!important}.hero:after{background:linear-gradient(90deg,rgba(7,10,15,.34),rgba(7,10,15,.20)),linear-gradient(0deg,rgba(7,10,15,.34),rgba(7,10,15,.08))!important}}
