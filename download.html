@@ -35,6 +35,7 @@
 <p class="download-gate-small">O anúncio patrocinado é opcional. Você pode continuar para o arquivo sem clicar nele.</p>
 </section>
 </main>
+<script src="mods-api-config.js"></script>
 <script>
 (function(){
   var params=new URLSearchParams(location.search);
@@ -45,7 +46,9 @@
   if(sponsored){sponsored.href="https://uplcm.com/4/12318732";sponsored.setAttribute("data-mod",mod);sponsored.setAttribute("aria-label","Abrir anúncio patrocinado em nova aba");}
   var target;
   try{target=new URL(raw,location.href);}catch(e){target=null;}
-  var allowed=target && (target.protocol==="https:"||target.protocol==="http:");
+  var host=target ? target.hostname.toLowerCase() : "";
+  var localHost=host==="localhost"||host.endsWith(".localhost")||host.endsWith(".local")||host==="::1"||/^127\\./.test(host)||/^10\\./.test(host)||/^192\\.168\\./.test(host)||/^172\\.(1[6-9]|2[0-9]|3[01])\\./.test(host);
+  var allowed=target && (target.protocol==="https:"||target.protocol==="http:") && !target.username && !target.password && !localHost;
   var button=document.getElementById("download-continue");
   var status=document.getElementById("gate-status");
   var seconds=document.getElementById("gate-seconds");
@@ -57,7 +60,19 @@
     button.removeAttribute("aria-disabled");
     return;
   }
-  var total=8,left=total;
+  var total=8,left=total,counted=false;
+  button.addEventListener("click",function(){
+    if(counted||left>0)return;
+    counted=true;
+    var token="";
+    try{token=localStorage.getItem("ps3member")||"";}catch(e){}
+    if(!token||!/^\\d+$/.test(mod))return;
+    fetch((window.PS3MODS_API_URL||"")+"/api/download-counts/"+encodeURIComponent(mod),{
+      method:"POST",
+      headers:{"Authorization":"Bearer "+token},
+      keepalive:true
+    }).catch(function(error){console.warn("Não foi possível registrar este download.",error);});
+  });
   var timer=setInterval(function(){
     left--;
     seconds.textContent=left;
