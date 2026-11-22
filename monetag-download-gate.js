@@ -11,6 +11,9 @@
     if (target.protocol !== "https:" && target.protocol !== "http:") return;
     event.preventDefault();
     event.stopPropagation();
-    var modId = link.getAttribute("data-mod-id") || "";\n    var name = link.textContent || "Download";\n    var query = "?url=" + encodeURIComponent(target.href) + "&mod=" + encodeURIComponent(modId) + "&name=" + encodeURIComponent(name);\n    window.location.href = GATE_URL + query;
+    var modId = link.getAttribute("data-mod-id") || "";
+    var name = link.textContent || "Download";
+    var query = "?url=" + encodeURIComponent(target.href) + "&mod=" + encodeURIComponent(modId) + "&name=" + encodeURIComponent(name);
+    window.location.href = GATE_URL + query;
   }, true);
 })();
