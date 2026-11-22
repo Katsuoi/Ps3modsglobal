@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded",function(){
  var token=sessionStorage.getItem("ps3adm")||localStorage.getItem("ps3adm")||"";
  var box=document.getElementById("community-admin-edit"),link=document.getElementById("community-admin-edit-link");
  var id=new URLSearchParams(location.search).get("id");
- if(!token||!id||!window.PS3MODS_API_URL||!box||!link)return;
- fetch(window.PS3MODS_API_URL+"/api/admin/session",{headers:{"Authorization":"Bearer "+token}})
+ if(!token||!id||!box||!link)return;
+ fetch((window.PS3MODS_API_URL||"")+"/api/admin/session",{headers:{"Authorization":"Bearer "+token},cache:"no-store"})
  .then(function(r){if(!r.ok)throw Error("Sem acesso");return r.json()})
- .then(function(){link.href="admin.html?edit="+encodeURIComponent(id);box.style.display="block"})
+ .then(function(){link.href="/admin.html?edit="+encodeURIComponent(id);box.style.display="block"})
  .catch(function(){});
 });
 </script><script src="monetag-download-gate.js"></script></body></html>
