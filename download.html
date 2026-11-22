@@ -61,17 +61,33 @@
     return;
   }
   var total=8,left=total,counted=false;
-  button.addEventListener("click",function(){
+  button.addEventListener("click",async function(event){
+    event.preventDefault();
     if(counted||left>0)return;
     counted=true;
     var token="";
-    try{token=localStorage.getItem("ps3member")||"";}catch(e){}
-    if(!token||!/^\d+$/.test(mod))return;
-    fetch((window.PS3MODS_API_URL||"")+"/api/download-counts/"+encodeURIComponent(mod),{
-      method:"POST",
-      headers:{"Authorization":"Bearer "+token},
-      keepalive:true
-    }).catch(function(error){console.warn("Não foi possível registrar este download.",error);});
+    try{token=localStorage.getItem("ps3member")||sessionStorage.getItem("ps3member")||"";}catch(e){}
+    if(!token||!/^\d+$/.test(mod)){
+      status.textContent="Não foi possível confirmar sua sessão para registrar a contagem. O download será aberto.";
+      window.location.assign(target.href);
+      return;
+    }
+    button.setAttribute("aria-disabled","true");
+    button.textContent="REGISTRANDO DOWNLOAD…";
+    try{
+      var response=await fetch((window.PS3MODS_API_URL||"")+"/api/download-counts/"+encodeURIComponent(mod),{
+        method:"POST",
+        headers:{"Authorization":"Bearer "+token},
+        cache:"no-store"
+      });
+      var data=await response.json().catch(function(){return {};});
+      if(!response.ok||!data.ok)throw new Error(data.error||("HTTP "+response.status));
+      status.textContent="Download registrado! Abrindo o arquivo…";
+    }catch(error){
+      console.warn("Não foi possível registrar este download.",error);
+      status.textContent="Não foi possível atualizar a contagem ("+(error.message||"erro")+"). Abrindo o arquivo…";
+    }
+    window.location.assign(target.href);
   });
   var timer=setInterval(function(){
     left--;
