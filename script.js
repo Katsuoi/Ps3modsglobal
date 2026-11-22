@@ -1,43 +1,56 @@
-// Compartilha a resposta antes do DOMContentLoaded para que community.js use a mesma consulta.
-window.PS3MODS_COMMUNITY_PROMISE = fetch((window.PS3MODS_API_URL || "") + "/api/mods")
-    .then(function(r) { if (!r.ok) throw new Error("API da comunidade indisponível"); return r.json(); })
-    .then(function(data) { return Array.isArray(data.items) ? data.items : []; })
-    .catch(function(e) { console.warn("Mods da comunidade indisponíveis:", e); return []; });
+// Cache público curto para que a troca entre páginas não espere a API a cada visita.
+function ps3modsCachedJson(path, key, fallback) {
+    var storageKey = "ps3mods_cache_v2_" + key;
+    var cached = null;
+    try {
+        cached = JSON.parse(localStorage.getItem(storageKey) || "null");
+    } catch (e) {}
+    function save(data) {
+        try { localStorage.setItem(storageKey, JSON.stringify({time: Date.now(), data: data})); } catch (e) {}
+    }
+    var request = fetch((window.PS3MODS_API_URL || "") + path)
+        .then(function(r) { if (!r.ok) throw new Error("Falha ao carregar " + path); return r.json(); })
+        .then(function(data) { save(data); return data; });
+    if (cached && Object.prototype.hasOwnProperty.call(cached, "data")) {
+        // Atualiza em segundo plano; a próxima aba já abre com dados locais.
+        request.catch(function(e) { console.warn("Atualização de cache adiada:", e); });
+        return Promise.resolve(cached.data);
+    }
+    return request.catch(function(e) {
+        console.warn("Não foi possível carregar " + path, e);
+        return fallback;
+    });
+}
+
+// Uma única consulta compartilhada entre script.js e community.js.
+window.PS3MODS_COMMUNITY_PROMISE = ps3modsCachedJson("/api/mods", "community", {items: []})
+    .then(function(data) { return Array.isArray(data.items) ? data.items : []; });
 
 document.addEventListener("DOMContentLoaded", async function() {
-    var comunidadeMods = await window.PS3MODS_COMMUNITY_PROMISE;
+    // Dispara as três consultas em paralelo. Se houver cache, nenhuma delas bloqueia a tela.
+    var overridePromise = (typeof mods !== "undefined")
+        ? ps3modsCachedJson("/api/legacy-overrides", "overrides", {items: {}})
+        : Promise.resolve({items: {}});
+    var countsPromise = ps3modsCachedJson("/api/download-counts", "download-counts", {counts: {}});
+    var results = await Promise.all([
+        window.PS3MODS_COMMUNITY_PROMISE,
+        overridePromise,
+        countsPromise
+    ]);
+    var comunidadeMods = results[0];
     var catalogoMods = (typeof mods !== "undefined" ? mods.slice() : []).concat(comunidadeMods.map(function(item) {
         var mod = Object.assign({}, item); mod.__community = true; return mod;
     }));
-    // Aplica alterações feitas pelo painel administrativo aos mods antigos.
-    try {
-        if (typeof mods !== "undefined") {
-            var overrideResponse = await fetch(window.PS3MODS_API_URL + "/api/legacy-overrides");
-            if (overrideResponse.ok) {
-                var overrideData = await overrideResponse.json();
-                Object.keys(overrideData.items || {}).forEach(function(id) {
-                    var target = mods.find(function(item) { return Number(item.id) === Number(id); });
-                    if (target) Object.assign(target, overrideData.items[id]);
-                });
-            }
-        }
-    } catch (overrideError) {
-        console.warn("Não foi possível carregar as alterações administrativas do catálogo.", overrideError);
+    // Aplica os dados administrativos em memória, sem uma segunda espera de rede.
+    var overrideData = results[1] || {items: {}};
+    if (typeof mods !== "undefined") {
+        Object.keys(overrideData.items || {}).forEach(function(id) {
+            var target = mods.find(function(item) { return Number(item.id) === Number(id); });
+            if (target) Object.assign(target, overrideData.items[id]);
+        });
     }
-
-
-    var downloadCounts = {};
-    try {
-        {
-            var countResponse = await fetch(window.PS3MODS_API_URL + "/api/download-counts");
-            if (countResponse.ok) {
-                var countData = await countResponse.json();
-                downloadCounts = countData.counts || {};
-            }
-        }
-    } catch (countError) {
-        console.warn("Não foi possível carregar as contagens de downloads.", countError);
-    }
+    var countData = results[2] || {counts: {}};
+    var downloadCounts = countData.counts || {};
     window.PS3MODS_DOWNLOAD_COUNTS = downloadCounts;
 
     var POR_PAGINA = 20;
