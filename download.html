@@ -16,7 +16,9 @@
 .download-gate-progress{height:8px;margin:24px 0 12px;border-radius:20px;background:#263449;overflow:hidden}
 .download-gate-progress span{display:block;width:0;height:100%;background:#62c8ff;transition:width .25s linear}
 #download-continue{display:inline-block;margin-top:12px;padding:14px 24px;border-radius:9px;background:#62c8ff;color:#07111d;text-decoration:none;font-weight:800}
-#download-continue[aria-disabled=true]{opacity:.45;pointer-events:none}\n#download-sponsored{display:inline-block;margin:14px 8px 0;padding:12px 18px;border:1px solid #52647d;border-radius:9px;color:#c9d7e8;text-decoration:none;font-weight:700}\n#download-sponsored:hover{background:#1c2b3e}
+#download-continue[aria-disabled=true]{opacity:.45;pointer-events:none}
+#download-sponsored{display:inline-block;margin:14px 8px 0;padding:12px 18px;border:1px solid #52647d;border-radius:9px;color:#c9d7e8;text-decoration:none;font-weight:700}
+#download-sponsored:hover{background:#1c2b3e}
 .download-gate-small{font-size:12px;color:#8291a7!important;margin-top:20px}
 </style>
 </head>
@@ -36,7 +38,11 @@
 <script>
 (function(){
   var params=new URLSearchParams(location.search);
-  var raw=params.get("url")||"";\n  var mod=params.get("mod")||"";\n  var downloadName=params.get("name")||"Download";\n  var sponsored=document.getElementById("download-sponsored");\n  if(sponsored){sponsored.href="https://uplcm.com/4/12318732";sponsored.setAttribute("data-mod",mod);sponsored.setAttribute("aria-label","Abrir anúncio patrocinado em nova aba");}
+  var raw=params.get("url")||"";
+  var mod=params.get("mod")||"";
+  var downloadName=params.get("name")||"Download";
+  var sponsored=document.getElementById("download-sponsored");
+  if(sponsored){sponsored.href="https://uplcm.com/4/12318732";sponsored.setAttribute("data-mod",mod);sponsored.setAttribute("aria-label","Abrir anúncio patrocinado em nova aba");}
   var target;
   try{target=new URL(raw,location.href);}catch(e){target=null;}
   var allowed=target && (target.protocol==="https:"||target.protocol==="http:");
