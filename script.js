@@ -46,7 +46,10 @@ document.addEventListener("DOMContentLoaded", async function() {
     var overridePromise = (typeof mods !== "undefined")
         ? ps3modsCachedJson("/api/legacy-overrides", "overrides", {items: {}})
         : Promise.resolve({items: {}});
-    var countsPromise = ps3modsCachedJson("/api/download-counts", "download-counts", {counts: {}});
+    // As contagens precisam ser consultadas sem o cache local de 90 segundos.
+    var countsPromise = fetch((window.PS3MODS_API_URL || "") + "/api/download-counts", {cache: "no-store"})
+        .then(function(response) { if (!response.ok) throw new Error("HTTP " + response.status); return response.json(); })
+        .catch(function(error) { console.warn("Não foi possível atualizar as contagens de downloads:", error); return {counts: {}}; });
     var results = await Promise.all([
         window.PS3MODS_COMMUNITY_PROMISE,
         overridePromise,
