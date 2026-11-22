@@ -11,15 +11,27 @@ function ps3modsCachedJson(path, key, fallback) {
     if (cached && Object.prototype.hasOwnProperty.call(cached, "data") && Date.now() - Number(cached.time || 0) < 90000) {
         return Promise.resolve(cached.data);
     }
-    var request = fetch((window.PS3MODS_API_URL || "") + path)
-        .then(function(r) { if (!r.ok) throw new Error("Falha ao carregar " + path); return r.json(); })
-        .then(function(data) { save(data); return data; });
+    // A API não pode impedir o catálogo estático de aparecer se o proxy ficar lento.
+    var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timeoutId;
+    var request = fetch((window.PS3MODS_API_URL || "") + path, controller ? {signal: controller.signal} : {})
+        .then(function(r) { if (!r.ok) throw new Error("Falha ao carregar " + path + " (HTTP " + r.status + ")"); return r.json(); })
+        .then(function(data) { save(data); return data; })
+        .finally(function() { if (timeoutId) clearTimeout(timeoutId); });
+    var timeout = new Promise(function(resolve) {
+        timeoutId = setTimeout(function() {
+            if (controller) controller.abort();
+            console.warn("Tempo limite ao carregar " + path + "; usando catálogo local.");
+            resolve(fallback);
+        }, 5000);
+    });
+    request.catch(function() {});
     if (cached && Object.prototype.hasOwnProperty.call(cached, "data")) {
         // Exibe os dados locais imediatamente e atualiza em segundo plano.
         request.catch(function(e) { console.warn("Atualização de cache adiada:", e); });
         return Promise.resolve(cached.data);
     }
-    return request.catch(function(e) {
+    return Promise.race([request, timeout]).catch(function(e) {
         console.warn("Não foi possível carregar " + path, e);
         return fallback;
     });
