@@ -8,11 +8,14 @@ function ps3modsCachedJson(path, key, fallback) {
     function save(data) {
         try { localStorage.setItem(storageKey, JSON.stringify({time: Date.now(), data: data})); } catch (e) {}
     }
+    if (cached && Object.prototype.hasOwnProperty.call(cached, "data") && Date.now() - Number(cached.time || 0) < 90000) {
+        return Promise.resolve(cached.data);
+    }
     var request = fetch((window.PS3MODS_API_URL || "") + path)
         .then(function(r) { if (!r.ok) throw new Error("Falha ao carregar " + path); return r.json(); })
         .then(function(data) { save(data); return data; });
     if (cached && Object.prototype.hasOwnProperty.call(cached, "data")) {
-        // Atualiza em segundo plano; a próxima aba já abre com dados locais.
+        // Exibe os dados locais imediatamente e atualiza em segundo plano.
         request.catch(function(e) { console.warn("Atualização de cache adiada:", e); });
         return Promise.resolve(cached.data);
     }
