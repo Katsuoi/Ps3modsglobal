@@ -695,6 +695,32 @@ document.addEventListener("DOMContentLoaded", async function() {
                 });
             }
 
+            var videoSection = document.getElementById("video-mod");
+            var videoFrameHost = document.getElementById("video-mod-frame");
+            if (videoSection && videoFrameHost && mod.videoYoutube) {
+                var videoId = String(mod.videoYoutube).trim();
+                if (!/^[A-Za-z0-9_-]{11}$/.test(videoId)) {
+                    try {
+                        var videoUrl = new URL(videoId);
+                        if (/(^|\\.)youtu\\.be$/i.test(videoUrl.hostname)) videoId = videoUrl.pathname.split("/").filter(Boolean)[0] || "";
+                        else if (/(^|\\.)youtube\\.com$/i.test(videoUrl.hostname)) videoId = videoUrl.searchParams.get("v") || ((videoUrl.pathname.match(/^\\/(?:embed|shorts)\\/([^/?]+)/) || [])[1] || "");
+                        else videoId = "";
+                    } catch (e) { videoId = ""; }
+                }
+                if (/^[A-Za-z0-9_-]{11}$/.test(videoId)) {
+                    var iframe = document.createElement("iframe");
+                    iframe.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(videoId);
+                    iframe.title = "Vídeo do mod " + (mod.nome || "");
+                    iframe.loading = "lazy";
+                    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+                    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                    iframe.allowFullscreen = true;
+                    iframe.style.cssText = "position:absolute;inset:0;width:100%;height:100%;border:0";
+                    videoFrameHost.appendChild(iframe);
+                    videoSection.style.display = "block";
+                }
+            }
+
             var favBtn = document.getElementById("btn-favorito");
             if (favBtn) {
                 favBtn.setAttribute("data-fav", mod.id);
