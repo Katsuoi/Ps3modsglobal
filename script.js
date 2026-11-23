@@ -1,3 +1,4 @@
+(function(){if(document.querySelector('script[data-ps3-notifications]'))return;var s=document.createElement("script");s.src="/notifications.js?v=20261123-1";s.defer=true;s.setAttribute("data-ps3-notifications","1");document.head.appendChild(s);})();
 // Cache público curto para que a troca entre páginas não espere a API a cada visita.
 function ps3modsCachedJson(path, key, fallback) {
     var storageKey = "ps3mods_cache_v2_" + key;
@@ -406,6 +407,8 @@ document.addEventListener("DOMContentLoaded", async function() {
         var cat = document.createElement("span");
         cat.className = "categoria"; cat.textContent = labelCategoria(mod) || "Comunidade";
         card.appendChild(cat);
+        var updatedAt = mod.downloadUpdatedAt ? Date.parse(mod.downloadUpdatedAt) : 0;
+        if (updatedAt && Date.now() - updatedAt < 7 * 24 * 60 * 60 * 1000 && Date.now() >= updatedAt) { var updateBadge=document.createElement("span"); updateBadge.className="badge-mod-atualizado"; updateBadge.textContent="ATUALIZADO"; updateBadge.title="Link de download atualizado nos últimos 7 dias"; card.appendChild(updateBadge); }
         var title = document.createElement("h3"); title.textContent = mod.nome || "Mod sem nome"; card.appendChild(title);
         var desc = document.createElement("p"); desc.textContent = mod.descricao || ""; card.appendChild(desc);
         if (!mod.__community) {
@@ -622,6 +625,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
             if (elNome) elNome.textContent = mod.nome;
             if (elTitulo) elTitulo.textContent = mod.nome;
+            var detailUpdatedAt=mod.downloadUpdatedAt?Date.parse(mod.downloadUpdatedAt):0;if(detailUpdatedAt&&Date.now()-detailUpdatedAt<7*24*60*60*1000&&Date.now()>=detailUpdatedAt&&elTitulo){var detailBadge=document.createElement("span");detailBadge.className="badge-mod-atualizado";detailBadge.textContent="ATUALIZADO";detailBadge.title="Link de download atualizado nos últimos 7 dias";elTitulo.insertAdjacentElement("afterend",detailBadge);}
             if (elDesc) elDesc.textContent = mod.descricao;
             if (elCat) elCat.textContent = labelCategoria(mod);
             if (elCatBanner) elCatBanner.textContent = labelCategoria(mod);
