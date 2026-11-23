@@ -630,6 +630,46 @@ document.addEventListener("DOMContentLoaded", async function() {
             if (elCompat) elCompat.textContent = mod.compatibilidade || "Skyrim LE PS3";
             if (elData) elData.textContent = mod.data || "-";
 
+            // SEO dinâmico: cada mod do catálogo recebe metadados próprios.
+            (function aplicarSeoDoMod(item) {
+                var description = String(item.descricao || "Mod de Skyrim Legendary Edition para PlayStation 3.").replace(/\s+/g, " ").trim().slice(0, 300);
+                var pageUrl = "https://jogosmodsglobal.pages.dev/mods/mod.html?id=" + encodeURIComponent(item.id);
+                document.title = String(item.nome || "Mod") + " para Skyrim PS3 | Jogos Mods Global";
+                function setMeta(selector, attribute, value) {
+                    var node = document.head.querySelector(selector);
+                    if (!node) {
+                        node = document.createElement("meta");
+                        var match = selector.match(/(?:name|property)="([^"]+)"/);
+                        node.setAttribute(selector.indexOf("property=") !== -1 ? "property" : "name", match[1]);
+                        document.head.appendChild(node);
+                    }
+                    node.setAttribute(attribute, value);
+                }
+                setMeta('meta[name="description"]', "content", description);
+                setMeta('meta[property="og:title"]', "content", document.title);
+                setMeta('meta[property="og:description"]', "content", description);
+                setMeta('meta[property="og:type"]', "content", "article");
+                setMeta('meta[property="og:url"]', "content", pageUrl);
+                var imagePath = String(item.imagem || "../imagens/Preview.jpg").replace(/^\.\.\//, "");
+                setMeta('meta[property="og:image"]', "content", new URL(imagePath, "https://jogosmodsglobal.pages.dev/").href);
+                var canonical = document.head.querySelector('link[rel="canonical"]');
+                if (!canonical) { canonical = document.createElement("link"); canonical.rel = "canonical"; document.head.appendChild(canonical); }
+                canonical.href = pageUrl;
+                var oldSchema = document.getElementById("mod-seo-schema");
+                if (oldSchema) oldSchema.remove();
+                var schema = document.createElement("script");
+                schema.type = "application/ld+json";
+                schema.id = "mod-seo-schema";
+                schema.textContent = JSON.stringify({
+                    "@context": "https://schema.org", "@type": "SoftwareApplication",
+                    "name": item.nome, "description": description, "applicationCategory": "Game",
+                    "operatingSystem": "PlayStation 3", "url": pageUrl,
+                    "image": new URL(imagePath, "https://jogosmodsglobal.pages.dev/").href,
+                    "author": {"@type":"Organization","name":"Jogos Mods Global"}
+                });
+                document.head.appendChild(schema);
+            })(mod);
+
             var tabela = document.getElementById("tabela-mod");
             if (tabela) {
                 var mapa = [
