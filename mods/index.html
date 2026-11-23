@@ -147,7 +147,7 @@ Mods convertidos e otimizados para Skyrim Legendary Edition no PlayStation 3.
 
 <script src="../mods-api-config.js"></script>
 <script src="../script.js?v=20261123-notifications-1"></script>
-<script src="../community.js?v=20261123-notifications-1"></script>
+<script src="../community.js?v=20261123-download-counts-1"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded",function(){var token=sessionStorage.getItem("ps3adm")||localStorage.getItem("ps3adm")||"";var box=document.getElementById("admin-quick-tools");if(!token||!box||!window.PS3MODS_API_URL)return;fetch(window.PS3MODS_API_URL+"/api/admin/session",{headers:{"Authorization":"Bearer "+token},cache:"no-store"}).then(function(r){if(!r.ok)throw Error("Sem acesso");return r.json()}).then(function(){box.style.display="block"}).catch(function(){});});
