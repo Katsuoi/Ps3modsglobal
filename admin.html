@@ -26,6 +26,7 @@ var imagem=prompt('Link da imagem de capa:',m.imagem||'');if(imagem===null)retur
 var is18=confirm('Este mod contém conteúdo +18?\\nOK = Sim / Cancelar = Não');
 var videoAtual=m.videoYoutube?'https://www.youtube.com/watch?v='+m.videoYoutube:'';
 var videoYoutube=prompt('Link de vídeo do YouTube (opcional; deixe vazio para remover):',videoAtual);if(videoYoutube===null)return;
+if(videoYoutube.trim()){var videoId='';if(/^[A-Za-z0-9_-]{11}$/.test(videoYoutube.trim()))videoId=videoYoutube.trim();else{try{var vu=new URL(videoYoutube.trim());if(/(^|\\.)youtu\\.be$/i.test(vu.hostname))videoId=vu.pathname.split('/').filter(Boolean)[0]||'';else if(/(^|\\.)youtube\\.com$/i.test(vu.hostname))videoId=vu.searchParams.get('v')||((vu.pathname.match(/^\\/(?:embed|shorts)\\/([^/?]+)/)||[])[1]||'')}catch(e){}}if(!/^[A-Za-z0-9_-]{11}$/.test(videoId)){alert('Informe um link válido do YouTube ou deixe o campo vazio.');return}videoYoutube=videoId}else{videoYoutube=''}
 var mod={nome:nome,categoria:categoria,descricao:descricao,autor:autor,versao:versao,compatibilidade:compatibilidade,imagem:imagem,is18:is18,videoYoutube:videoYoutube};
 var downloadsAtual=Array.isArray(m.downloads)?m.downloads.filter(function(x){return x&&x.link}):[];
 if(!downloadsAtual.length&&m.download)downloadsAtual=[{nome:'Download',link:m.download}];
