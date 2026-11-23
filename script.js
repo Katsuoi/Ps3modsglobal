@@ -702,8 +702,8 @@ document.addEventListener("DOMContentLoaded", async function() {
                 if (!/^[A-Za-z0-9_-]{11}$/.test(videoId)) {
                     try {
                         var videoUrl = new URL(videoId);
-                        if (/(^|\\.)youtu\\.be$/i.test(videoUrl.hostname)) videoId = videoUrl.pathname.split("/").filter(Boolean)[0] || "";
-                        else if (/(^|\\.)youtube\\.com$/i.test(videoUrl.hostname)) videoId = videoUrl.searchParams.get("v") || ((videoUrl.pathname.match(/^\\/(?:embed|shorts)\\/([^/?]+)/) || [])[1] || "");
+                        if (/(^|\.)youtu\.be$/i.test(videoUrl.hostname)) videoId = videoUrl.pathname.split("/").filter(Boolean)[0] || "";
+                        else if (/(^|\.)youtube\.com$/i.test(videoUrl.hostname)) videoId = videoUrl.searchParams.get("v") || ((videoUrl.pathname.match(/^\/(?:embed|shorts)\/([^/?]+)/) || [])[1] || "");
                         else videoId = "";
                     } catch (e) { videoId = ""; }
                 }
