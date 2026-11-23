@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /admin-catalogo.html
+Disallow: /gerador.html
+Disallow: /api/
+Disallow: /functions/
+
+Sitemap: https://jogosmodsglobal.pages.dev/sitemap.xml
