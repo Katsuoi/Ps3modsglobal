@@ -52,10 +52,22 @@ document.addEventListener("DOMContentLoaded", async function() {
     var countsPromise = fetch((window.PS3MODS_API_URL || "") + "/api/download-counts", {cache: "no-store"})
         .then(function(response) { if (!response.ok) throw new Error("HTTP " + response.status); return response.json(); })
         .catch(function(error) { console.warn("Não foi possível atualizar as contagens de downloads:", error); return {counts: {}}; });
+    // A tela inicial nunca deve depender da resposta da API para renderizar o catálogo local.
+    function aguardarComLimite(promise, fallback, ms, label) {
+        return Promise.race([
+            Promise.resolve(promise),
+            new Promise(function(resolve) {
+                setTimeout(function() {
+                    console.warn("Tempo limite ao carregar " + label + "; exibindo os dados locais disponíveis.");
+                    resolve(fallback);
+                }, ms);
+            })
+        ]);
+    }
     var results = await Promise.all([
-        window.PS3MODS_COMMUNITY_PROMISE,
-        overridePromise,
-        countsPromise
+        aguardarComLimite(window.PS3MODS_COMMUNITY_PROMISE, [], 3500, "mods da comunidade"),
+        aguardarComLimite(overridePromise, {items: {}}, 3500, "edições administrativas"),
+        aguardarComLimite(countsPromise, {counts: {}}, 3500, "contagem de downloads")
     ]);
     var comunidadeMods = results[0];
     var catalogoMods = (typeof mods !== "undefined" ? mods.slice() : []).concat(comunidadeMods.map(function(item) {
