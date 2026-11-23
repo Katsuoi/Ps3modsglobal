@@ -83,6 +83,15 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
     var countData = results[2] || {counts: {}};
     var downloadCounts = countData.counts || {};
+    function somarContagensDownloads(counts) {
+        return Object.keys(counts || {}).reduce(function(soma, id) {
+            return soma + Math.max(0, Number(counts[id]) || 0);
+        }, 0);
+    }
+    // A API entrega o total agregado do banco; use-o como fonte oficial.
+    var totalDownloads = Number.isFinite(Number(countData.total))
+        ? Math.max(0, Number(countData.total))
+        : somarContagensDownloads(downloadCounts);
     window.PS3MODS_DOWNLOAD_COUNTS = downloadCounts;
 
     var POR_PAGINA = 20;
@@ -101,10 +110,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         });
         var statDownloads = document.getElementById("stat-downloads");
         if (statDownloads) {
-            var totalGeral = Object.keys(downloadCounts).reduce(function(soma, id) {
-                return soma + Math.max(0, Number(downloadCounts[id]) || 0);
-            }, 0);
-            statDownloads.textContent = formatarContagemDownloads(totalGeral);
+            statDownloads.textContent = formatarContagemDownloads(totalDownloads);
         }
     }
     function registrarCliqueDownload(modId) {
@@ -120,6 +126,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         }).then(function(data) {
             if (!data || !data.ok) return;
             downloadCounts[String(modId)] = Number(data.count) || 0;
+            totalDownloads += 1;
             window.PS3MODS_DOWNLOAD_COUNTS = downloadCounts;
             atualizarContagensDownloads();
         }).catch(function(error) {
@@ -852,6 +859,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             var freshCommunity = Array.isArray(fresh[0].items) ? fresh[0].items : [];
             var freshOverrides = fresh[1] || {items:{}};
             var freshCounts = fresh[2] && fresh[2].counts ? fresh[2].counts : {};
+            var freshTotalDownloads = Number(fresh[2] && fresh[2].total);
             comunidadeMods = freshCommunity;
             catalogoMods = (typeof mods !== "undefined" ? mods.slice() : []).concat(freshCommunity.map(function(item){var mod=Object.assign({},item);mod.__community=true;return mod;}));
             if (typeof mods !== "undefined") {
@@ -869,6 +877,9 @@ document.addEventListener("DOMContentLoaded", async function() {
                 }
             }
             downloadCounts = freshCounts;
+            totalDownloads = Number.isFinite(freshTotalDownloads)
+                ? Math.max(0, freshTotalDownloads)
+                : somarContagensDownloads(downloadCounts);
             window.PS3MODS_DOWNLOAD_COUNTS = downloadCounts;
             var totalModsEl = document.getElementById("stat-mods");
             if (totalModsEl) totalModsEl.textContent = catalogoMods.length;
