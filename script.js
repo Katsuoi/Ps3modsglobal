@@ -347,11 +347,10 @@ document.addEventListener("DOMContentLoaded", async function() {
         img.loading = "lazy"; img.decoding = "async";
         img.onerror = function() { this.style.display = "none"; };
         card.appendChild(img);
-        if (mod.__community) {
-            var origem = document.createElement("span");
-            origem.className = "origem-comunidade"; origem.textContent = "Comunidade";
-            card.appendChild(origem);
-        }
+        var origem = document.createElement("span");
+        origem.className = mod.__community ? "origem-comunidade" : "origem-administracao";
+        origem.textContent = mod.__community ? "Comunidade" : "Administração";
+        card.appendChild(origem);
         var cat = document.createElement("span");
         cat.className = "categoria"; cat.textContent = labelCategoria(mod) || "Comunidade";
         card.appendChild(cat);
@@ -755,23 +754,31 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
 
     var ultimos = document.getElementById("ultimos");
-    if (ultimos && typeof mods !== "undefined") {
+    if (ultimos) {
         ultimos.innerHTML = "";
-        mods.slice().sort(function(a, b) { function ts(v) { var m = String(v || "").match(/^(\d{2})\/(\d{2})\/(\d{4})$/); return m ? new Date(Number(m[3]), Number(m[2])-1, Number(m[1])).getTime() : (Date.parse(v) || 0); } return ts(b.data) - ts(a.data) || Number(b.id)-Number(a.id); }).slice(0, 3).forEach(function(mod) {
+        function dataRecente(mod) {
+            var raw = mod.created_at || mod.createdAt || mod.submittedAt || mod.published_at || "";
+            var parsed = Date.parse(raw);
+            if (!isNaN(parsed)) return parsed;
+            var numericId = Number(mod.id) || 0;
+            if (numericId > 100000000000) return numericId;
+            var date = String(mod.data || "").match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+            return date ? new Date(Number(date[3]),Number(date[2])-1,Number(date[1])).getTime() : 0;
+        }
+        catalogoMods.slice().sort(function(a,b) { return dataRecente(b)-dataRecente(a) || Number(b.id)-Number(a.id); }).slice(0,3).forEach(function(mod) {
+            var community = !!mod.__community;
             var img = String(mod.imagem || "").replace("../", "");
-            ultimos.innerHTML +=
-                '<div class="ultimo-card">' +
-                '<img src="' + img + '" alt="' + mod.nome + '" loading="lazy" decoding="async">' +
-                '<div class="ultimo-info">' +
-                '<span class="categoria">' + labelCategoria(mod) + '</span>' +
-                '<h3>' + mod.nome + '</h3>' +
-                '<p>' + String(mod.descricao || "").substring(0, 90) + '...</p>' +
-                '<span class="download-count" data-download-count data-mod-id="' + mod.id + '">↓ ' + formatarContagemDownloads(downloadCounts[String(mod.id)] || 0) + ' downloads</span>' +
-                '<a href="mods/mod.html?id=' + mod.id + '">Ler mais →</a>' +
-                '</div></div>';
+            var href = community ? "mod-comunidade.html?id=" + encodeURIComponent(mod.id) : "mods/mod.html?id=" + encodeURIComponent(mod.id);
+            var wrap = document.createElement("div"); wrap.className = "ultimo-card";
+            var image = document.createElement("img"); image.src = img; image.alt = mod.nome || "Mod"; image.loading = "lazy"; image.decoding = "async"; wrap.appendChild(image);
+            var info = document.createElement("div"); info.className = "ultimo-info";
+            var cat = document.createElement("span"); cat.className = "categoria"; cat.textContent = (community ? "Comunidade · " : "Administração · ") + labelCategoria(mod); info.appendChild(cat);
+            var title = document.createElement("h3"); title.textContent = mod.nome || "Mod"; info.appendChild(title);
+            var desc = document.createElement("p"); desc.textContent = String(mod.descricao || "").substring(0,90) + "..."; info.appendChild(desc);
+            var link = document.createElement("a"); link.href = href; link.textContent = "Ler mais →"; info.appendChild(link);
+            wrap.appendChild(info); ultimos.appendChild(wrap);
         });
     }
-
     var elUpdate = document.getElementById("stat-update");
     if (elUpdate && typeof mods !== "undefined" && mods.length) {
         var ultimo = mods.slice().sort(function(a, b) { return b.id - a.id; })[0];
