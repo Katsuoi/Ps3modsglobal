@@ -38,8 +38,10 @@ function ps3modsCachedJson(path, key, fallback) {
 }
 
 // Uma única consulta compartilhada entre script.js e community.js.
-window.PS3MODS_COMMUNITY_PROMISE = ps3modsCachedJson("/api/mods", "community", {items: []})
-    .then(function(data) { return Array.isArray(data.items) ? data.items : []; });
+window.PS3MODS_COMMUNITY_PROMISE = fetch((window.PS3MODS_API_URL || "") + "/api/mods", {cache: "no-store"})
+    .then(function(response) { if (!response.ok) throw new Error("HTTP " + response.status); return response.json(); })
+    .then(function(data) { return Array.isArray(data.items) ? data.items : []; })
+    .catch(function(error) { console.warn("Falha ao atualizar mods da comunidade:", error); return []; });
 
 document.addEventListener("DOMContentLoaded", async function() {
     // Dispara as três consultas em paralelo. Se houver cache, nenhuma delas bloqueia a tela.
