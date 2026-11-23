@@ -780,9 +780,99 @@ document.addEventListener("DOMContentLoaded", async function() {
         });
     }
     var elUpdate = document.getElementById("stat-update");
-    if (elUpdate && typeof mods !== "undefined" && mods.length) {
-        var ultimo = mods.slice().sort(function(a, b) { return b.id - a.id; })[0];
-        elUpdate.textContent = ultimo.data || "--";
+    function parseDataEstatistica(value) {
+        if (value === null || value === undefined || value === "") return 0;
+        if (typeof value === "number" || /^\\d{10,13}$/.test(String(value))) {
+            var numeric = Number(value);
+            return numeric < 100000000000 ? numeric * 1000 : numeric;
+        }
+        var text = String(value).trim();
+        var br = text.match(/^(\\d{2})\\/(\\d{2})\\/(\\d{4})$/);
+        if (br) return new Date(Number(br[3]), Number(br[2])-1, Number(br[1])).getTime();
+        var parsed = Date.parse(text);
+        return isNaN(parsed) ? 0 : parsed;
+    }
+    function atualizarDataUltimaAtualizacao(lista, overrides) {
+        if (!elUpdate) return;
+        var latest = 0;
+        (lista || []).forEach(function(mod) {
+            [mod.updated_at, mod.updatedAt, mod.created_at, mod.createdAt, mod.published_at, mod.submittedAt, mod.data].forEach(function(value) {
+                latest = Math.max(latest, parseDataEstatistica(value));
+            });
+        });
+        var entries = overrides && overrides.items ? overrides.items : {};
+        if (Array.isArray(entries)) {
+            entries.forEach(function(entry) {
+                latest = Math.max(latest, parseDataEstatistica(entry.updatedAt || entry.updated_at));
+                var payload = entry.mod || entry;
+                [payload.updated_at, payload.updatedAt, payload.data].forEach(function(value) {
+                    latest = Math.max(latest, parseDataEstatistica(value));
+                });
+            });
+        } else {
+            Object.keys(entries).forEach(function(id) {
+                var entry = entries[id] || {};
+                latest = Math.max(latest, parseDataEstatistica(entry.updatedAt || entry.updated_at));
+                var payload = entry.mod || entry;
+                [payload.updated_at, payload.updatedAt, payload.created_at, payload.data].forEach(function(value) {
+                    latest = Math.max(latest, parseDataEstatistica(value));
+                });
+            });
+        }
+        if (latest) {
+            var date = new Date(latest);
+            elUpdate.textContent = new Intl.DateTimeFormat("pt-BR", {day:"2-digit",month:"2-digit",year:"numeric"}).format(date);
+        }
+    }
+    atualizarDataUltimaAtualizacao(catalogoMods, overrideData);
+
+    // Atualiza os indicadores sem recarregar a página; pausa quando a aba está em segundo plano.
+    var homeStatsRefreshBusy = false;
+    async function atualizarEstatisticasAoVivo() {
+        if (homeStatsRefreshBusy || document.hidden || !document.getElementById("stats-bar")) return;
+        homeStatsRefreshBusy = true;
+        try {
+            var fresh = await Promise.all([
+                fetch((window.PS3MODS_API_URL || "") + "/api/mods", {cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("mods HTTP "+r.status);return r.json();}),
+                fetch((window.PS3MODS_API_URL || "") + "/api/legacy-overrides", {cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("overrides HTTP "+r.status);return r.json();}),
+                fetch((window.PS3MODS_API_URL || "") + "/api/download-counts", {cache:"no-store"}).then(function(r){if(!r.ok)throw new Error("downloads HTTP "+r.status);return r.json();})
+            ]);
+            var freshCommunity = Array.isArray(fresh[0].items) ? fresh[0].items : [];
+            var freshOverrides = fresh[1] || {items:{}};
+            var freshCounts = fresh[2] && fresh[2].counts ? fresh[2].counts : {};
+            comunidadeMods = freshCommunity;
+            catalogoMods = (typeof mods !== "undefined" ? mods.slice() : []).concat(freshCommunity.map(function(item){var mod=Object.assign({},item);mod.__community=true;return mod;}));
+            if (typeof mods !== "undefined") {
+                var overrideEntries = freshOverrides.items || {};
+                if (Array.isArray(overrideEntries)) {
+                    overrideEntries.forEach(function(entry) {
+                        var target = mods.find(function(item){return Number(item.id)===Number(entry.id);});
+                        if (target) Object.assign(target, entry.mod || entry);
+                    });
+                } else {
+                    Object.keys(overrideEntries).forEach(function(id) {
+                        var target = mods.find(function(item){return Number(item.id)===Number(id);});
+                        if (target) Object.assign(target, overrideEntries[id].mod || overrideEntries[id]);
+                    });
+                }
+            }
+            downloadCounts = freshCounts;
+            window.PS3MODS_DOWNLOAD_COUNTS = downloadCounts;
+            var totalModsEl = document.getElementById("stat-mods");
+            if (totalModsEl) totalModsEl.textContent = catalogoMods.length;
+            atualizarContagensDownloads();
+            atualizarDataUltimaAtualizacao(catalogoMods, freshOverrides);
+        } catch (error) {
+            console.warn("Não foi possível atualizar os indicadores da página inicial:", error);
+        } finally {
+            homeStatsRefreshBusy = false;
+        }
+    }
+    if (document.getElementById("stats-bar")) {
+        window.setInterval(atualizarEstatisticasAoVivo, 60000);
+        document.addEventListener("visibilitychange", function() {
+            if (!document.hidden) atualizarEstatisticasAoVivo();
+        });
     }
 
     aplicarContagemCategorias();
