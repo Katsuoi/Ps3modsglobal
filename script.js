@@ -368,12 +368,10 @@ document.addEventListener("DOMContentLoaded", async function() {
         var link = document.createElement("a"); link.className = "download";
         link.href = mod.__community ? "../mod-comunidade.html?id=" + encodeURIComponent(mod.id) : "mod.html?id=" + encodeURIComponent(mod.id);
         link.textContent = "Ver Mod"; card.appendChild(link);
-        if (!mod.__community) {
-            var fav = document.createElement("button"); fav.className = "btn-fav";
-            fav.type = "button"; fav.setAttribute("data-fav", mod.id); fav.textContent = "☆ Favoritar";
-            fav.addEventListener("click", function() { window.toggleFavorito(mod.id); });
-            card.appendChild(fav);
-        }
+        var fav = document.createElement("button"); fav.className = "btn-fav";
+        fav.type = "button"; fav.setAttribute("data-fav", mod.id); fav.textContent = "☆ Favoritar";
+        fav.addEventListener("click", function() { window.toggleFavorito(mod.id); });
+        card.appendChild(fav);
         return card;
     }
 
