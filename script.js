@@ -113,6 +113,37 @@ document.addEventListener("DOMContentLoaded", async function() {
             statDownloads.textContent = formatarContagemDownloads(totalDownloads);
         }
     }
+
+    // Reconsulta somente o total persistido, independentemente das outras APIs da página.
+    // Isso recupera o número mesmo quando a consulta inicial atingiu o tempo limite.
+    var totalDownloadsSyncBusy = false;
+    async function sincronizarTotalDownloadsPersistido() {
+        if (totalDownloadsSyncBusy || !document.getElementById("stat-downloads")) return;
+        totalDownloadsSyncBusy = true;
+        try {
+            var response = await fetch((window.PS3MODS_API_URL || "") + "/api/download-counts?refresh=" + Date.now(), {
+                cache: "no-store",
+                headers: {"Cache-Control": "no-cache"}
+            });
+            if (!response.ok) throw new Error("HTTP " + response.status);
+            var data = await response.json();
+            var persistedTotal = Number(data && data.total);
+            if (!Number.isFinite(persistedTotal) || persistedTotal < 0) {
+                throw new Error("A API não retornou um total válido");
+            }
+            // Nunca regride o número já confirmado nesta sessão por uma resposta antiga.
+            totalDownloads = Math.max(totalDownloads, persistedTotal);
+            if (data.counts && typeof data.counts === "object") {
+                downloadCounts = data.counts;
+                window.PS3MODS_DOWNLOAD_COUNTS = downloadCounts;
+            }
+            atualizarContagensDownloads();
+        } catch (error) {
+            console.warn("Não foi possível sincronizar o total geral de downloads:", error);
+        } finally {
+            totalDownloadsSyncBusy = false;
+        }
+    }
     function registrarCliqueDownload(modId) {
         var token = localStorage.getItem("ps3member") || "";
         if (!token) return;
@@ -752,6 +783,10 @@ document.addEventListener("DOMContentLoaded", async function() {
     var statMods = document.getElementById("stat-mods");
     if (statMods) statMods.textContent = catalogoMods.length;
     atualizarContagensDownloads();
+    // Faz uma segunda leitura independente após a renderização inicial e ao restaurar a página.
+    sincronizarTotalDownloadsPersistido();
+    window.setTimeout(sincronizarTotalDownloadsPersistido, 2000);
+    window.addEventListener("pageshow", sincronizarTotalDownloadsPersistido);
 
     var destaques = document.getElementById("destaques");
     if (destaques && typeof mods !== "undefined") {
