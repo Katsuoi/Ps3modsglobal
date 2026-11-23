@@ -794,12 +794,12 @@ document.addEventListener("DOMContentLoaded", async function() {
     var elUpdate = document.getElementById("stat-update");
     function parseDataEstatistica(value) {
         if (value === null || value === undefined || value === "") return 0;
-        if (typeof value === "number" || /^\\d{10,13}$/.test(String(value))) {
+        if (typeof value === "number" || /^\d{10,13}$/.test(String(value))) {
             var numeric = Number(value);
             return numeric < 100000000000 ? numeric * 1000 : numeric;
         }
         var text = String(value).trim();
-        var br = text.match(/^(\\d{2})\\/(\\d{2})\\/(\\d{4})$/);
+        var br = text.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
         if (br) return new Date(Number(br[3]), Number(br[2])-1, Number(br[1])).getTime();
         var parsed = Date.parse(text);
         return isNaN(parsed) ? 0 : parsed;
