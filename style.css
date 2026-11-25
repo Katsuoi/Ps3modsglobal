@@ -960,3 +960,7 @@ footer{margin-top:60px!important;background:#080e14!important;border-top:1px sol
 .card-mod>.download,.card-home>.download{margin-top:auto;align-self:flex-start}
 .card-mod>.btn-fav,.card-home>.btn-fav{align-self:flex-start;margin-top:0}
 .card-mod>.origem-comunidade,.card-mod>.origem-administracao{align-self:flex-start}
+
+
+/* Centraliza o selo que identifica a categoria em todos os cards. */
+.card-mod > .categoria,.card-home > .categoria{display:block;width:fit-content;max-width:calc(100% - 24px);margin:8px auto 0;text-align:center;overflow-wrap:anywhere;}
