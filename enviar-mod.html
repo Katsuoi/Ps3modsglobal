@@ -28,13 +28,14 @@
 </section>
 <div id="status" class="status" role="status"></div></form></main>
 <div class="bottom-action"><button type="submit" form="form-mod" id="publish">PUBLICAR MOD</button></div>
-<script src="mods-api-config.js"></script><script>
+<script src="mods-api-config.js"></script><script src="mods.js"></script><script>
 (function(){var f=document.getElementById('form-mod'),start=Date.now(),dls=document.getElementById('downloads'),count=0;
 var categorias=['Companions','Armaduras Femininas','Armaduras Masculinas','Armas','Magias','Construcoes e Casas','Missoes e Aventuras','Graficos','Interface/Menu','Otimizacao','Criaturas','Vampiros','Lobisomem','Sons','Animacoes','Arqueiria','Montarias','Utilidades','Racas e Habilidades','Combate e Dificuldade','Efeitos Visuais','Imersao','Mods Engracados'];
 function chaveCategoria(valor){return String(valor||'').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLocaleLowerCase('pt-BR').replace(/[^a-z0-9]+/g,' ').trim().split(/\\s+/).filter(function(p){return p&&!/^(de|da|do|das|dos)$/.test(p)}).map(function(p){if(p.length>3&&p.endsWith('s'))return p.slice(0,-1);return p}).join(' ')}
-function incluirCategoria(valor){var nome=String(valor||'').trim(),key=chaveCategoria(nome);if(!key)return;var existente=categorias.find(function(c){return chaveCategoria(c)===key});if(!existente)categorias.push(nome)}
+function incluirCategoria(valor){var nome=String(valor||'').trim(),key=chaveCategoria(nome);if(!key)return;var existente=categorias.find(function(c){return chaveCategoria(c)===key});if(!existente){categorias.push(nome);existente=nome}var list=document.getElementById('categorias-disponiveis');if(list&&!Array.from(list.options).some(function(o){return chaveCategoria(o.value)===key})){var option=document.createElement('option');option.value=existente;list.appendChild(option)}}
 document.getElementById('startedAt').value=start;document.getElementById('data').value=new Date().toLocaleDateString('pt-BR',{timeZone:'America/Sao_Paulo'});
 function renderCategorias(selecionadas){var host=document.getElementById('multi-categorias'),cat=v('categoria');host.innerHTML='';incluirCategoria(cat);var escolhidas=(selecionadas||[cat]).map(chaveCategoria);categorias.forEach(function(nome){var lab=document.createElement('label'),cb=document.createElement('input');cb.type='checkbox';cb.value=nome;cb.checked=escolhidas.indexOf(chaveCategoria(nome))!==-1;cb.addEventListener('change',function(){if(!cb.checked&&chaveCategoria(nome)===chaveCategoria(v('categoria')))cb.checked=true});lab.append(cb,document.createTextNode(nome));host.appendChild(lab)});}
+(typeof mods!=='undefined'?mods:[]).forEach(function(m){incluirCategoria(m.categoria);(m.categorias||[]).forEach(incluirCategoria)});
 renderCategorias();
 // Importa também as categorias que já existem nos mods publicados pela comunidade.
 fetch((window.PS3MODS_API_URL||'')+'/api/mods',{cache:'no-store'}).then(function(r){if(!r.ok)throw Error();return r.json()}).then(function(d){(d.items||[]).forEach(function(m){incluirCategoria(m.categoria);(m.categorias||[]).forEach(incluirCategoria)});renderCategorias()}).catch(function(){});
