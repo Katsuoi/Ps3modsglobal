@@ -561,7 +561,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         var catUrl = params.get("categoria");
         if (catUrl) {
             for (var i = 0; i < sel.options.length; i++) {
-                if (normalizarCategoria(sel.options[i].value) === normalizarCategoria(catUrl)) {
+                if (categoriasEquivalentes(sel.options[i].value, catUrl)) {
                     sel.value = sel.options[i].value;
                     break;
                 }
@@ -574,7 +574,10 @@ document.addEventListener("DOMContentLoaded", async function() {
             var genero = document.getElementById("ba-genero").value;
             var casamento = document.getElementById("ba-casamento").value;
             var ordem = document.getElementById("ba-ordem").value;
-            var result = listaBase.slice();
+            // A página pode ter sido aberta por um link de categoria. Ao alterar
+            // o filtro, recomeça do catálogo completo para não combinar dois filtros
+            // incompatíveis (categoria da URL + categoria escolhida no seletor).
+            var result = catalogoMods.slice();
 
             if (cat) result = result.filter(function(m) { return matchCategoria(m, cat); });
             if (texto) {
