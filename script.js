@@ -545,12 +545,17 @@ document.addEventListener("DOMContentLoaded", async function() {
         var cats = {};
         if (catalogoMods.length) {
             catalogoMods.forEach(function(m) {
-                if (m.categoria) cats[m.categoria] = true;
-                if (m.categorias) m.categorias.forEach(function(c) { cats[c] = true; });
+                [m.categoria].concat(Array.isArray(m.categorias) ? m.categorias : []).forEach(function(nome) {
+                    var label = String(nome || "").trim(), key = chaveCanonicaCategoria(label);
+                    if (!label || !key) return;
+                    var atual = cats[key];
+                    if (!atual || (label.length > atual.length && label.indexOf(" de ") !== -1 && atual.indexOf(" de ") === -1)) cats[key] = label;
+                });
             });
         }
-        Object.keys(cats).sort().forEach(function(c) {
-            if (c === "Armaduras") return;
+        Object.keys(cats).sort(function(a,b) { return cats[a].localeCompare(cats[b], "pt-BR"); }).forEach(function(key) {
+            var c = cats[key];
+            if (normalizarBusca(c) === "armaduras") return;
             var opt = document.createElement("option");
             opt.value = c;
             opt.textContent = c;
