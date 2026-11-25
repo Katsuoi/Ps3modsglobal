@@ -242,16 +242,29 @@ document.addEventListener("DOMContentLoaded", async function() {
             .replace(/[^a-z0-9]+/g, " ").trim();
     }
 
+    function palavrasEquivalentes(a, b) {
+        if (a === b) return true;
+        // Aceita apenas a variação simples singular/plural; não confunde prefixos
+        // semanticamente diferentes, como "arma" e "armadura".
+        if (a.length > 3 && a.charAt(a.length - 1) === "s") return a.slice(0, -1) === b;
+        if (b.length > 3 && b.charAt(b.length - 1) === "s") return b.slice(0, -1) === a;
+        return false;
+    }
+
     function tokenCombina(token, palavras) {
-        if (palavras.some(function(p) { return p === token || p.indexOf(token) === 0 || token.indexOf(p) === 0; })) return true;
+        if (palavras.some(function(p) { return palavrasEquivalentes(p, token); })) return true;
         if (token.length >= 5 && palavras.some(function(p) {
             return p.length >= 5 && distanciaEdicao(token, p) <= (token.length >= 9 ? 2 : 1);
         })) return true;
         for (var i = 0; i < GRUPOS_BUSCA.length; i++) {
-            var grupo = GRUPOS_BUSCA[i].map(normalizarBusca);
-            if (grupo.some(function(alias) { return alias === token || (token.length >= 5 && distanciaEdicao(token, alias) <= 1); })) {
-                if (grupo.some(function(alias) { return palavras.some(function(p) { return p === alias || p.indexOf(alias) === 0 || alias.indexOf(p) === 0; }); })) return true;
-            }
+            var grupo = GRUPOS_BUSCA[i].map(function(alias) { return normalizarBusca(alias); });
+            var consultaNoGrupo = grupo.some(function(alias) {
+                return palavrasEquivalentes(alias, token) ||
+                    (token.length >= 5 && alias.length >= 5 && distanciaEdicao(token, alias) <= 1);
+            });
+            if (consultaNoGrupo && grupo.some(function(alias) {
+                return palavras.some(function(p) { return palavrasEquivalentes(p, alias); });
+            })) return true;
         }
         return false;
     }
@@ -266,17 +279,45 @@ document.addEventListener("DOMContentLoaded", async function() {
         return tokens.every(function(token) { return tokenCombina(token, palavras); });
     }
 
-    function matchCategoria(mod, categoria) {
-        var busca = normalizarCategoria(categoria);
-        var cat = normalizarCategoria(mod.categoria);
-        if (cat && (cat.indexOf(busca) !== -1 || busca.indexOf(cat) !== -1)) return true;
-        if (mod.categorias && mod.categorias.some(function(c) {
-            var nome = normalizarCategoria(c);
-            return nome.indexOf(busca) !== -1 || busca.indexOf(nome) !== -1;
-        })) return true;
-        if (busca.indexOf("armadura") !== -1 && (mod.genero === "Ambos" || cat === "armaduras")) return true;
-        if (busca === "followers" && cat.indexOf("companion") !== -1) return true;
+    function categoriasEquivalentes(a, b) {
+        a = normalizarBusca(a);
+        b = normalizarBusca(b);
+        if (!a || !b) return false;
+        if (palavrasEquivalentes(a, b)) return true;
+        // Sinônimos são aceitos somente quando o nome inteiro da categoria
+        // corresponde a um alias; nunca por coincidência de prefixo.
+        for (var i = 0; i < GRUPOS_BUSCA.length; i++) {
+            var grupo = GRUPOS_BUSCA[i].map(function(alias) { return normalizarBusca(alias); });
+            if (grupo.some(function(alias) { return palavrasEquivalentes(alias, a); }) &&
+                grupo.some(function(alias) { return palavrasEquivalentes(alias, b); })) return true;
+        }
         return false;
+    }
+
+    function matchCategoria(mod, categoria) {
+        var busca = normalizarBusca(categoria);
+        if (!busca) return false;
+        var categoriasMod = [mod.categoria].concat(Array.isArray(mod.categorias) ? mod.categorias : []);
+        var encontrou = categoriasMod.some(function(valor) {
+            var nome = normalizarBusca(valor);
+            if (!nome) return false;
+            if (categoriasEquivalentes(nome, busca)) return true;
+
+            // "Armaduras" pode funcionar como categoria-pai de "Armaduras Femininas"
+            // e "Armaduras Masculinas", sem alcançar a categoria "Armas".
+            if ((busca === "armadura" || busca === "armaduras") &&
+                /^armaduras? (femininas|masculinas)$/.test(nome)) return true;
+            return false;
+        });
+        if (encontrou) return true;
+
+        // Mods marcados para ambos os gêneros só entram nas subcategorias de
+        // armadura quando sua categoria principal também é de armaduras.
+        var categoriaPrincipal = normalizarBusca(mod.categoria);
+        return mod.genero === "Ambos" &&
+            (busca === "armadura feminina" || busca === "armaduras femininas" ||
+             busca === "armadura masculina" || busca === "armaduras masculinas") &&
+            (categoriaPrincipal === "armadura" || categoriaPrincipal === "armaduras");
     }
 
     function contarCategorias() {
@@ -288,7 +329,9 @@ document.addEventListener("DOMContentLoaded", async function() {
             if (mod.categorias && mod.categorias.length) {
                 mod.categorias.forEach(function(c) { set[c] = true; });
             }
-            if (mod.genero === "Ambos") {
+            var categoriaPrincipal = normalizarBusca(mod.categoria);
+            if (mod.genero === "Ambos" &&
+                (categoriaPrincipal === "armadura" || categoriaPrincipal === "armaduras")) {
                 set["Armaduras Femininas"] = true;
                 set["Armaduras Masculinas"] = true;
             }
