@@ -284,10 +284,21 @@ document.addEventListener("DOMContentLoaded", async function() {
         return tokens.every(function(token) { return tokenCombina(token, palavras); });
     }
 
+    function chaveCanonicaCategoria(valor) {
+        return normalizarBusca(valor).split(/\s+/).filter(function(palavra) {
+            return palavra && !/^(de|da|do|das|dos)$/.test(palavra);
+        }).map(function(palavra) {
+            if (palavra.length > 4 && palavra.slice(-3) === "oes") return palavra.slice(0, -3) + "ao";
+            if (palavra.length > 3 && palavra.slice(-1) === "s") return palavra.slice(0, -1);
+            return palavra;
+        }).join(" ");
+    }
+
     function categoriasEquivalentes(a, b) {
         a = normalizarBusca(a);
         b = normalizarBusca(b);
         if (!a || !b) return false;
+        if (chaveCanonicaCategoria(a) === chaveCanonicaCategoria(b)) return true;
         if (palavrasEquivalentes(a, b)) return true;
         // Sinônimos são aceitos somente quando o nome inteiro da categoria
         // corresponde a um alias; nunca por coincidência de prefixo.
@@ -626,7 +637,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             host.querySelectorAll('a[href*="categoria="]').forEach(function(a) {
                 try {
                     var atual = new URL(a.href, window.location.href).searchParams.get("categoria");
-                    if (atual) known[normalizarBusca(atual)] = true;
+                    if (atual) known[chaveCanonicaCategoria(atual)] = true;
                 } catch (e) {}
             });
         });
@@ -634,8 +645,14 @@ document.addEventListener("DOMContentLoaded", async function() {
         catalogoMods.forEach(function(mod) {
             [mod.categoria].concat(Array.isArray(mod.categorias) ? mod.categorias : []).forEach(function(nome) {
                 var label = String(nome || "").trim();
-                var key = normalizarBusca(label);
-                if (label && key && !categorias[key]) categorias[key] = label;
+                var key = chaveCanonicaCategoria(label);
+                if (label && key) {
+                    var atualLabel = categorias[key];
+                    if (!atualLabel || (label.indexOf(" de ") !== -1 && atualLabel.indexOf(" de ") === -1) ||
+                        (label.length > atualLabel.length && /s$/.test(normalizarBusca(label)) && !/s$/.test(normalizarBusca(atualLabel)))) {
+                        categorias[key] = label;
+                    }
+                }
             });
         });
         Object.keys(categorias).sort(function(a,b) { return categorias[a].localeCompare(categorias[b], "pt-BR"); }).forEach(function(key) {
