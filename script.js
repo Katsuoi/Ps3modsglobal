@@ -471,13 +471,12 @@ document.addEventListener("DOMContentLoaded", async function() {
         if (updatedAt && Date.now() - updatedAt < 7 * 24 * 60 * 60 * 1000 && Date.now() >= updatedAt) { var updateBadge=document.createElement("span"); updateBadge.className="badge-mod-atualizado"; updateBadge.textContent="ATUALIZADO"; updateBadge.title="Link de download atualizado nos últimos 7 dias"; card.appendChild(updateBadge); }
         var title = document.createElement("h3"); title.textContent = mod.nome || "Mod sem nome"; card.appendChild(title);
         var desc = document.createElement("p"); desc.textContent = mod.descricao || ""; card.appendChild(desc);
-        if (!mod.__community) {
-            var count = document.createElement("span");
-            count.className = "download-count"; count.setAttribute("data-download-count", "");
-            count.setAttribute("data-mod-id", mod.id);
-            count.textContent = "↓ " + formatarContagemDownloads(downloadCounts[String(mod.id)] || 0) + " downloads";
-            card.appendChild(count);
-        }
+        // Exibe a contagem para mods do catálogo e da comunidade usando o mesmo endpoint.
+        var count = document.createElement("span");
+        count.className = "download-count"; count.setAttribute("data-download-count", "");
+        count.setAttribute("data-mod-id", mod.id);
+        count.textContent = "↓ " + formatarContagemDownloads(downloadCounts[String(mod.id)] || 0) + " downloads";
+        card.appendChild(count);
         var link = document.createElement("a"); link.className = "download";
         link.href = mod.__community ? "../mod-comunidade.html?id=" + encodeURIComponent(mod.id) : "mod.html?id=" + encodeURIComponent(mod.id);
         link.textContent = "Ver Mod"; card.appendChild(link);
