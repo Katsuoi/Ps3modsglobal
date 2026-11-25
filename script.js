@@ -198,10 +198,15 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
 
     function labelCategoria(mod) {
-        if (mod.genero === "Ambos" || (mod.categorias && mod.categorias.length > 1)) {
+        var principal = String(mod && mod.categoria || "").trim();
+        // Só exibe o selo F/M quando a categoria principal for realmente armadura.
+        // Ter várias categorias não transforma o mod em armadura.
+        var principalNormalizada = normalizarBusca(principal);
+        if (mod && mod.genero === "Ambos" &&
+            (principalNormalizada === "armadura" || principalNormalizada === "armaduras")) {
             return "Armaduras (F/M)";
         }
-        return mod.categoria || "";
+        return principal || (Array.isArray(mod && mod.categorias) ? mod.categorias[0] || "" : "");
     }
 
     function normalizarCategoria(valor) {
@@ -356,7 +361,8 @@ document.addEventListener("DOMContentLoaded", async function() {
                 var url = new URL(a.href, window.location.href);
                 var cat = url.searchParams.get("categoria");
                 if (!cat) return;
-                cat = decodeURIComponent(cat);
+                // URLSearchParams já decodifica o valor; decodificar novamente
+                // quebra categorias com "%" ou sequências especiais.
                 var qtd = qtdDaCategoria(contagem, cat);
 
                 // recupera nome limpo
@@ -612,24 +618,36 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
 
     function adicionarCategoriasComunidade() {
+        // Usa o catálogo completo (mods legados + comunidade), não apenas os envios
+        // da comunidade. Assim, qualquer categoria nova aparece automaticamente.
         var hosts = [document.querySelector(".categorias-grid"), document.querySelector(".side-cats")].filter(Boolean);
         var known = {};
         hosts.forEach(function(host) {
             host.querySelectorAll('a[href*="categoria="]').forEach(function(a) {
-                try { known[normalizarCategoria(new URL(a.href, window.location.href).searchParams.get("categoria"))] = true; } catch (e) {}
+                try {
+                    var atual = new URL(a.href, window.location.href).searchParams.get("categoria");
+                    if (atual) known[normalizarBusca(atual)] = true;
+                } catch (e) {}
             });
         });
-        comunidadeMods.forEach(function(mod) {
+        var categorias = {};
+        catalogoMods.forEach(function(mod) {
             [mod.categoria].concat(Array.isArray(mod.categorias) ? mod.categorias : []).forEach(function(nome) {
-                var label = String(nome || "").trim(), key = normalizarCategoria(label);
-                if (!label || known[key]) return;
-                known[key] = true;
-                hosts.forEach(function(host) {
-                    var a = document.createElement("a"); a.textContent = label;
-                    a.href = (host.classList.contains("categorias-grid") ? "index.html?categoria=" : "mods/index.html?categoria=") + encodeURIComponent(label);
-                    host.appendChild(a);
-                });
+                var label = String(nome || "").trim();
+                var key = normalizarBusca(label);
+                if (label && key && !categorias[key]) categorias[key] = label;
             });
+        });
+        Object.keys(categorias).sort(function(a,b) { return categorias[a].localeCompare(categorias[b], "pt-BR"); }).forEach(function(key) {
+            if (known[key]) return;
+            var label = categorias[key];
+            hosts.forEach(function(host) {
+                var a = document.createElement("a");
+                a.textContent = label;
+                a.href = (host.classList.contains("categorias-grid") ? "index.html?categoria=" : "mods/index.html?categoria=") + encodeURIComponent(label);
+                host.appendChild(a);
+            });
+            known[key] = true;
         });
     }
     adicionarCategoriasComunidade();
