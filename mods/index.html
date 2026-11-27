@@ -16,9 +16,51 @@
 
 
 <link rel="stylesheet" href="../design-system.css">
+<style id="mods-library-preview-style">
+/* Redesign leve da biblioteca — isolado nesta página de teste */
+.mods-library-preview{background:radial-gradient(ellipse at 50% 0%,rgba(72,91,145,.13),transparent 42%),#0d1119}
+.mods-library-preview .banner-pequeno{min-height:230px;display:flex;align-items:center;background:linear-gradient(110deg,rgba(12,17,27,.97),rgba(20,27,43,.82)),url("../imagens/banner.jpg") center/cover no-repeat;border-bottom:1px solid rgba(150,170,210,.12)}
+.mods-library-preview .banner-pequeno .hero-content{max-width:1200px;width:92%;margin:0 auto;padding:36px 0}
+.mods-library-preview .hero-content>span{display:inline-flex;align-items:center;padding:6px 10px;border:1px solid rgba(126,145,220,.25);border-radius:999px;background:rgba(99,115,190,.12);color:#aebaff;font-size:10px;letter-spacing:1.6px}
+.mods-library-preview .hero-content h2{font-size:clamp(30px,5vw,42px);letter-spacing:-1.2px;margin:12px 0 7px}
+.mods-library-preview .hero-content p{color:#aab4c7;font-size:14px;max-width:520px}
+.mods-library-preview .mods{padding:30px 0 58px}
+.mods-library-preview .mods>.container{width:min(1240px,92%)}
+.mods-library-preview #lista-mods.cards-home{grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:20px;align-items:stretch}
+.mods-library-preview .card-mod{position:relative;isolation:isolate;background:linear-gradient(155deg,#1a2231 0%,#141b27 65%,#121925 100%);border:1px solid rgba(151,169,204,.13);border-radius:14px;overflow:hidden;box-shadow:0 5px 18px rgba(0,0,0,.13);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.mods-library-preview .card-mod:hover{transform:translateY(-3px);border-color:rgba(139,157,235,.42);box-shadow:0 12px 26px rgba(0,0,0,.25)}
+.mods-library-preview .card-mod>img{width:100%;height:174px;object-fit:cover;background:#202a3a;border-bottom:1px solid rgba(151,169,204,.12)}
+.mods-library-preview .card-mod>.origem-comunidade,.mods-library-preview .card-mod>.origem-administracao{margin:12px 14px 2px;font-size:9px;letter-spacing:.55px;text-transform:uppercase}
+.mods-library-preview .card-mod>.categoria{display:block;width:fit-content;max-width:calc(100% - 28px);margin:8px 14px 0;padding:4px 8px;border:1px solid rgba(130,151,230,.19);border-radius:6px;background:rgba(105,124,201,.09);color:#b5c2ff;font-size:9px;letter-spacing:.45px;text-align:left}
+.mods-library-preview .card-mod>.badge-mod-atualizado{position:absolute;top:12px;right:10px;padding:5px 8px;border-radius:6px;background:rgba(39,174,129,.92);color:#071710;font-size:9px;font-weight:800;letter-spacing:.45px}
+.mods-library-preview .card-mod>h3{padding:12px 14px 4px;color:#f1f4fb;font-size:15px;line-height:1.35;letter-spacing:-.2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:52px}
+.mods-library-preview .card-mod>p{padding:0 14px 12px;color:#9da9bd;font-size:12px;line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:68px}
+.mods-library-preview .card-mod>.download-count{display:block;margin:0 14px 12px;color:#8997ae;font-size:11px}
+.mods-library-preview .card-mod>.download{align-self:stretch;margin:0 14px 10px;padding:10px 12px;border:1px solid rgba(151,165,230,.28);border-radius:8px;background:linear-gradient(100deg,#a8b5ff,#8c9bea);color:#11182a;font-size:12px;font-weight:800;text-align:center}
+.mods-library-preview .card-mod>.download:hover{background:#c0c9ff}
+.mods-library-preview .card-mod>.btn-fav{align-self:stretch;margin:0 14px 14px;padding:8px 10px;border:1px solid rgba(151,169,204,.18);border-radius:8px;color:#aab6ca;font-size:11px}
+.mods-library-preview .card-mod>.btn-fav:hover,.mods-library-preview .card-mod>.btn-fav.favoritado{border-color:rgba(240,193,75,.5);color:#f0c96c;background:rgba(240,193,75,.07)}
+@media(max-width:600px){
+ .mods-library-preview .banner-pequeno{min-height:190px}
+ .mods-library-preview .banner-pequeno .hero-content{padding:25px 0}
+ .mods-library-preview .mods{padding:20px 0 42px}
+ .mods-library-preview #lista-mods.cards-home{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .mods-library-preview .card-mod{border-radius:11px}
+ .mods-library-preview .card-mod>img{height:clamp(112px,32vw,150px)}
+ .mods-library-preview .card-mod>.origem-comunidade,.mods-library-preview .card-mod>.origem-administracao{margin:9px 10px 1px;padding:4px 6px;font-size:8px}
+ .mods-library-preview .card-mod>.categoria{margin:7px 10px 0;padding:4px 6px;font-size:8px}
+ .mods-library-preview .card-mod>h3{padding:9px 10px 3px;font-size:13px;min-height:47px}
+ .mods-library-preview .card-mod>p{padding:0 10px 9px;font-size:11px;min-height:66px}
+ .mods-library-preview .card-mod>.download-count{margin:0 10px 9px;font-size:10px}
+ .mods-library-preview .card-mod>.download{margin:0 10px 8px;padding:9px 7px;font-size:11px}
+ .mods-library-preview .card-mod>.btn-fav{margin:0 10px 11px;padding:7px 6px;font-size:10px}
+}
+@media(max-width:360px){.mods-library-preview #lista-mods.cards-home{grid-template-columns:1fr}.mods-library-preview .card-mod>img{height:190px}}
+@media(prefers-reduced-motion:reduce){.mods-library-preview .card-mod{transition:none}}
+</style>
 </head>
 
-<body>
+<body class="mods-library-preview">
 
 <header class="topo">
 
