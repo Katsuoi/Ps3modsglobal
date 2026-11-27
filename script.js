@@ -858,6 +858,45 @@ document.addEventListener("DOMContentLoaded", async function() {
                 }
             }
 
+            // Patches de tradução: arquivos pequenos e separados do mod original.
+            if (Array.isArray(mod.translationPatches) && mod.translationPatches.length) {
+                var patchStyle = document.createElement("style");
+                patchStyle.textContent = ".translation-patches{margin:24px 0;padding:18px;border:1px solid #344956;border-radius:13px;background:#101922}.translation-patches h2{margin:0 0 5px;color:#b8edf0}.translation-patches .patch-subtitle{color:#9eabba;font-size:12px;margin:0 0 14px}.translation-patch-card{padding:13px;margin:9px 0;border:1px solid #344956;border-radius:10px;background:#0b141d}.translation-patch-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.translation-patch-head strong{color:#eaf3f5}.translation-patch-meta{color:#9eabba;font-size:12px;line-height:1.7;margin:8px 0}.translation-patch-install{white-space:pre-wrap;color:#c4ceda;font-size:12px;line-height:1.6;margin:8px 0}.translation-patch-card a{display:inline-block;margin-top:4px}";
+                document.head.appendChild(patchStyle);
+                var patchSection = document.createElement("section");
+                patchSection.className = "translation-patches";
+                var patchTitle = document.createElement("h2");
+                patchTitle.textContent = "🌐 Traduções e patches";
+                patchSection.appendChild(patchTitle);
+                var patchIntro = document.createElement("p");
+                patchIntro.className = "patch-subtitle";
+                patchIntro.textContent = "Baixe o mod original acima e aplique somente o patch do idioma desejado.";
+                patchSection.appendChild(patchIntro);
+                var patchLanguageLabels = {"pt-BR":"🇧🇷 Português (Brasil)","en":"🇺🇸 English","es":"🇪🇸 Español","fr":"🇫🇷 Français","de":"🇩🇪 Deutsch","it":"🇮🇹 Italiano","ja":"🇯🇵 日本語","ru":"🇷🇺 Русский","zh":"🇨🇳 中文","pl":"🇵🇱 Polski","other":"🌐 Outro idioma"};
+                mod.translationPatches.forEach(function(patch) {
+                    if (!patch || !/^https?:\/\//i.test(String(patch.link || ""))) return;
+                    var card = document.createElement("article");
+                    card.className = "translation-patch-card";
+                    var head = document.createElement("div");
+                    head.className = "translation-patch-head";
+                    var language = document.createElement("strong");
+                    language.textContent = patchLanguageLabels[patch.language] || ("🌐 " + String(patch.language || "Tradução"));
+                    head.appendChild(language);
+                    if (patch.version) { var version = document.createElement("span"); version.className = "badge-mod-atualizado"; version.textContent = "Patch " + patch.version; head.appendChild(version); }
+                    card.appendChild(head);
+                    var meta = [];
+                    if (patch.compatibleVersion) meta.push("Compatível com mod " + patch.compatibleVersion);
+                    if (patch.size) meta.push("Tamanho: " + patch.size);
+                    if (patch.author) meta.push("Tradutor: " + patch.author);
+                    if (patch.updatedAt) { var date = new Date(patch.updatedAt); if (!isNaN(date.getTime())) meta.push("Atualizado: " + date.toLocaleDateString("pt-BR")); }
+                    if (meta.length) { var metaNode = document.createElement("p"); metaNode.className = "translation-patch-meta"; metaNode.textContent = meta.join(" · "); card.appendChild(metaNode); }
+                    if (patch.instructions) { var instructions = document.createElement("p"); instructions.className = "translation-patch-install"; instructions.textContent = "Instalação: " + patch.instructions; card.appendChild(instructions); }
+                    var link = document.createElement("a"); link.className = "download"; link.textContent = "Baixar patch " + (patchLanguageLabels[patch.language] || patch.language || "de tradução"); link.href = patch.link; link.target = "_blank"; link.rel = "noopener noreferrer"; card.appendChild(link);
+                    patchSection.appendChild(card);
+                });
+                if (patchSection.children.length > 2) { var details = document.querySelector(".info-mod"); if (details) details.appendChild(patchSection); }
+            }
+
             var galeria = document.getElementById("galeria");
             if (galeria && mod.galeria) {
                 galeria.innerHTML = "";
